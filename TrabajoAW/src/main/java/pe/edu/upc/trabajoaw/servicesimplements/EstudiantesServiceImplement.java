@@ -22,4 +22,26 @@ public class EstudiantesServiceImplement implements IEstudiantesService {
     public void insert(Estudiantes e){
         repository.save(e);
     }
+
+    @Override
+    public Estudiantes listId(int id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void delete(int id) {
+    repository.deleteById(id);
+    }
+
+    @Override
+    public void edit(Estudiantes e) {
+    repository.save(e);
+    }
+
+    @Override
+    public List<Estudiantes> buscarCentro(String centroEstudiante) {
+        return repository.buscar(centroEstudiante);
+    }
+
+
 }
