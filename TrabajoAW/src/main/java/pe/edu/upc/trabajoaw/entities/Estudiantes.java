@@ -24,12 +24,12 @@ public class Estudiantes {
     public Estudiantes() {
     }
 
-    public Estudiantes(int idUsuario, String centroEstudiantes, String estadoEmocional, boolean riesgoEmocional, boolean modoEnfoque) {
+    public Estudiantes(int idUsuario, String centroEstudiantes, String estadoEmocional, boolean modoEnfoque, boolean riesgoEmocional) {
         this.idUsuario = idUsuario;
         this.centroEstudiantes = centroEstudiantes;
         this.estadoEmocional = estadoEmocional;
-        this.riesgoEmocional = riesgoEmocional;
         this.modoEnfoque = modoEnfoque;
+        this.riesgoEmocional = riesgoEmocional;
     }
 
     public int getIdUsuario() {
