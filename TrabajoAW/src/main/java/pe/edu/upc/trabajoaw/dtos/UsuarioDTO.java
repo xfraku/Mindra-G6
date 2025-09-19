@@ -1,45 +1,16 @@
-package pe.edu.upc.trabajoaw.entities;
+package pe.edu.upc.trabajoaw.dtos;
 
+import jakarta.persistence.Column;
 
-import jakarta.persistence.*;
+public class UsuarioDTO {
 
-@Entity
-@Table(name = "Usuario")
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idUsuario;
-
-    @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
-
-    @Column(name = "apellido",length = 50,nullable = false)
     private String apellido;
-
-    @Column(name = "correo",length = 50,nullable = false)
     private String correo;
-
-    @Column(name = "contrasenia",length = 50,nullable = false)
     private String contrasenia;
-
-    @Column(name = "telefono",length = 9,nullable = true)
     private String telefono;
-
-    @Column(name = "genero",length = 50,nullable = true)
     private String genero;
-
-    public Usuario() {
-    }
-
-    public Usuario(int idUsuario, String nombre, String apellido, String correo, String contrasenia, String telefono, String genero) {
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.contrasenia = contrasenia;
-        this.telefono = telefono;
-        this.genero = genero;
-    }
 
     public int getIdUsuario() {
         return idUsuario;

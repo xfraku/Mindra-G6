@@ -13,7 +13,7 @@ public class Profesional {
     @Column(name = "area", length = 50,nullable = false)
     private String area;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @MapsId
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;

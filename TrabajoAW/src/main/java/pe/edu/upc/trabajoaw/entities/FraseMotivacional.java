@@ -1,6 +1,5 @@
 package pe.edu.upc.trabajoaw.entities;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -17,9 +16,9 @@ public class FraseMotivacional {
     public FraseMotivacional() {
     }
 
-    public FraseMotivacional(String frase, int idFraseMotivacional) {
-        this.frase = frase;
+    public FraseMotivacional(int idFraseMotivacional, String frase) {
         this.idFraseMotivacional = idFraseMotivacional;
+        this.frase = frase;
     }
 
     public int getIdFraseMotivacional() {

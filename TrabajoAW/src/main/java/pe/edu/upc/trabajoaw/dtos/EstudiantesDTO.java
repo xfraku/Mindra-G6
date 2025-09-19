@@ -1,18 +1,21 @@
 package pe.edu.upc.trabajoaw.dtos;
 
+import pe.edu.upc.trabajoaw.entities.Usuario;
+
 public class EstudiantesDTO {
-    private int idUsuario;
+    private int idEstudiante;
     private String centroEstudiantes;
     private String estadoEmocional;
     private boolean modoEnfoque;
     private boolean riesgoEmocional;
+    private Usuario usuario;
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getIdEstudiante() {
+        return idEstudiante;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdEstudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
     }
 
     public String getCentroEstudiantes() {
@@ -45,5 +48,13 @@ public class EstudiantesDTO {
 
     public void setRiesgoEmocional(boolean riesgoEmocional) {
         this.riesgoEmocional = riesgoEmocional;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

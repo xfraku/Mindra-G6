@@ -18,7 +18,7 @@ public class EstudiantesController {
     @Autowired
     private IEstudiantesService service;
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<EstudiantesDTO> listarEstudiantes(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -26,7 +26,7 @@ public class EstudiantesController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/nuevo")
     public void insertar(@RequestBody EstudiantesDTO dto){
         ModelMapper m = new ModelMapper();
         Estudiantes estu=m.map(dto,Estudiantes.class);
@@ -57,17 +57,17 @@ public class EstudiantesController {
         return ResponseEntity.ok("Registro con ID " + id + "eliminado correctamente");
     }
 
-    @PutMapping
+    @PutMapping("/modificar")
     public ResponseEntity<String> modificar(@RequestBody EstudiantesDTO dto){
         ModelMapper m = new ModelMapper();
         Estudiantes estu=m.map(dto,Estudiantes.class);
-        Estudiantes existente = service.listId(estu.getIdUsuario());
+        Estudiantes existente = service.listId(estu.getIdEstudiante());
         if (existente == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe un registro con el ID: " + estu.getIdUsuario());
+                    .body("No se puede modificar. No existe un registro con el ID: " + estu.getIdEstudiante());
         }
         service.edit(estu);
-        return ResponseEntity.ok("Registro con ID " +  estu.getIdUsuario() + "modificado correctamente");
+        return ResponseEntity.ok("Registro con ID " +  estu.getIdEstudiante() + "modificado correctamente");
     }
 
     @GetMapping("/busquedas")

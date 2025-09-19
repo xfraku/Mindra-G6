@@ -10,7 +10,7 @@ public class Padre {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idPadre;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @MapsId
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;

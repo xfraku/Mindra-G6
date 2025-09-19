@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Estudiantes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idUsuario;
+    private int idEstudiante;
 
     @Column(name = "centroEstudiantes", length = 40,nullable = false)
     private String centroEstudiantes;
@@ -21,23 +21,30 @@ public class Estudiantes {
     @Column(name = "riesgoEmocional", nullable = false)
     private boolean riesgoEmocional;
 
+    @OneToOne(optional = false)
+    @MapsId
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+
     public Estudiantes() {
     }
 
-    public Estudiantes(int idUsuario, String centroEstudiantes, String estadoEmocional, boolean modoEnfoque, boolean riesgoEmocional) {
-        this.idUsuario = idUsuario;
+    public Estudiantes(int idEstudiante, String centroEstudiantes, String estadoEmocional, boolean modoEnfoque, boolean riesgoEmocional, Usuario usuario) {
+        this.idEstudiante = idEstudiante;
         this.centroEstudiantes = centroEstudiantes;
         this.estadoEmocional = estadoEmocional;
         this.modoEnfoque = modoEnfoque;
         this.riesgoEmocional = riesgoEmocional;
+        this.usuario = usuario;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getIdEstudiante() {
+        return idEstudiante;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdEstudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
     }
 
     public String getCentroEstudiantes() {
@@ -70,5 +77,13 @@ public class Estudiantes {
 
     public void setRiesgoEmocional(boolean riesgoEmocional) {
         this.riesgoEmocional = riesgoEmocional;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
