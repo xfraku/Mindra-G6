@@ -11,7 +11,6 @@ public class Padre {
     private int idPadre;
 
     @OneToOne(optional = false)
-    @MapsId
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 

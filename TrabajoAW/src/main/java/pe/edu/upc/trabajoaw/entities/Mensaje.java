@@ -12,8 +12,7 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idMensaje;
 
-    @Lob
-    @Column(name = "contenido", nullable = false)
+    @Column(name = "contenido",length = 100, nullable = false)
     private String contenido;
 
     @ManyToOne(optional = false)
