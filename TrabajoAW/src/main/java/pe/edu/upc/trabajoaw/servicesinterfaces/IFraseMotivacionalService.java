@@ -11,5 +11,4 @@ public interface IFraseMotivacionalService {
     FraseMotivacional listId(int id);
     void delete(int id);
     void edit(FraseMotivacional f);
-    Optional<FraseMotivacional> findById(int id);
 }
