@@ -22,7 +22,6 @@ public class Estudiantes {
     private boolean riesgoEmocional;
 
     @OneToOne(optional = false)
-    @MapsId
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 

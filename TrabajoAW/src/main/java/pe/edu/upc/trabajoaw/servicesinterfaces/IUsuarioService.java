@@ -3,6 +3,7 @@ package pe.edu.upc.trabajoaw.servicesinterfaces;
 import pe.edu.upc.trabajoaw.entities.Usuario;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUsuarioService {
 
