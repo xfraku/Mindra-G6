@@ -38,4 +38,9 @@ public class SitiosWebServiceImplement implements ISitiosWebService {
     public void edit(SitiosWeb s) {
         repository.save(s);
     }
+
+    @Override
+    public List<Object[]> duracionPromedioVisitasPorSitio() {
+        return repository.duracionPromedioVisitasPorSitio();
+    }
 }

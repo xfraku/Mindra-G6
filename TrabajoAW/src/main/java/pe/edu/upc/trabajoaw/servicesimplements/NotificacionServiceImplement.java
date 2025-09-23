@@ -38,4 +38,10 @@ public class NotificacionServiceImplement implements INotificacionService {
     public void edit(Notificacion n) {
         repository.save(n);
     }
+
+    @Override
+    public List<Object[]> listarNotificacionessinprofesionalasignado() {
+        return repository.listarNotificacionessinprofesionalasignado();
+    }
+
 }

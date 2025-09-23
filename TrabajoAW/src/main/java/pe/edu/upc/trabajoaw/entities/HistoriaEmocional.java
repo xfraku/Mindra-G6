@@ -33,34 +33,13 @@ public class HistoriaEmocional {
     @Column(name = "reflexion", length = 100, nullable = false)
     private String reflexion;
 
-    @ManyToMany
-    @JoinTable(
-            name = "HistoriasEmocionales_Emociones",
-            joinColumns = @JoinColumn(name = "idHistoriaEmocional"),
-            inverseJoinColumns = @JoinColumn(name = "idEmocion")
-    )
-    private Set<Emocion> emociones = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(
-            name = "HistoriasEmocionales_EjerciciosRelajacion",
-            joinColumns = @JoinColumn(name = "idHistoriaEmocional"),
-            inverseJoinColumns = @JoinColumn(name = "idEjercicios")
-    )
-    private Set<EjercicioRelajacion> ejercicios = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(
-            name = "HistoriasEmocionales_FrasesMotivac",
-            joinColumns = @JoinColumn(name = "idHistoriaEmocional"),
-            inverseJoinColumns = @JoinColumn(name = "idFraseMotivacional")
-    )
-    private Set<FraseMotivacional> frasesMotivacionales = new HashSet<>();
+    @OneToMany(mappedBy = "historialEmocional", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<HistoriaEmocionalDetalle> detalles = new HashSet<>();
 
     public HistoriaEmocional() {
     }
 
-    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, Instant fecha, Usuario usuario, String notas, String reflexion, Set<Emocion> emociones, Set<EjercicioRelajacion> ejercicios, Set<FraseMotivacional> frasesMotivacionales) {
+    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, Instant fecha, Usuario usuario, String notas, String reflexion, Set<HistoriaEmocionalDetalle> detalles) {
         this.idHistoriaEmocional = idHistoriaEmocional;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -68,9 +47,7 @@ public class HistoriaEmocional {
         this.usuario = usuario;
         this.notas = notas;
         this.reflexion = reflexion;
-        this.emociones = emociones;
-        this.ejercicios = ejercicios;
-        this.frasesMotivacionales = frasesMotivacionales;
+        this.detalles = detalles;
     }
 
     public int getIdHistoriaEmocional() {
@@ -129,27 +106,11 @@ public class HistoriaEmocional {
         this.reflexion = reflexion;
     }
 
-    public Set<Emocion> getEmociones() {
-        return emociones;
+    public Set<HistoriaEmocionalDetalle> getDetalles() {
+        return detalles;
     }
 
-    public void setEmociones(Set<Emocion> emociones) {
-        this.emociones = emociones;
-    }
-
-    public Set<EjercicioRelajacion> getEjercicios() {
-        return ejercicios;
-    }
-
-    public void setEjercicios(Set<EjercicioRelajacion> ejercicios) {
-        this.ejercicios = ejercicios;
-    }
-
-    public Set<FraseMotivacional> getFrasesMotivacionales() {
-        return frasesMotivacionales;
-    }
-
-    public void setFrasesMotivacionales(Set<FraseMotivacional> frasesMotivacionales) {
-        this.frasesMotivacionales = frasesMotivacionales;
+    public void setDetalles(Set<HistoriaEmocionalDetalle> detalles) {
+        this.detalles = detalles;
     }
 }

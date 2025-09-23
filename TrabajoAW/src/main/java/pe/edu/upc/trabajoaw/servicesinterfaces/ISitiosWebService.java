@@ -10,5 +10,5 @@ public interface ISitiosWebService {
     SitiosWeb listId(int id);
     void delete(int id);
     void edit(SitiosWeb s);
-
+    List<Object[]> duracionPromedioVisitasPorSitio();
 }

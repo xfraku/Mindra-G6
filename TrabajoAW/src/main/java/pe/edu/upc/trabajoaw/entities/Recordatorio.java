@@ -20,7 +20,7 @@ public class Recordatorio {
     private String diaElegido;
 
     @Column(name = "activo", nullable = false)
-    private String activo;
+    private boolean activo;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
@@ -29,7 +29,7 @@ public class Recordatorio {
     public Recordatorio() {
     }
 
-    public Recordatorio(int idRecordatorio, String titulo, String descripcion, String diaElegido, String activo, Usuario usuario) {
+    public Recordatorio(int idRecordatorio, String titulo, String descripcion, String diaElegido, boolean activo, Usuario usuario) {
         this.idRecordatorio = idRecordatorio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -70,11 +70,11 @@ public class Recordatorio {
         this.diaElegido = diaElegido;
     }
 
-    public String getActivo() {
+    public boolean isActivo() {
         return activo;
     }
 
-    public void setActivo(String activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
