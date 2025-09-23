@@ -12,6 +12,8 @@ import pe.edu.upc.trabajoaw.servicesinterfaces.IEmocionService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RestController
+@RequestMapping("/emocion")
 public class EmocionController {
     @Autowired
     private IEmocionService service;
@@ -63,5 +65,4 @@ public class EmocionController {
         service.edit(entity);
         return ResponseEntity.ok("Registro con ID " +  entity.getIdEmocion() + "modificado correctamente");
     }
-
 }

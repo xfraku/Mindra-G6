@@ -2,39 +2,32 @@ package pe.edu.upc.trabajoaw.dtos;
 
 public class EjercicioRelajacionDTO {
     private int idEjercicioRelajacion;
-    private String problema;
-    private String recomendaciones;
-    private String duracion;
+    private String descripcion;
+    private String recomendacion;
+    private int duracion;
 
     public int getIdEjercicioRelajacion() {
         return idEjercicioRelajacion;
     }
-
     public void setIdEjercicioRelajacion(int idEjercicioRelajacion) {
         this.idEjercicioRelajacion = idEjercicioRelajacion;
     }
-
-    public String getProblema() {
-        return problema;
+    public String getDescripcion() {
+        return descripcion;
     }
-
-    public void setProblema(String problema) {
-        this.problema = problema;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-
-    public String getRecomendaciones() {
-        return recomendaciones;
+    public String getRecomendacion() {
+        return recomendacion;
     }
-
-    public void setRecomendaciones(String recomendaciones) {
-        this.recomendaciones = recomendaciones;
+    public void setRecomendacion(String recomendacion) {
+        this.recomendacion = recomendacion;
     }
-
-    public String getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
-
-    public void setDuracion(String duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.ListarNotificacionesDTO;
-import pe.edu.upc.trabajoaw.dtos.MensajeDTO;
 import pe.edu.upc.trabajoaw.dtos.NotificacionDTO;
 import pe.edu.upc.trabajoaw.entities.Notificacion;
 import pe.edu.upc.trabajoaw.servicesinterfaces.INotificacionService;
@@ -18,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// ... existing code ...
 @RestController
-@RequestMapping("/Notificacion")
+@RequestMapping("/notificaciones")
 public class NotificacionController {
 
     @Autowired
@@ -59,11 +57,11 @@ public class NotificacionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un registro con el ID:" + id);
         }
         service.delete(id);
-        return ResponseEntity.ok("Registro con ID " + id + "eliminado correctamente");
+        return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente");
     }
 
     @PutMapping("/modificar")
-    public ResponseEntity<String> modificar(@RequestBody MensajeDTO dto){
+    public ResponseEntity<String> modificar(@RequestBody NotificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Notificacion entity=m.map(dto,Notificacion.class);
         Notificacion existente = service.listId(entity.getIdNotificacion());
@@ -71,11 +69,12 @@ public class NotificacionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se puede modificar. No existe un registro con el ID: " + entity.getIdNotificacion());
         }
         service.edit(entity);
-        return ResponseEntity.ok("Registro con ID " +  entity.getIdNotificacion() + "modificado correctamente");
+        return ResponseEntity.ok("Registro con ID " +  entity.getIdNotificacion() + " modificado correctamente");
     }
 
-    @GetMapping("/ListarNotificaciones")
-    public ResponseEntity<?> ListarNotificacionesSinProfesionalasignado() {
+    // Mantiene el listado especial basado en el query nativo existente
+    @GetMapping("/sin-profesional")
+    public ResponseEntity<?> listarSinProfesionalAsignado() {
         List<Object[]> filas = service.listarNotificacionessinprofesionalasignado();
         List<ListarNotificacionesDTO> resultado = new ArrayList<>();
         if (filas == null || filas.isEmpty()) {
@@ -89,19 +88,16 @@ public class NotificacionController {
             dto.setFecha(toInstant(c[2]));
             dto.setIdEstudiantes(toInteger(c[3]));
             dto.setIdPadre(toInteger(c[4]));
-            dto.setIdProfesional(toInteger(c[5])); // debería venir null por la condición WHERE
+            dto.setIdProfesional(toInteger(c[5]));
             resultado.add(dto);
         }
         return ResponseEntity.ok(resultado);
     }
 
-    // Helpers de conversión seguros para resultados nativos
     private Integer toInteger(Object o) {
         if (o == null) return null;
         if (o instanceof Number n) return n.intValue();
-        if (o instanceof String s) {
-            try { return Integer.parseInt(s); } catch (NumberFormatException ignored) {}
-        }
+        if (o instanceof String s) { try { return Integer.parseInt(s); } catch (NumberFormatException ignored) {} }
         return null;
     }
 
@@ -110,9 +106,7 @@ public class NotificacionController {
         if (o instanceof Instant i) return i;
         if (o instanceof java.sql.Timestamp ts) return ts.toInstant();
         if (o instanceof LocalDateTime ldt) return ldt.toInstant(ZoneOffset.UTC);
-        if (o instanceof String s) {
-            try { return Instant.parse(s); } catch (Exception ignored) {}
-        }
+        if (o instanceof String s) { try { return Instant.parse(s); } catch (Exception ignored) {} }
         return null;
     }
 }

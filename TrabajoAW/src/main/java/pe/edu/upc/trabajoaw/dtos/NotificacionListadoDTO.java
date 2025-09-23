@@ -2,7 +2,7 @@ package pe.edu.upc.trabajoaw.dtos;
 
 import java.time.Instant;
 
-public class NotificacionDTO {
+public class NotificacionListadoDTO {
     private int idNotificacion;
     private String problema;
     private Instant fecha;
