@@ -11,5 +11,4 @@ public interface INotificacionService {
     void delete(int id);
     void edit(Notificacion n);
     List<Object[]> listarNotificacionessinprofesionalasignado();
-
 }
