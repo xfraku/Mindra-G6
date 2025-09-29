@@ -10,5 +10,4 @@ public interface IVisitasServices {
     Visitas listId(int id);
     void delete(int id);
     void edit(Visitas v);
-
 }

@@ -4,11 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.VisitasDTO;
 import pe.edu.upc.trabajoaw.entities.Visitas;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IVisitasServices;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +20,7 @@ public class VisitasController {
     private IVisitasServices service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<VisitasDTO> listarVisitas(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();

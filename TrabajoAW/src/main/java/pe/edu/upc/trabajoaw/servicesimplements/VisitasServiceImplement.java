@@ -6,6 +6,7 @@ import pe.edu.upc.trabajoaw.entities.Visitas;
 import pe.edu.upc.trabajoaw.repositories.IVisitasRepository;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IVisitasServices;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -38,5 +39,4 @@ public class VisitasServiceImplement implements IVisitasServices {
     public void edit(Visitas v) {
         repository.save(v);
     }
-
 }
