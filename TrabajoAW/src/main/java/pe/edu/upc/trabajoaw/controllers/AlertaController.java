@@ -21,7 +21,7 @@ public class AlertaController {
     private IAlertaService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public List<AlertaDTO> listar() {
         return service.list().stream().map(e -> {
             ModelMapper m = new ModelMapper();
