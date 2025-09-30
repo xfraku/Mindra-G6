@@ -38,4 +38,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public void edit(Usuario u) {
         repository.save(u);
     }
+
+    @Override
+    public List<String[]> tiempoSitiosDistractoresUsuario(int idUsuario) {
+        return repository.tiempoSitiosDistractoresUsuario(idUsuario);
+    }
 }

@@ -1,5 +1,6 @@
 package pe.edu.upc.trabajoaw.servicesinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.trabajoaw.entities.Usuario;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface IUsuarioService {
 
     public void delete(int id);
     public void edit(Usuario u);
+    public List<String[]> tiempoSitiosDistractoresUsuario(int idUsuario);
 }

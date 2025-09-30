@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.trabajoaw.dtos.TiempoDistraccionUsuarioDTO;
 import pe.edu.upc.trabajoaw.dtos.UsuarioDTO;
 import pe.edu.upc.trabajoaw.entities.Usuario;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IUsuarioService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,5 +67,23 @@ public class UsuarioController {
         }
         service.edit(usu);
         return ResponseEntity.ok("Registro con ID " +  usu.getIdUsuario() + " modificado correctamente");
+    }
+
+    @GetMapping("/totalTiempoDistraccionUsuario")
+    public ResponseEntity<?> totalTiempoDistraccionUsuario(@RequestParam int idUsuario) {
+        List<String[]> total=service.tiempoSitiosDistractoresUsuario(idUsuario);
+        List<TiempoDistraccionUsuarioDTO> listaTotal=new ArrayList<>();
+        if (total.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron proveedores registrados ");
+        }
+        for(String[] columna:total){
+            TiempoDistraccionUsuarioDTO dto=new TiempoDistraccionUsuarioDTO();
+            dto.setIdUsuario(Integer.getInteger(columna[0]));
+            dto.setNombre(columna[1]);
+            dto.setTiempo_total(Integer.parseInt(columna[2]));
+            listaTotal.add(dto);
+        }
+        return ResponseEntity.ok(listaTotal);
     }
 }
