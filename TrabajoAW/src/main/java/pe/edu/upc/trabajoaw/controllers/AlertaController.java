@@ -21,7 +21,7 @@ public class AlertaController {
     private IAlertaService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE','')")
     public List<AlertaDTO> listar() {
         return service.list().stream().map(e -> {
             ModelMapper m = new ModelMapper();
@@ -30,6 +30,7 @@ public class AlertaController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public void insertar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
         Alerta entity = m.map(dto, Alerta.class);
@@ -37,6 +38,7 @@ public class AlertaController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         Alerta entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Alerta con ID " + id);
@@ -45,6 +47,7 @@ public class AlertaController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Alerta con ID " + id);
         service.delete(id);
@@ -52,6 +55,7 @@ public class AlertaController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<String> modificar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
         Alerta entity = m.map(dto, Alerta.class);

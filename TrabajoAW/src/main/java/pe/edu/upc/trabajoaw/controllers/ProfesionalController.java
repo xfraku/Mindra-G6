@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.ProfesionalDTO;
 import pe.edu.upc.trabajoaw.entities.Profesional;
@@ -20,6 +21,7 @@ public class ProfesionalController {
     private IProfesionalService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public List<ProfesionalDTO> listarProfesional(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class ProfesionalController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public void insertar(@RequestBody ProfesionalDTO dto){
         ModelMapper m = new ModelMapper();
         Profesional entity=m.map(dto,Profesional.class);
@@ -35,6 +38,7 @@ public class ProfesionalController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Profesional entity = service.listId(id);
         if(entity == null){
@@ -46,6 +50,7 @@ public class ProfesionalController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Profesional entity = service.listId(id);
         if (entity == null){
@@ -56,6 +61,7 @@ public class ProfesionalController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<String> modificar(@RequestBody ProfesionalDTO dto){
         ModelMapper m = new ModelMapper();
         Profesional entity=m.map(dto,Profesional.class);

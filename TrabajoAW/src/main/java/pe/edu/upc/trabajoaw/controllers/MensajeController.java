@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.MensajeDTO;
 import pe.edu.upc.trabajoaw.entities.Mensaje;
@@ -20,6 +21,7 @@ public class MensajeController {
     private IMensajeService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public List<MensajeDTO> listarMensaje(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class MensajeController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public void insertar(@RequestBody MensajeDTO dto){
         ModelMapper m = new ModelMapper();
         Mensaje entity=m.map(dto,Mensaje.class);
@@ -35,6 +38,7 @@ public class MensajeController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Mensaje entity = service.listId(id);
         if(entity == null){
@@ -46,6 +50,7 @@ public class MensajeController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Mensaje entity = service.listId(id);
         if (entity == null){
@@ -56,6 +61,7 @@ public class MensajeController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
     public ResponseEntity<String> modificar(@RequestBody MensajeDTO dto){
         ModelMapper m = new ModelMapper();
         Mensaje entity=m.map(dto,Mensaje.class);
