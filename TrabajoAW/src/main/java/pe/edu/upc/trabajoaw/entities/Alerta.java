@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalTime;
-
+// Representa una alerta configurada por el sistema o el usuario
 @Entity
 @Table(name = "Alerta")
 public class Alerta {
@@ -14,7 +14,7 @@ public class Alerta {
     private int idAlerta;
 
     @Column(name = "tiempoEstablecido", nullable = false)
-    private Instant tiempoEstablecido;
+    private Instant tiempoEstablecido; // Momento en que se genera la alerta
 
     @Column(name = "mensaje", length = 100, nullable = false)
     private String mensaje;
