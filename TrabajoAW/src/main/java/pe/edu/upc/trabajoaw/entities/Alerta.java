@@ -4,17 +4,17 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalTime;
-// Representa una alerta configurada por el sistema o el usuario
+
 @Entity
 @Table(name = "Alerta")
 public class Alerta {
-    // Estructura principal y anotaciones agregadas correctamente
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idAlerta;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idAlerta;
 
     @Column(name = "tiempoEstablecido", nullable = false)
-    private Instant tiempoEstablecido; // Momento en que se genera la alerta
+    private Instant tiempoEstablecido;
 
     @Column(name = "mensaje", length = 100, nullable = false)
     private String mensaje;
@@ -37,8 +37,7 @@ public class Alerta {
     public Alerta() {
     }
 
-    public Alerta(int idAlerta, Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, LocalTime horaInicio, LocalTime horaFin) {
-        this.idAlerta = idAlerta;
+    public Alerta(Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, LocalTime horaInicio, LocalTime horaFin) {
         this.tiempoEstablecido = tiempoEstablecido;
         this.mensaje = mensaje;
         this.nivelIntervencion = nivelIntervencion;
@@ -48,11 +47,13 @@ public class Alerta {
         this.horaFin = horaFin;
     }
 
-    public int getIdAlerta() {
+    // Getters y Setters
+
+    public Long getIdAlerta() {
         return idAlerta;
     }
 
-    public void setIdAlerta(int idAlerta) {
+    public void setIdAlerta(Long idAlerta) {
         this.idAlerta = idAlerta;
     }
 
@@ -110,5 +111,19 @@ public class Alerta {
 
     public void setHoraFin(LocalTime horaFin) {
         this.horaFin = horaFin;
+    }
+
+    @Override
+    public String toString() {
+        return "Alerta{" +
+                "idAlerta=" + idAlerta +
+                ", tiempoEstablecido=" + tiempoEstablecido +
+                ", mensaje='" + mensaje + '\'' +
+                ", nivelIntervencion='" + nivelIntervencion + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", visible=" + visible +
+                ", horaInicio=" + horaInicio +
+                ", horaFin=" + horaFin +
+                '}';
     }
 }
