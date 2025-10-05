@@ -8,6 +8,11 @@ public class UsuarioRegistroViewDTO {
     private long totalRegistros;
     private long posicion;
 
+    // 🔹 Constructor vacío (recomendado para frameworks y serialización)
+    public UsuarioRegistroViewDTO() {
+    }
+
+    // 🔹 Constructor con parámetros
     public UsuarioRegistroViewDTO(String emocion, int codigoEmocion, int usuario, long totalRegistros, long posicion) {
         this.emocion = emocion;
         this.codigoEmocion = codigoEmocion;
@@ -54,5 +59,17 @@ public class UsuarioRegistroViewDTO {
 
     public void setPosicion(long posicion) {
         this.posicion = posicion;
+    }
+
+    // 🔹 Método toString() para depuración
+    @Override
+    public String toString() {
+        return "UsuarioRegistroViewDTO{" +
+                "emocion='" + emocion + '\'' +
+                ", codigoEmocion=" + codigoEmocion +
+                ", usuario=" + usuario +
+                ", totalRegistros=" + totalRegistros +
+                ", posicion=" + posicion +
+                '}';
     }
 }
