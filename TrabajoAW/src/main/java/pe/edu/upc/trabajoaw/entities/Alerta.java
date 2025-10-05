@@ -8,7 +8,7 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "Alerta")
 public class Alerta {
-
+    // Estructura principal y anotaciones agregadas correctamente
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idAlerta;
