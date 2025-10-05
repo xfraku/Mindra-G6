@@ -7,7 +7,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "Notificacion")
 public class Notificacion {
-
+//Notofoca al usuario
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idNotificacion;
