@@ -34,6 +34,10 @@ public class Alerta {
     @Column(name = "horaFin", nullable = false)
     private LocalTime horaFin;
 
+    // 👇 Nuevo campo: estado activo/inactivo
+    @Column(name = "activo", nullable = false)
+    private boolean activo = true;
+
     public Alerta() {
     }
 
@@ -113,6 +117,15 @@ public class Alerta {
         this.horaFin = horaFin;
     }
 
+    // 👇 Getter y Setter para el nuevo campo
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     @Override
     public String toString() {
         return "Alerta{" +
@@ -124,6 +137,7 @@ public class Alerta {
                 ", visible=" + visible +
                 ", horaInicio=" + horaInicio +
                 ", horaFin=" + horaFin +
+                ", activo=" + activo +  // 👈 Incluido en toString
                 '}';
     }
 }
