@@ -1,4 +1,4 @@
-ppackage pe.edu.upc.trabajoaw.entities;
+package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
 
@@ -9,19 +9,19 @@ import java.time.Instant;
 public class Mensaje {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 👈 Cambiado a IDENTITY
-    private Long idMensaje; // 👈 Cambiado de int a Long
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idMensaje;
 
     @Lob
     @Column(name = "contenido", nullable = false)
     private String contenido;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioEstudiantes", nullable = false) // 👈 Añadido nullable=false para consistencia
+    @JoinColumn(name = "idUsuarioEstudiantes", nullable = false)
     private Estudiantes estudiantes;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioPadre", nullable = false) // 👈 Añadido nullable=false
+    @JoinColumn(name = "idUsuarioPadre", nullable = false)
     private Padre padre;
 
     @Column(name = "fecha", nullable = false)
@@ -34,6 +34,7 @@ public class Mensaje {
     private String idMensajeRespuesta;
 
     public Mensaje() {
+        this.leido = false; // 👈 Pequeño cambio: asegura que inicie como no leído
     }
 
     public Mensaje(Long idMensaje, String contenido, Estudiantes estudiantes, Padre padre, Instant fecha, boolean leido, String idMensajeRespuesta) {
@@ -45,8 +46,6 @@ public class Mensaje {
         this.leido = leido;
         this.idMensajeRespuesta = idMensajeRespuesta;
     }
-
-    // Getters y Setters
 
     public Long getIdMensaje() {
         return idMensaje;
