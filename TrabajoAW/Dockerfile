@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Etapa 2: ejecutar el JAR
-FROM amazoncorretto:24-alpine-jdk
+FROM amazoncorretto:17-alpine-jdk
 WORKDIR /app
 COPY --from=build /app/target/TrabajoAW-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
