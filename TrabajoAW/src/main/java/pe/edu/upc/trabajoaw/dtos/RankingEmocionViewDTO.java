@@ -7,6 +7,11 @@ public class RankingEmocionViewDTO {
     private long usuariosUnicos;
     private long ranking;
 
+    // 🔹 Constructor vacío (necesario para serialización)
+    public RankingEmocionViewDTO() {
+    }
+
+    // 🔹 Constructor con parámetros
     public RankingEmocionViewDTO(int idEmocion, String emocion, long usuariosUnicos, long ranking) {
         this.idEmocion = idEmocion;
         this.emocion = emocion;
@@ -22,27 +27,4 @@ public class RankingEmocionViewDTO {
         this.idEmocion = idEmocion;
     }
 
-    public String getEmocion() {
-        return emocion;
-    }
-
-    public void setEmocion(String emocion) {
-        this.emocion = emocion;
-    }
-
-    public long getUsuariosUnicos() {
-        return usuariosUnicos;
-    }
-
-    public void setUsuariosUnicos(long usuariosUnicos) {
-        this.usuariosUnicos = usuariosUnicos;
-    }
-
-    public long getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(long ranking) {
-        this.ranking = ranking;
-    }
-}
+    public St
