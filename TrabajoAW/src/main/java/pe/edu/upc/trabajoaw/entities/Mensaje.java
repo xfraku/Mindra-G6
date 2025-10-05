@@ -33,11 +33,15 @@ public class Mensaje {
     @Column(name = "idMensajeRespuesta", length = 8, nullable = false)
     private String idMensajeRespuesta;
 
+    // 👇 Nuevo campo: prioridad (pequeño cambio funcional)
+    @Column(name = "prioridad", length = 10, nullable = false)
+    private String prioridad = "NORMAL";
+
     public Mensaje() {
-        this.leido = false; // 👈 Pequeño cambio: asegura que inicie como no leído
+        this.leido = false;
     }
 
-    public Mensaje(Long idMensaje, String contenido, Estudiantes estudiantes, Padre padre, Instant fecha, boolean leido, String idMensajeRespuesta) {
+    public Mensaje(Long idMensaje, String contenido, Estudiantes estudiantes, Padre padre, Instant fecha, boolean leido, String idMensajeRespuesta, String prioridad) {
         this.idMensaje = idMensaje;
         this.contenido = contenido;
         this.estudiantes = estudiantes;
@@ -45,7 +49,10 @@ public class Mensaje {
         this.fecha = fecha;
         this.leido = leido;
         this.idMensajeRespuesta = idMensajeRespuesta;
+        this.prioridad = prioridad != null ? prioridad : "NORMAL";
     }
+
+    // Getters y Setters
 
     public Long getIdMensaje() {
         return idMensaje;
@@ -103,6 +110,15 @@ public class Mensaje {
         this.idMensajeRespuesta = idMensajeRespuesta;
     }
 
+    // 👇 Getter y Setter para prioridad
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad != null ? prioridad : "NORMAL";
+    }
+
     @Override
     public String toString() {
         return "Mensaje{" +
@@ -113,6 +129,7 @@ public class Mensaje {
                 ", fecha=" + fecha +
                 ", leido=" + leido +
                 ", idMensajeRespuesta='" + idMensajeRespuesta + '\'' +
+                ", prioridad='" + prioridad + '\'' +  // 👈 Incluido en toString
                 '}';
     }
 }
