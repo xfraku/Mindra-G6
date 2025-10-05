@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoaw.entities;
+ppackage pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
 
@@ -7,29 +7,30 @@ import jakarta.persistence.*;
 public class Recomendacion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idRecomendacion;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idRecomendacion;
 
-    @Column(name = "titulo", length = 50,nullable = false)
+    @Column(name = "titulo", length = 50, nullable = false)
     private String titulo;
 
-    @Column(name = "descripcion", length = 100,nullable = false)
+    @Column(name = "descripcion", length = 100, nullable = false)
     private String descripcion;
 
     public Recomendacion() {
     }
 
-    public Recomendacion(int idRecomendacion, String titulo, String descripcion) {
-        this.idRecomendacion = idRecomendacion;
+    public Recomendacion(String titulo, String descripcion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
     }
 
-    public int getIdRecomendacion() {
+    // Getters y Setters
+
+    public Long getIdRecomendacion() {
         return idRecomendacion;
     }
 
-    public void setIdRecomendacion(int idRecomendacion) {
+    public void setIdRecomendacion(Long idRecomendacion) {
         this.idRecomendacion = idRecomendacion;
     }
 
@@ -47,5 +48,14 @@ public class Recomendacion {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Recomendacion{" +
+                "idRecomendacion=" + idRecomendacion +
+                ", titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }
