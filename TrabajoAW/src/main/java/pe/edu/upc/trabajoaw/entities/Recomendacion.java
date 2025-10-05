@@ -1,4 +1,4 @@
-ppackage pe.edu.upc.trabajoaw.entities;
+package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
 
@@ -23,8 +23,6 @@ public class Recomendacion {
         this.titulo = titulo;
         this.descripcion = descripcion;
     }
-
-    // Getters y Setters
 
     public Long getIdRecomendacion() {
         return idRecomendacion;
