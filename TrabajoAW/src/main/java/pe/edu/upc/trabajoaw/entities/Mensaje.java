@@ -1,4 +1,4 @@
-package pe.edu.upc.trabajoaw.entities;
+ppackage pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
 
@@ -9,19 +9,19 @@ import java.time.Instant;
 public class Mensaje {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idMensaje;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 👈 Cambiado a IDENTITY
+    private Long idMensaje; // 👈 Cambiado de int a Long
 
     @Lob
     @Column(name = "contenido", nullable = false)
     private String contenido;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioEstudiantes")
+    @JoinColumn(name = "idUsuarioEstudiantes", nullable = false) // 👈 Añadido nullable=false para consistencia
     private Estudiantes estudiantes;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioPadre")
+    @JoinColumn(name = "idUsuarioPadre", nullable = false) // 👈 Añadido nullable=false
     private Padre padre;
 
     @Column(name = "fecha", nullable = false)
@@ -36,7 +36,7 @@ public class Mensaje {
     public Mensaje() {
     }
 
-    public Mensaje(int idMensaje, String contenido, Estudiantes estudiantes, Padre padre, Instant fecha, boolean leido, String idMensajeRespuesta) {
+    public Mensaje(Long idMensaje, String contenido, Estudiantes estudiantes, Padre padre, Instant fecha, boolean leido, String idMensajeRespuesta) {
         this.idMensaje = idMensaje;
         this.contenido = contenido;
         this.estudiantes = estudiantes;
@@ -46,11 +46,13 @@ public class Mensaje {
         this.idMensajeRespuesta = idMensajeRespuesta;
     }
 
-    public int getIdMensaje() {
+    // Getters y Setters
+
+    public Long getIdMensaje() {
         return idMensaje;
     }
 
-    public void setIdMensaje(int idMensaje) {
+    public void setIdMensaje(Long idMensaje) {
         this.idMensaje = idMensaje;
     }
 
@@ -100,5 +102,18 @@ public class Mensaje {
 
     public void setIdMensajeRespuesta(String idMensajeRespuesta) {
         this.idMensajeRespuesta = idMensajeRespuesta;
+    }
+
+    @Override
+    public String toString() {
+        return "Mensaje{" +
+                "idMensaje=" + idMensaje +
+                ", contenido='" + contenido + '\'' +
+                ", estudiantes=" + estudiantes +
+                ", padre=" + padre +
+                ", fecha=" + fecha +
+                ", leido=" + leido +
+                ", idMensajeRespuesta='" + idMensajeRespuesta + '\'' +
+                '}';
     }
 }
