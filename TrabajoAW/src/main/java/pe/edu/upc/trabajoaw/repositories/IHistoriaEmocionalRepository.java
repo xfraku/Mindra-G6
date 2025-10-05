@@ -1,15 +1,3 @@
-package pe.edu.upc.trabajoaw.repositories;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-import pe.edu.upc.trabajoaw.dtos.RankingEmocionViewDTO;
-import pe.edu.upc.trabajoaw.dtos.UsuarioRegistroViewDTO;
-import pe.edu.upc.trabajoaw.entities.HistoriaEmocional;
-
-import java.util.List;
-
-@Repository
 public interface IHistoriaEmocionalRepository extends JpaRepository<HistoriaEmocional, Integer> {
 
     @Query(
@@ -23,18 +11,18 @@ public interface IHistoriaEmocionalRepository extends JpaRepository<HistoriaEmoc
                 ),
                 ranked AS (
                   SELECT
-                    e.id_emocion AS idEmocion,  // 👈 Cambiado de "codigo_emocion" a "idEmocion"
+                    e.id_emocion AS idEmocion,
                     e.descripcion AS emocion,
                     c.id_usuario AS usuario,
                     c.total_registros,
                     ROW_NUMBER() OVER (
                       PARTITION BY c.id_emocion
                       ORDER BY c.total_registros DESC, c.id_usuario
-                    ) AS ranking  // 👈 Cambiado de "posicion" a "ranking"
+                    ) AS ranking
                   FROM conteo c
                   JOIN emocion e ON e.id_emocion = c.id_emocion
                 )
-                SELECT emocion, idEmocion, usuario, total_registros, ranking  // 👈 Ajustado nombres
+                SELECT emocion, idEmocion, usuario, total_registros, ranking
                 FROM ranked
                 ORDER BY emocion, ranking
             """,
@@ -44,6 +32,7 @@ public interface IHistoriaEmocionalRepository extends JpaRepository<HistoriaEmoc
 
     @Query(
             value = """
+               -- Ranking de emociones por número de usuarios únicos que las registraron
                SELECT
                  e.id_emocion       AS idEmocion,
                  e.descripcion      AS emocion,
