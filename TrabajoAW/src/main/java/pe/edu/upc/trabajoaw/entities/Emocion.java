@@ -16,7 +16,7 @@ public class Emocion {
     @Column(name = "frase", length = 100, nullable = false)
     private String frase;
 
-    @Column(name = "iconoUrl", length = 100, nullable = false)
+    @Column(name = "iconoUrl", length = 98, nullable = false)
     private String iconoUrl;
 
     public Emocion() {
@@ -28,7 +28,7 @@ public class Emocion {
         this.frase = frase;
         this.iconoUrl = iconoUrl;
     }
-
+    // getters y setters...
     public int getIdEmocion() {
         return idEmocion;
     }
