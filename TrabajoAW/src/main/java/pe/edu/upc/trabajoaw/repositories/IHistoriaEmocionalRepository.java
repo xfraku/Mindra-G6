@@ -23,20 +23,20 @@ public interface IHistoriaEmocionalRepository extends JpaRepository<HistoriaEmoc
                 ),
                 ranked AS (
                   SELECT
-                    e.id_emocion AS codigo_emocion,
+                    e.id_emocion AS idEmocion,  // 👈 Cambiado de "codigo_emocion" a "idEmocion"
                     e.descripcion AS emocion,
                     c.id_usuario AS usuario,
                     c.total_registros,
                     ROW_NUMBER() OVER (
                       PARTITION BY c.id_emocion
                       ORDER BY c.total_registros DESC, c.id_usuario
-                    ) AS posicion
+                    ) AS ranking  // 👈 Cambiado de "posicion" a "ranking"
                   FROM conteo c
                   JOIN emocion e ON e.id_emocion = c.id_emocion
                 )
-                SELECT emocion, codigo_emocion, usuario, total_registros, posicion
+                SELECT emocion, idEmocion, usuario, total_registros, ranking  // 👈 Ajustado nombres
                 FROM ranked
-                ORDER BY emocion, posicion
+                ORDER BY emocion, ranking
             """,
             nativeQuery = true
     )
