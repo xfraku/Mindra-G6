@@ -21,7 +21,7 @@ public class RecomendacionController {
     private IRecomendacionService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','ESTUDIANTE')")
     public List<RecomendacionDTO> listarRecomendacion(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class RecomendacionController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','ESTUDIANTE')")
     public void insertar(@RequestBody RecomendacionDTO dto){
         ModelMapper m = new ModelMapper();
         Recomendacion entity=m.map(dto,Recomendacion.class);
@@ -38,7 +38,7 @@ public class RecomendacionController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Recomendacion entity = service.listId(id);
         if(entity == null){
@@ -50,7 +50,7 @@ public class RecomendacionController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Recomendacion entity = service.listId(id);
         if (entity == null){
@@ -61,7 +61,7 @@ public class RecomendacionController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<String> modificar(@RequestBody RecomendacionDTO dto){
         ModelMapper m = new ModelMapper();
         Recomendacion entity=m.map(dto,Recomendacion.class);

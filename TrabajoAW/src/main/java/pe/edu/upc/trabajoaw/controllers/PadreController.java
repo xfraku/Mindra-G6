@@ -21,7 +21,7 @@ public class PadreController {
     private IPadreService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE')")
     public List<PadreDTO> listarPadre(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();

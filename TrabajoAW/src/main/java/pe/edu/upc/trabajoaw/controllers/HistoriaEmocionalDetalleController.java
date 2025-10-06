@@ -21,14 +21,14 @@ public class HistoriaEmocionalDetalleController {
     private IHistoriaEmocionalDetalleService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','DOCENTE')")
     public List<HistoriaEmocionalDetalleDTO> listar() {
         ModelMapper m = new ModelMapper();
         return service.list().stream().map(e -> m.map(e, HistoriaEmocionalDetalleDTO.class)).collect(Collectors.toList());
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','DOCENTE')")
     public void insertar(@RequestBody HistoriaEmocionalDetalleDTO dto) {
         ModelMapper m = new ModelMapper();
         HistoriaEmocionalDetalle entity = m.map(dto, HistoriaEmocionalDetalle.class);
@@ -36,7 +36,7 @@ public class HistoriaEmocionalDetalleController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','DOCENTE')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         HistoriaEmocionalDetalle entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
@@ -45,7 +45,7 @@ public class HistoriaEmocionalDetalleController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','DOCENTE')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
         service.delete(id);
@@ -53,7 +53,7 @@ public class HistoriaEmocionalDetalleController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','DOCENTE')")
     public ResponseEntity<String> modificar(@RequestBody HistoriaEmocionalDetalleDTO dto) {
         ModelMapper m = new ModelMapper();
         HistoriaEmocionalDetalle entity = m.map(dto, HistoriaEmocionalDetalle.class);

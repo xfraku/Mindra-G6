@@ -20,7 +20,7 @@ public class UsuarioController {
     private IUsuarioService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> listarUsuario(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -29,7 +29,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario usu=m.map(dto,Usuario.class);
@@ -37,7 +37,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Usuario usu = service.listId(id);
         if(usu == null){
@@ -49,7 +49,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Usuario usu = service.listId(id);
         if (usu == null){
@@ -60,7 +60,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> modificar(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario usu=m.map(dto,Usuario.class);

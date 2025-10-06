@@ -21,7 +21,7 @@ public class NotificacionController {
     private INotificacionService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public List<NotificacionDTO> listarNotificacion(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class NotificacionController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public void insertar(@RequestBody NotificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Notificacion entity=m.map(dto,Notificacion.class);
@@ -38,7 +38,7 @@ public class NotificacionController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Notificacion entity = service.listId(id);
         if(entity == null){
@@ -50,7 +50,7 @@ public class NotificacionController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Notificacion entity = service.listId(id);
         if (entity == null){
@@ -61,7 +61,7 @@ public class NotificacionController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody NotificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Notificacion entity=m.map(dto,Notificacion.class);
