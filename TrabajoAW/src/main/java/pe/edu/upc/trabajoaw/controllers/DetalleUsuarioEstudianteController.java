@@ -21,7 +21,7 @@ public class DetalleUsuarioEstudianteController {
     private IDetalleUsuarioEstudianteService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public List<DetalleUsuarioEstudianteDTO> listar() {
         return service.list().stream().map(e -> {
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public void insertar(@RequestBody DetalleUsuarioEstudianteDTO dto) {
         ModelMapper m = new ModelMapper();
         DetalleUsuarioEstudiante entity = m.map(dto, DetalleUsuarioEstudiante.class);
@@ -38,7 +38,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         DetalleUsuarioEstudiante entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
@@ -47,7 +47,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
         service.delete(id);
@@ -55,7 +55,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody DetalleUsuarioEstudianteDTO dto) {
         ModelMapper m = new ModelMapper();
         DetalleUsuarioEstudiante entity = m.map(dto, DetalleUsuarioEstudiante.class);
@@ -63,21 +63,5 @@ public class DetalleUsuarioEstudianteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + entity.getIdDetalle());
         service.edit(entity);
         return ResponseEntity.ok("Detalle modificado: " + entity.getIdDetalle());
-    }
-
-    @GetMapping("/buscar/centro")
-    public List<DetalleUsuarioEstudianteDTO> buscarPorCentro(@RequestParam String q) {
-        ModelMapper m = new ModelMapper();
-        return service.buscarPorCentro(q).stream()
-                .map(e -> m.map(e, DetalleUsuarioEstudianteDTO.class))
-                .collect(Collectors.toList());
-    }
-
-    @GetMapping("/usuario/{idUsuario}")
-    public List<DetalleUsuarioEstudianteDTO> listarPorUsuario(@PathVariable int idUsuario) {
-        ModelMapper m = new ModelMapper();
-        return service.listarPorUsuario(idUsuario).stream()
-                .map(e -> m.map(e, DetalleUsuarioEstudianteDTO.class))
-                .collect(Collectors.toList());
     }
 }

@@ -20,7 +20,7 @@ public class BloqueoController {
     private IBloqueoService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA')")
     public List<BloqueoDTO> listarBloqueo(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -29,7 +29,7 @@ public class BloqueoController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA')")
     public void insertar(@RequestBody BloqueoDTO dto){
         ModelMapper m = new ModelMapper();
         Bloqueo entity = m.map(dto,Bloqueo.class);
@@ -37,7 +37,7 @@ public class BloqueoController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Bloqueo entity = service.listId(id);
         if(entity == null){
@@ -51,7 +51,7 @@ public class BloqueoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Bloqueo entity = service.listId(id);
         if (entity == null){
@@ -63,7 +63,7 @@ public class BloqueoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody BloqueoDTO dto){
         ModelMapper m = new ModelMapper();
         Bloqueo entity=m.map(dto,Bloqueo.class);

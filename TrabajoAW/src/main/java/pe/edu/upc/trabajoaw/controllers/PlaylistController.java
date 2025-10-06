@@ -21,21 +21,21 @@ public class PlaylistController {
     private IPlaylistService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public List<PlaylistDTO> listar() {
         ModelMapper m = new ModelMapper();
         return service.list().stream().map(e -> m.map(e, PlaylistDTO.class)).collect(Collectors.toList());
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody PlaylistDTO dto) {
         ModelMapper m = new ModelMapper();
         service.insertar(m.map(dto, Playlist.class));
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         Playlist entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Playlist con ID " + id);
@@ -44,7 +44,7 @@ public class PlaylistController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Playlist con ID " + id);
         service.delete(id);
@@ -52,7 +52,7 @@ public class PlaylistController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody PlaylistDTO dto) {
         ModelMapper m = new ModelMapper();
         Playlist entity = m.map(dto, Playlist.class);

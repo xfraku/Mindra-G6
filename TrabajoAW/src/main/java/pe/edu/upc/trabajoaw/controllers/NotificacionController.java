@@ -6,15 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.trabajoaw.dtos.ListarNotificacionesDTO;
 import pe.edu.upc.trabajoaw.dtos.NotificacionDTO;
 import pe.edu.upc.trabajoaw.entities.Notificacion;
 import pe.edu.upc.trabajoaw.servicesinterfaces.INotificacionService;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +21,7 @@ public class NotificacionController {
     private INotificacionService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public List<NotificacionDTO> listarNotificacion(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -35,7 +30,7 @@ public class NotificacionController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public void insertar(@RequestBody NotificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Notificacion entity=m.map(dto,Notificacion.class);
@@ -43,7 +38,7 @@ public class NotificacionController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Notificacion entity = service.listId(id);
         if(entity == null){
@@ -55,7 +50,7 @@ public class NotificacionController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Notificacion entity = service.listId(id);
         if (entity == null){
@@ -66,7 +61,7 @@ public class NotificacionController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESTUDIANTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody NotificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Notificacion entity=m.map(dto,Notificacion.class);

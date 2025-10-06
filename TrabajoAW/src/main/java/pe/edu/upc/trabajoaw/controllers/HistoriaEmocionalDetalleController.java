@@ -21,14 +21,14 @@ public class HistoriaEmocionalDetalleController {
     private IHistoriaEmocionalDetalleService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
     public List<HistoriaEmocionalDetalleDTO> listar() {
         ModelMapper m = new ModelMapper();
         return service.list().stream().map(e -> m.map(e, HistoriaEmocionalDetalleDTO.class)).collect(Collectors.toList());
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
     public void insertar(@RequestBody HistoriaEmocionalDetalleDTO dto) {
         ModelMapper m = new ModelMapper();
         HistoriaEmocionalDetalle entity = m.map(dto, HistoriaEmocionalDetalle.class);
@@ -36,7 +36,7 @@ public class HistoriaEmocionalDetalleController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         HistoriaEmocionalDetalle entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
@@ -45,7 +45,7 @@ public class HistoriaEmocionalDetalleController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
         service.delete(id);
@@ -53,7 +53,7 @@ public class HistoriaEmocionalDetalleController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE')")
+    @PreAuthorize("hasAnyRole('ADMIN','ESPECIALISTA','DOCENTE')")
     public ResponseEntity<String> modificar(@RequestBody HistoriaEmocionalDetalleDTO dto) {
         ModelMapper m = new ModelMapper();
         HistoriaEmocionalDetalle entity = m.map(dto, HistoriaEmocionalDetalle.class);
@@ -61,13 +61,5 @@ public class HistoriaEmocionalDetalleController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + entity.getIdHistoriaEmocionalDetalle());
         service.edit(entity);
         return ResponseEntity.ok("Detalle modificado: " + entity.getIdHistoriaEmocionalDetalle());
-    }
-
-    @GetMapping("/historial/{idHistorial}")
-    public List<HistoriaEmocionalDetalleDTO> listarPorHistorial(@PathVariable int idHistorial) {
-        ModelMapper m = new ModelMapper();
-        return service.listarPorHistorial(idHistorial).stream()
-                .map(e -> m.map(e, HistoriaEmocionalDetalleDTO.class))
-                .collect(Collectors.toList());
     }
 }
