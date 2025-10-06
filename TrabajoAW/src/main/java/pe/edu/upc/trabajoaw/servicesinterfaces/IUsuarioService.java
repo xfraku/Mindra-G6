@@ -17,4 +17,5 @@ public interface IUsuarioService {
     public void delete(int id);
     public void edit(Usuario u);
     public List<String[]> tiempoSitiosDistractoresUsuario(int idUsuario);
+    public List<String[]> tiempoProductivoUsuario(int idUsuario);
 }

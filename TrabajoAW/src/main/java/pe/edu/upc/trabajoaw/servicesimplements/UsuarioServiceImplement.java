@@ -43,4 +43,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public List<String[]> tiempoSitiosDistractoresUsuario(int idUsuario) {
         return repository.tiempoSitiosDistractoresUsuario(idUsuario);
     }
+
+    @Override
+    public List<String[]> tiempoProductivoUsuario(int idUsuario) {
+        return repository.tiempoProductivoUsuario(idUsuario);
+    }
 }

@@ -4,8 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.TiempoDistraccionUsuarioDTO;
+import pe.edu.upc.trabajoaw.dtos.TiempoProductivoUsuarioDTO;
 import pe.edu.upc.trabajoaw.dtos.UsuarioDTO;
 import pe.edu.upc.trabajoaw.entities.Usuario;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IUsuarioService;
@@ -82,6 +84,26 @@ public class UsuarioController {
             dto.setIdUsuario(Integer.getInteger(columna[0]));
             dto.setNombre(columna[1]);
             dto.setTiempo_total(Integer.parseInt(columna[2]));
+            listaTotal.add(dto);
+        }
+        return ResponseEntity.ok(listaTotal);
+    }
+
+    @GetMapping("/tiempoProductivoUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE','ESTUDIANTE')")
+    public ResponseEntity<?> tiempoProductivoUsuario(@RequestParam int idUsuario) {
+        List<String[]> total=service.tiempoProductivoUsuario(idUsuario);
+        List<TiempoProductivoUsuarioDTO> listaTotal=new ArrayList<>();
+        if (total.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron proveedores registrados ");
+        }
+        for(String[] columna:total){
+            TiempoProductivoUsuarioDTO dto=new TiempoProductivoUsuarioDTO();
+            dto.setIdUsuario(Integer.getInteger(columna[0]));
+            dto.setNombre(columna[1]);
+            dto.setApellido(columna[2]);
+            dto.setTiempo_total_minutos(Integer.parseInt(columna[3]));
             listaTotal.add(dto);
         }
         return ResponseEntity.ok(listaTotal);

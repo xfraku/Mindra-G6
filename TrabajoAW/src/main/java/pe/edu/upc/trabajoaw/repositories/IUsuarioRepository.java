@@ -20,4 +20,17 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
             "  AND u.id_usuario = %idUsuario%\n" +
             "GROUP BY u.id_usuario, u.nombres", nativeQuery = true)
     public List<String[]> tiempoSitiosDistractoresUsuario(@Param("idUsuario") int idUsuario);
+
+    @Query(value = "SELECT \n" +
+            "    u.id_usuario, \n" +
+            "    u.nombre, \n" +
+            "    u.apellido,\n" +
+            "    ROUND(SUM(EXTRACT(EPOCH FROM (v.fecha_salida - v.fecha_entrada)) / 60))::INT AS tiempo_total_minutos\n" +
+            "FROM visitas v\n" +
+            "JOIN usuario u ON v.id_usuario = u.id_usuario\n" +
+            "JOIN sitios_web s ON v.id_sitios_web = s.id_sitio_web\n" +
+            "WHERE s.clasificacion = 'improductivo'\n" +
+            "  AND u.id_usuario = %idUsuario%\n" +
+            "GROUP BY u.id_usuario, u.nombre, u.apellido", nativeQuery = true)
+    public List<String[]> tiempoProductivoUsuario(@Param("idUsuario") int idUsuario);
 }
