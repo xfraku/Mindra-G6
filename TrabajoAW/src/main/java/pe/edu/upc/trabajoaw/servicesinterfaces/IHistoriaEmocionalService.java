@@ -1,12 +1,13 @@
 package pe.edu.upc.trabajoaw.servicesinterfaces;
 
-import pe.edu.upc.trabajoaw.dtos.RankingEmocionViewDTO;
-import pe.edu.upc.trabajoaw.dtos.UsuarioRegistroViewDTO;
+import pe.edu.upc.trabajoaw.entities.HistoriaEmocional;
 
 import java.util.List;
 
 public interface IHistoriaEmocionalService {
-
-    List<UsuarioRegistroViewDTO> findUsuariosMasRegistrosPorEmocion();
-    List<RankingEmocionViewDTO> findRankingEmociones();
+    List<HistoriaEmocional> list();
+    void insertar(HistoriaEmocional h);
+    HistoriaEmocional listId(int id);
+    void delete(int id);
+    void edit(HistoriaEmocional h);
 }

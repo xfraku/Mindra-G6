@@ -2,8 +2,7 @@ package pe.edu.upc.trabajoaw.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.trabajoaw.dtos.RankingEmocionViewDTO;
-import pe.edu.upc.trabajoaw.dtos.UsuarioRegistroViewDTO;
+import pe.edu.upc.trabajoaw.entities.HistoriaEmocional;
 import pe.edu.upc.trabajoaw.repositories.IHistoriaEmocionalRepository;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IHistoriaEmocionalService;
 
@@ -16,12 +15,27 @@ public class HistoriaEmocionalServiceImplement implements IHistoriaEmocionalServ
     private IHistoriaEmocionalRepository repository;
 
     @Override
-    public List<UsuarioRegistroViewDTO> findUsuariosMasRegistrosPorEmocion() {
-        return repository.findUsuariosMasRegistrosPorEmocion();
+    public List<HistoriaEmocional> list() {
+        return repository.findAll();
     }
 
     @Override
-    public List<RankingEmocionViewDTO> findRankingEmociones() {
-        return repository.findRankingEmociones();
+    public void insertar(HistoriaEmocional h) {
+        repository.save(h);
+    }
+
+    @Override
+    public HistoriaEmocional listId(int id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public void edit(HistoriaEmocional h) {
+        repository.save(h);
     }
 }

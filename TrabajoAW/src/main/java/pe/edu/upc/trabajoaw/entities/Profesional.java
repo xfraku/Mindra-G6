@@ -14,7 +14,6 @@ public class Profesional {
     private String area;
 
     @OneToOne(optional = false)
-    @MapsId
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 

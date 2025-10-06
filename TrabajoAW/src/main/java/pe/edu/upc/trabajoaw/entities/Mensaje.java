@@ -12,17 +12,16 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idMensaje;
 
-    @Lob
-    @Column(name = "contenido", nullable = false)
+    @Column(name = "contenido",length = 100, nullable = false)
     private String contenido;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioEstudiantes")
-    private Estudiantes estudiantes;
+    @JoinColumn(name = "idUsuarioEmisor")
+    private Usuario emisor;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioPadre")
-    private Padre padre;
+    @JoinColumn(name = "idUsuarioReceptor")
+    private Usuario receptor;
 
     @Column(name = "fecha", nullable = false)
     private Instant fecha;
@@ -30,20 +29,21 @@ public class Mensaje {
     @Column(name = "leido", nullable = false)
     private boolean leido;
 
-    @Column(name = "idMensajeRespuesta", length = 8, nullable = false)
-    private String idMensajeRespuesta;
+    @ManyToOne
+    @JoinColumn(name = "idMensajeRespuesta")
+    private Mensaje mensajeRespuesta;
 
     public Mensaje() {
     }
 
-    public Mensaje(int idMensaje, String contenido, Estudiantes estudiantes, Padre padre, Instant fecha, boolean leido, String idMensajeRespuesta) {
+    public Mensaje(int idMensaje, String contenido, Usuario emisor, Usuario receptor, Instant fecha, boolean leido, Mensaje mensajeRespuesta) {
         this.idMensaje = idMensaje;
         this.contenido = contenido;
-        this.estudiantes = estudiantes;
-        this.padre = padre;
+        this.emisor = emisor;
+        this.receptor = receptor;
         this.fecha = fecha;
         this.leido = leido;
-        this.idMensajeRespuesta = idMensajeRespuesta;
+        this.mensajeRespuesta = mensajeRespuesta;
     }
 
     public int getIdMensaje() {
@@ -62,20 +62,20 @@ public class Mensaje {
         this.contenido = contenido;
     }
 
-    public Estudiantes getEstudiantes() {
-        return estudiantes;
+    public Usuario getEmisor() {
+        return emisor;
     }
 
-    public void setEstudiantes(Estudiantes estudiantes) {
-        this.estudiantes = estudiantes;
+    public void setEmisor(Usuario emisor) {
+        this.emisor = emisor;
     }
 
-    public Padre getPadre() {
-        return padre;
+    public Usuario getReceptor() {
+        return receptor;
     }
 
-    public void setPadre(Padre padre) {
-        this.padre = padre;
+    public void setReceptor(Usuario receptor) {
+        this.receptor = receptor;
     }
 
     public Instant getFecha() {
@@ -94,11 +94,11 @@ public class Mensaje {
         this.leido = leido;
     }
 
-    public String getIdMensajeRespuesta() {
-        return idMensajeRespuesta;
+    public Mensaje getMensajeRespuesta() {
+        return mensajeRespuesta;
     }
 
-    public void setIdMensajeRespuesta(String idMensajeRespuesta) {
-        this.idMensajeRespuesta = idMensajeRespuesta;
+    public void setMensajeRespuesta(Mensaje mensajeRespuesta) {
+        this.mensajeRespuesta = mensajeRespuesta;
     }
 }

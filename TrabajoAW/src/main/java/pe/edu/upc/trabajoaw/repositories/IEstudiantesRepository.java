@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface IEstudiantesRepository extends JpaRepository<Estudiantes, Integer> {
-    @Query("Select p from Estudiantes p where p.centroEstudiantes like %:centroEstudiantes%")
-    public List<Estudiantes> buscar(@Param("centroE") String centroE);
+    @Query("select e from Estudiantes e where e.centroEstudiantes like %:centro%")
+    List<Estudiantes> buscar(@Param("centro") String centro);
 }

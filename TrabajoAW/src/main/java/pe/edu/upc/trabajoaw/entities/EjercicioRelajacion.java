@@ -17,12 +17,12 @@ public class EjercicioRelajacion {
     private String recomendaciones;
 
     @Column(name = "duracion", nullable = false)
-    private String duracion;
+    private int duracion;
 
     public EjercicioRelajacion() {
     }
 
-    public EjercicioRelajacion(int idEjercicioRelajacion, String problema, String recomendaciones, String duracion) {
+    public EjercicioRelajacion(int idEjercicioRelajacion, String problema, String recomendaciones, int duracion) {
         this.idEjercicioRelajacion = idEjercicioRelajacion;
         this.problema = problema;
         this.recomendaciones = recomendaciones;
@@ -53,11 +53,11 @@ public class EjercicioRelajacion {
         this.recomendaciones = recomendaciones;
     }
 
-    public String getDuracion() {
+    public int getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(String duracion) {
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 }

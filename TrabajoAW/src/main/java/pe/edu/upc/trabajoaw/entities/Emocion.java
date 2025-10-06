@@ -13,8 +13,8 @@ public class Emocion {
     @Column(name = "descripcion", length = 100,nullable = false)
     private String descripcion;
 
-    @Column(name = "frase", length = 100, nullable = false)
-    private String frase;
+    @Column(name = "fraseRelacionada", length = 100, nullable = false)
+    private String fraseRelacionada;
 
     @Column(name = "iconoUrl", length = 100, nullable = false)
     private String iconoUrl;
@@ -22,10 +22,10 @@ public class Emocion {
     public Emocion() {
     }
 
-    public Emocion(int idEmocion, String descripcion, String frase, String iconoUrl) {
+    public Emocion(int idEmocion, String descripcion, String fraseRelacionada, String iconoUrl) {
         this.idEmocion = idEmocion;
         this.descripcion = descripcion;
-        this.frase = frase;
+        this.fraseRelacionada = fraseRelacionada;
         this.iconoUrl = iconoUrl;
     }
 
@@ -45,12 +45,12 @@ public class Emocion {
         this.descripcion = descripcion;
     }
 
-    public String getFrase() {
-        return frase;
+    public String getFraseRelacionada() {
+        return fraseRelacionada;
     }
 
-    public void setFrase(String frase) {
-        this.frase = frase;
+    public void setFraseRelacionada(String fraseRelacionada) {
+        this.fraseRelacionada = fraseRelacionada;
     }
 
     public String getIconoUrl() {
