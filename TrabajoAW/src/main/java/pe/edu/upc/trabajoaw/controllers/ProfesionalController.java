@@ -21,7 +21,7 @@ public class ProfesionalController {
     private IProfesionalService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ProfesionalDTO> listarProfesional(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class ProfesionalController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody ProfesionalDTO dto){
         ModelMapper m = new ModelMapper();
         Profesional entity=m.map(dto,Profesional.class);
@@ -38,7 +38,7 @@ public class ProfesionalController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Profesional entity = service.listId(id);
         if(entity == null){
@@ -50,7 +50,7 @@ public class ProfesionalController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Profesional entity = service.listId(id);
         if (entity == null){
@@ -61,7 +61,7 @@ public class ProfesionalController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> modificar(@RequestBody ProfesionalDTO dto){
         ModelMapper m = new ModelMapper();
         Profesional entity=m.map(dto,Profesional.class);

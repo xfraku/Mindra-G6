@@ -21,21 +21,21 @@ public class SonidoController {
     private ISonidoService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public List<SonidoDTO> listar() {
         ModelMapper m = new ModelMapper();
         return service.list().stream().map(e -> m.map(e, SonidoDTO.class)).collect(Collectors.toList());
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody SonidoDTO dto) {
         ModelMapper m = new ModelMapper();
         service.insertar(m.map(dto, Sonido.class));
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         Sonido entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Sonido con ID " + id);
@@ -44,7 +44,7 @@ public class SonidoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Sonido con ID " + id);
         service.delete(id);
@@ -52,7 +52,7 @@ public class SonidoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody SonidoDTO dto) {
         ModelMapper m = new ModelMapper();
         Sonido entity = m.map(dto, Sonido.class);

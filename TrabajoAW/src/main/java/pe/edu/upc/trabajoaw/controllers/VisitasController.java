@@ -20,7 +20,7 @@ public class VisitasController {
     private IVisitasServices service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public List<VisitasDTO> listarVisitas(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -29,7 +29,7 @@ public class VisitasController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public void insertar(@RequestBody VisitasDTO dto){
         ModelMapper m = new ModelMapper();
         Visitas entity=m.map(dto,Visitas.class);
@@ -37,7 +37,7 @@ public class VisitasController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Visitas entity = service.listId(id);
         if(entity == null){
@@ -49,7 +49,7 @@ public class VisitasController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Visitas entity = service.listId(id);
         if (entity == null){
@@ -60,7 +60,7 @@ public class VisitasController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody VisitasDTO dto){
         ModelMapper m = new ModelMapper();
         Visitas entity=m.map(dto,Visitas.class);

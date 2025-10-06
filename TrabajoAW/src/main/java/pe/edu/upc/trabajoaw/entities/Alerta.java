@@ -3,6 +3,8 @@ package pe.edu.upc.trabajoaw.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "alertas")
@@ -28,10 +30,10 @@ public class Alerta {
     private boolean visible;
 
     @Column(name = "horaInicio", nullable = false)
-    private Instant horaInicio;
+    private LocalTime horaInicio;
 
     @Column(name = "horaFin", nullable = false)
-    private Instant horaFin;
+    private LocalTime horaFin;
 
     @ManyToOne
     @JoinColumn(name = "idRecomendaciones")
@@ -40,7 +42,7 @@ public class Alerta {
     public Alerta() {
     }
 
-    public Alerta(int idAlerta, Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, Instant horaInicio, Instant horaFin) {
+    public Alerta(int idAlerta, Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, LocalTime horaInicio, LocalTime horaFin, Recomendacion recomendacion) {
         this.idAlerta = idAlerta;
         this.tiempoEstablecido = tiempoEstablecido;
         this.mensaje = mensaje;
@@ -49,6 +51,7 @@ public class Alerta {
         this.visible = visible;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.recomendacion = recomendacion;
     }
 
     public int getIdAlerta() {
@@ -99,19 +102,19 @@ public class Alerta {
         this.visible = visible;
     }
 
-    public Instant getHoraInicio() {
+    public LocalTime getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Instant horaInicio) {
+    public void setHoraInicio(LocalTime horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Instant getHoraFin() {
+    public LocalTime getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(Instant horaFin) {
+    public void setHoraFin(LocalTime horaFin) {
         this.horaFin = horaFin;
     }
 

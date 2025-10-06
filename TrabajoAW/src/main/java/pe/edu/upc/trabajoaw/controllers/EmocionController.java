@@ -20,7 +20,7 @@ public class EmocionController {
     private IEmocionService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public List<EmocionDTO> listarEmocion(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -29,7 +29,7 @@ public class EmocionController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody EmocionDTO dto){
         ModelMapper m = new ModelMapper();
         Emocion entity=m.map(dto,Emocion.class);
@@ -37,7 +37,7 @@ public class EmocionController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Emocion entity = service.listId(id);
         if(entity == null){
@@ -49,7 +49,7 @@ public class EmocionController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Emocion entity = service.listId(id);
         if (entity == null){
@@ -60,7 +60,7 @@ public class EmocionController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody EmocionDTO dto){
         ModelMapper m = new ModelMapper();
         Emocion entity=m.map(dto,Emocion.class);
