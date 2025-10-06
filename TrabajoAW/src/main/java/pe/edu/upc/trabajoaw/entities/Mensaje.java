@@ -16,12 +16,8 @@ public class Mensaje {
     private String contenido;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioEmisor")
-    private Usuario emisor;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "idUsuarioReceptor")
-    private Usuario receptor;
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     @Column(name = "fecha", nullable = false)
     private Instant fecha;
@@ -29,21 +25,15 @@ public class Mensaje {
     @Column(name = "leido", nullable = false)
     private boolean leido;
 
-    @ManyToOne
-    @JoinColumn(name = "idMensajeRespuesta")
-    private Mensaje mensajeRespuesta;
-
     public Mensaje() {
     }
 
-    public Mensaje(int idMensaje, String contenido, Usuario emisor, Usuario receptor, Instant fecha, boolean leido, Mensaje mensajeRespuesta) {
+    public Mensaje(int idMensaje, String contenido, Usuario usuario, Instant fecha, boolean leido) {
         this.idMensaje = idMensaje;
         this.contenido = contenido;
-        this.emisor = emisor;
-        this.receptor = receptor;
+        this.usuario = usuario;
         this.fecha = fecha;
         this.leido = leido;
-        this.mensajeRespuesta = mensajeRespuesta;
     }
 
     public int getIdMensaje() {
@@ -62,20 +52,12 @@ public class Mensaje {
         this.contenido = contenido;
     }
 
-    public Usuario getEmisor() {
-        return emisor;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEmisor(Usuario emisor) {
-        this.emisor = emisor;
-    }
-
-    public Usuario getReceptor() {
-        return receptor;
-    }
-
-    public void setReceptor(Usuario receptor) {
-        this.receptor = receptor;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Instant getFecha() {
@@ -92,13 +74,5 @@ public class Mensaje {
 
     public void setLeido(boolean leido) {
         this.leido = leido;
-    }
-
-    public Mensaje getMensajeRespuesta() {
-        return mensajeRespuesta;
-    }
-
-    public void setMensajeRespuesta(Mensaje mensajeRespuesta) {
-        this.mensajeRespuesta = mensajeRespuesta;
     }
 }
