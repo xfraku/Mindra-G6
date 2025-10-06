@@ -21,7 +21,7 @@ public class MensajeController {
     private IMensajeService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
     public List<MensajeDTO> listarMensaje(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class MensajeController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody MensajeDTO dto){
         ModelMapper m = new ModelMapper();
         Mensaje entity=m.map(dto,Mensaje.class);
@@ -38,7 +38,7 @@ public class MensajeController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Mensaje entity = service.listId(id);
         if(entity == null){
@@ -50,7 +50,7 @@ public class MensajeController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Mensaje entity = service.listId(id);
         if (entity == null){
@@ -61,7 +61,7 @@ public class MensajeController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody MensajeDTO dto){
         ModelMapper m = new ModelMapper();
         Mensaje entity=m.map(dto,Mensaje.class);

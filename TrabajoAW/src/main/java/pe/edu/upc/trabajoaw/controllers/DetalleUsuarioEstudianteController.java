@@ -21,7 +21,7 @@ public class DetalleUsuarioEstudianteController {
     private IDetalleUsuarioEstudianteService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public List<DetalleUsuarioEstudianteDTO> listar() {
         return service.list().stream().map(e -> {
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public void insertar(@RequestBody DetalleUsuarioEstudianteDTO dto) {
         ModelMapper m = new ModelMapper();
         DetalleUsuarioEstudiante entity = m.map(dto, DetalleUsuarioEstudiante.class);
@@ -38,7 +38,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         DetalleUsuarioEstudiante entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
@@ -47,7 +47,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe detalle con ID " + id);
         service.delete(id);
@@ -55,7 +55,7 @@ public class DetalleUsuarioEstudianteController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody DetalleUsuarioEstudianteDTO dto) {
         ModelMapper m = new ModelMapper();
         DetalleUsuarioEstudiante entity = m.map(dto, DetalleUsuarioEstudiante.class);

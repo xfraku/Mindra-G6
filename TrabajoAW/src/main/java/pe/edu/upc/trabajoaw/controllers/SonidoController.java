@@ -21,7 +21,7 @@ public class SonidoController {
     private ISonidoService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','ESTUDIANTE','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public List<SonidoDTO> listar() {
         ModelMapper m = new ModelMapper();
         return service.list().stream().map(e -> m.map(e, SonidoDTO.class)).collect(Collectors.toList());

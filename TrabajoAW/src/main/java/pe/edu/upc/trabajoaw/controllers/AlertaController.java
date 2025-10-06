@@ -21,7 +21,7 @@ public class AlertaController {
     private IAlertaService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public List<AlertaDTO> listar() {
         return service.list().stream().map(e -> {
             ModelMapper m = new ModelMapper();
@@ -30,7 +30,7 @@ public class AlertaController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public void insertar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
         Alerta entity = m.map(dto, Alerta.class);
@@ -38,7 +38,7 @@ public class AlertaController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         Alerta entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Alerta con ID " + id);
@@ -47,7 +47,7 @@ public class AlertaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Alerta con ID " + id);
         service.delete(id);
@@ -55,7 +55,7 @@ public class AlertaController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
         Alerta entity = m.map(dto, Alerta.class);
