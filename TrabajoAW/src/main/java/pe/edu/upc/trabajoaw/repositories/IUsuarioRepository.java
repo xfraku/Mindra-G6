@@ -29,7 +29,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario,Integer> {
             "FROM visitas v\n" +
             "JOIN usuario u ON v.id_usuario = u.id_usuario\n" +
             "JOIN sitios_web s ON v.id_sitios_web = s.id_sitio_web\n" +
-            "WHERE s.clasificacion = 'improductivo'\n" +
+            "WHERE s.clasificacion = 'productivo'\n" +
             "  AND u.id_usuario = %idUsuario%\n" +
             "GROUP BY u.id_usuario, u.nombre, u.apellido", nativeQuery = true)
     public List<String[]> tiempoProductivoUsuario(@Param("idUsuario") int idUsuario);

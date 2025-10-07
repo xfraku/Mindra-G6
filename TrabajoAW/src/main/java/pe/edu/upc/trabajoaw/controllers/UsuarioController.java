@@ -90,13 +90,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/tiempoProductivoUsuario")
-    @PreAuthorize("hasAnyAuthority('ADMIN','PROFESOR','PADRE','ESTUDIANTE')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE')")
     public ResponseEntity<?> tiempoProductivoUsuario(@RequestParam int idUsuario) {
         List<String[]> total=service.tiempoProductivoUsuario(idUsuario);
         List<TiempoProductivoUsuarioDTO> listaTotal=new ArrayList<>();
         if (total.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se encontraron proveedores registrados ");
+                    .body("No se encontraron usuarios registrados con tiempo productivo");
         }
         for(String[] columna:total){
             TiempoProductivoUsuarioDTO dto=new TiempoProductivoUsuarioDTO();

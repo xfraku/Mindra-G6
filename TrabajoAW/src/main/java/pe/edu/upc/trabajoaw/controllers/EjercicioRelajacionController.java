@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.EjercicioRelajacionDTO;
 import pe.edu.upc.trabajoaw.dtos.EjerciciosRelajacionTopDTO;
@@ -71,6 +72,7 @@ public class EjercicioRelajacionController {
     }
 
     @GetMapping("/topEjeciciosUsados")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE')")
     public ResponseEntity<?> topEjeciciosUsados() {
         List<String[]> ejercicios=service.ejerciciosRelajacionTop();
         List<EjerciciosRelajacionTopDTO> listaMontos=new ArrayList<>();
