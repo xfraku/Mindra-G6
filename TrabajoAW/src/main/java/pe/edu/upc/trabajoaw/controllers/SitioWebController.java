@@ -68,6 +68,7 @@ public class SitioWebController {
     public ResponseEntity<String> modificar(@RequestBody SitiosWebDTO dto){
         ModelMapper m = new ModelMapper();
         SitiosWeb entity=m.map(dto,SitiosWeb.class);
+
         SitiosWeb existente = service.listId(entity.getIdSitioWeb());
         if (existente == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se puede modificar. No existe un registro con el ID: " + entity.getIdSitioWeb());
