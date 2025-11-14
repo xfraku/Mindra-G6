@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Mindra</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+<body>
+
+<nav class="sidebar">
+        <div class="sidebar-header">
+          <h2>Mindra</h2>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="dashboard.html">Inicio</a></li>
+          <li><a href="monitoreo.html">Monitoreo de salud</a></li>
+          <li><a href="asistencia.html">Asistencia y recordatorios</a></li>
+          <li><a href="analisis.html">Análisis de comportamiento</a></li>
+          <li><a href="retroalimentacion.html">Retroalimentación</a></li>
+          <li><a href="evaluacion.html">Evaluación emocional</a></li>
+          <li><a href="#" id="btnLogout">Cerrar sesión</a></li>
+        </ul>
+</nav>
+
+<button id="mobile-menu-button" class="mobile-menu-toggle">☰</button>
+  <div id="sidebar-container"></div>
+  <main class="main-content">
+    <h1>Bienvenido a Mindra 🧠</h1>
+
+    <h2 style="margin-top: 3rem;">Resumen Semanal</h2>
+    <div class="chart-container">
+      <div class="chart">
+        <h3>Horas de Productividad</h3>
+        <div>
+          <img src="../images/Productividad.jpg" alt="Gráfico Productividad">
+        </div>
+      </div>
+      <div class="chart">
+        <h3>Horas de Distracción</h3>
+        <div>
+          <img src="../images/Distracción.jpg" alt="Gráfico Distracción">
+        </div>
+      </div>
+      <div class="chart">
+        <h3>Análisis Emocional</h3>
+        <div>
+          <img src="../images/AnalisisEmocional.jpg" alt="Gráfico AnalisisEmocional">
+        </div>
+      </div>
+      <div class="chart">
+        <h3>Horas de Productividad (comparado)</h3>
+        <div>
+          <img src="../images/ProductividadComparado.jpg" alt="Gráfico Productividad Comparado">
+        </div>
+      </div>
+      <div class="chart">
+        <h3>Páginas más visitadas</h3>
+        <div>
+          <img src="../images/Paginas.jpg" alt="Gráfico Paginas visitadas">
+        </div>
+      </div>
+      <div class="chart">
+        <h3>Páginas más visitadas (histórico)</h3>
+        <div>
+          <img src="../images/PaginasComparacion.jpg" alt="Gráfico PaginasComparacion">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>US01. Tiempo en sitios distractores</h3>
+      <p>Hoy acumulaste 2h 15min en sitios marcados como distractores.</p>
+    </div>
+
+    <div class="card">
+      <h3>US10. Integración silenciosa</h3>
+      <p>La extensión se ejecuta en segundo plano automáticamente al abrir el navegador.</p>
+    </div>
+
+    <div class="card">
+      <h3>US17. Modo Invisible</h3>
+      <label class="switch">
+      <input type="checkbox" id="invisibleToggle">
+      <span class="slider"></span>
+      </label>
+      <p id="invisibleStatus">Desactivado</p>
+    </div>
+
+
+    <div class="card">
+      <h3>US24. Alertas recientes</h3>
+      <p>Se detectó un cambio de ánimo importante el martes pasado. Sugerimos revisar tus entradas emocionales.</p>
+    </div>
+
+    <div class="card">
+      <h3>US28. Progreso semanal</h3>
+      <ul>
+        <li>Tareas completadas: 6 de 7 días</li>
+        <li>Distracción reducida en comparación con la semana anterior</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>US48. Frase motivacional</h3>
+      <p>“Confía en ti, cada paso cuenta hacia tu bienestar.”</p>
+    </div>
+
+  </main>
+  <script src="../scripts/main.js"></script>
+</body>
+</html>
