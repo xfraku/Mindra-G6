@@ -1,8 +1,7 @@
 package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
-
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -10,11 +9,11 @@ import java.time.LocalTime;
 public class Alerta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAlerta;
 
     @Column(name = "tiempoEstablecido", nullable = false)
-    private Instant tiempoEstablecido;
+    private LocalDateTime tiempoEstablecido;
 
     @Column(name = "mensaje", length = 100, nullable = false)
     private String mensaje;
@@ -37,7 +36,9 @@ public class Alerta {
     public Alerta() {
     }
 
-    public Alerta(int idAlerta, Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, LocalTime horaInicio, LocalTime horaFin) {
+    public Alerta(int idAlerta, LocalDateTime tiempoEstablecido, String mensaje,
+                  String nivelIntervencion, String tipo, boolean visible,
+                  LocalTime horaInicio, LocalTime horaFin) {
         this.idAlerta = idAlerta;
         this.tiempoEstablecido = tiempoEstablecido;
         this.mensaje = mensaje;
@@ -56,11 +57,11 @@ public class Alerta {
         this.idAlerta = idAlerta;
     }
 
-    public Instant getTiempoEstablecido() {
+    public LocalDateTime getTiempoEstablecido() {
         return tiempoEstablecido;
     }
 
-    public void setTiempoEstablecido(Instant tiempoEstablecido) {
+    public void setTiempoEstablecido(LocalDateTime tiempoEstablecido) {
         this.tiempoEstablecido = tiempoEstablecido;
     }
 
