@@ -1,11 +1,10 @@
 package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
-
-import java.time.Instant;
-
+import java.time.LocalTime;
+import java.time.LocalDateTime;
 @Entity
-@Table(name = "alertas")
+@Table(name = "Alerta")
 public class Alerta {
 
     @Id
@@ -13,7 +12,7 @@ public class Alerta {
     private int idAlerta;
 
     @Column(name = "tiempoEstablecido", nullable = false)
-    private Instant tiempoEstablecido;
+    private LocalDateTime tiempoEstablecido;
 
     @Column(name = "mensaje", length = 100, nullable = false)
     private String mensaje;
@@ -28,19 +27,17 @@ public class Alerta {
     private boolean visible;
 
     @Column(name = "horaInicio", nullable = false)
-    private Instant horaInicio;
+    private LocalTime horaInicio;
 
     @Column(name = "horaFin", nullable = false)
-    private Instant horaFin;
-
-    @ManyToOne
-    @JoinColumn(name = "idRecomendaciones")
-    private Recomendacion recomendacion;
+    private LocalTime horaFin;
 
     public Alerta() {
     }
 
-    public Alerta(int idAlerta, Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, Instant horaInicio, Instant horaFin) {
+    public Alerta(int idAlerta, LocalDateTime tiempoEstablecido, String mensaje,
+                  String nivelIntervencion, String tipo, boolean visible,
+                  LocalTime horaInicio, LocalTime horaFin) {
         this.idAlerta = idAlerta;
         this.tiempoEstablecido = tiempoEstablecido;
         this.mensaje = mensaje;
@@ -59,11 +56,11 @@ public class Alerta {
         this.idAlerta = idAlerta;
     }
 
-    public Instant getTiempoEstablecido() {
+    public LocalDateTime getTiempoEstablecido() {
         return tiempoEstablecido;
     }
 
-    public void setTiempoEstablecido(Instant tiempoEstablecido) {
+    public void setTiempoEstablecido(LocalDateTime tiempoEstablecido) {
         this.tiempoEstablecido = tiempoEstablecido;
     }
 
@@ -99,23 +96,19 @@ public class Alerta {
         this.visible = visible;
     }
 
-    public Instant getHoraInicio() {
+    public LocalTime getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Instant horaInicio) {
+    public void setHoraInicio(LocalTime horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Instant getHoraFin() {
+    public LocalTime getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(Instant horaFin) {
+    public void setHoraFin(LocalTime horaFin) {
         this.horaFin = horaFin;
-    }
-
-    public Recomendacion getRecomendacion() {
-        return recomendacion;
     }
 }
