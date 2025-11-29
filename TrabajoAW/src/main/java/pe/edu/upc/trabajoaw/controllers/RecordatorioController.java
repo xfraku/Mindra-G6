@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.RecordatorioDTO;
 import pe.edu.upc.trabajoaw.entities.Recordatorio;
@@ -20,6 +21,7 @@ public class RecordatorioController {
     private IRecordatorioService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public List<RecordatorioDTO> listarRecordatorio(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class RecordatorioController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody RecordatorioDTO dto){
         ModelMapper m = new ModelMapper();
         Recordatorio entity=m.map(dto,Recordatorio.class);
@@ -35,6 +38,7 @@ public class RecordatorioController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Recordatorio entity = service.listId(id);
         if(entity == null){
@@ -46,6 +50,7 @@ public class RecordatorioController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Recordatorio entity = service.listId(id);
         if (entity == null){
@@ -56,6 +61,7 @@ public class RecordatorioController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody RecordatorioDTO dto){
         ModelMapper m = new ModelMapper();
         Recordatorio entity=m.map(dto,Recordatorio.class);

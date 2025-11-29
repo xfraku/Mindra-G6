@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.PadreDTO;
 import pe.edu.upc.trabajoaw.entities.Padre;
@@ -20,6 +21,7 @@ public class PadreController {
     private IPadreService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE')")
     public List<PadreDTO> listarPadre(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class PadreController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE')")
     public void insertar(@RequestBody PadreDTO dto){
         ModelMapper m = new ModelMapper();
         Padre entity=m.map(dto, Padre.class);
@@ -35,6 +38,7 @@ public class PadreController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Padre entity = service.listId(id);
         if(entity == null){
@@ -46,6 +50,7 @@ public class PadreController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Padre entity = service.listId(id);
         if (entity == null){
@@ -56,6 +61,7 @@ public class PadreController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyRole('ADMIN','DOCENTE')")
     public ResponseEntity<String> modificar(@RequestBody PadreDTO dto){
         ModelMapper m = new ModelMapper();
         Padre entity=m.map(dto,Padre.class);

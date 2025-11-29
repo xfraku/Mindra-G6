@@ -1,0 +1,29 @@
+<!-- ...existing code... -->
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar recomendación' : 'Registrar recomendación' }}</h2>
+  </div>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (ngSubmit)="aceptar()" class="example-form">
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="id" required />
+        <mat-error *ngIf="form.get('id')?.hasError('required')">El campo id es obligatorio.</mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="descripcion" rows="4" required></textarea>
+        <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La descripción es obligatoria.</mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>
+<!-- ...existing code... -->

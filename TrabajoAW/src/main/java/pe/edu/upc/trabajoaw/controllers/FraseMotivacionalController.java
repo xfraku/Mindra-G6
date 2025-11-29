@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.FraseMotivacionalDTO;
 import pe.edu.upc.trabajoaw.entities.FraseMotivacional;
@@ -20,6 +21,7 @@ public class FraseMotivacionalController {
     private IFraseMotivacionalService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','ESPECIALISTA')")
     public List<FraseMotivacionalDTO> listar(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class FraseMotivacionalController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody FraseMotivacionalDTO dto){
         ModelMapper m = new ModelMapper();
         FraseMotivacional entity=m.map(dto,FraseMotivacional.class);
@@ -35,6 +38,7 @@ public class FraseMotivacionalController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         FraseMotivacional entity = service.listId(id);
         if(entity == null){
@@ -46,6 +50,7 @@ public class FraseMotivacionalController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         FraseMotivacional entity = service.listId(id);
         if (entity == null){
@@ -56,6 +61,7 @@ public class FraseMotivacionalController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody FraseMotivacionalDTO dto){
         ModelMapper m = new ModelMapper();
         FraseMotivacional entity=m.map(dto,FraseMotivacional.class);

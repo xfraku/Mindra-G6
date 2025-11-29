@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.HistoriaEmocionalDTO;
 import pe.edu.upc.trabajoaw.entities.HistoriaEmocional;
@@ -20,6 +21,7 @@ public class HistoriaEmocionalController {
     private IHistoriaEmocionalService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public List<HistoriaEmocionalDTO> listarHistoria(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class HistoriaEmocionalController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public void insertar(@RequestBody HistoriaEmocionalDTO dto){
         ModelMapper m = new ModelMapper();
         HistoriaEmocional entity=m.map(dto,HistoriaEmocional.class);
@@ -35,6 +38,7 @@ public class HistoriaEmocionalController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         HistoriaEmocional entity = service.listId(id);
         if(entity == null){
@@ -46,6 +50,7 @@ public class HistoriaEmocionalController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         HistoriaEmocional entity = service.listId(id);
         if (entity == null){
@@ -56,6 +61,7 @@ public class HistoriaEmocionalController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody HistoriaEmocionalDTO dto){
         ModelMapper m = new ModelMapper();
         HistoriaEmocional entity=m.map(dto,HistoriaEmocional.class);

@@ -38,5 +38,4 @@ public class HistoriaEmocionalServiceImplement implements IHistoriaEmocionalServ
     public void edit(HistoriaEmocional h) {
         repository.save(h);
     }
-
 }

@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.EstudiantesDTO;
 import pe.edu.upc.trabajoaw.entities.Estudiantes;
@@ -19,6 +20,7 @@ public class EstudiantesController {
     private IEstudiantesService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public List<EstudiantesDTO> listarEstudiantes(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -27,6 +29,7 @@ public class EstudiantesController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public void insertar(@RequestBody EstudiantesDTO dto){
         ModelMapper m = new ModelMapper();
         Estudiantes estu=m.map(dto,Estudiantes.class);
@@ -34,6 +37,7 @@ public class EstudiantesController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Estudiantes estu = service.listId(id);
         if(estu == null){
@@ -47,6 +51,7 @@ public class EstudiantesController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Estudiantes estu = service.listId(id);
         if (estu == null){
@@ -58,6 +63,7 @@ public class EstudiantesController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody EstudiantesDTO dto){
         ModelMapper m = new ModelMapper();
         Estudiantes estu=m.map(dto,Estudiantes.class);
@@ -68,19 +74,5 @@ public class EstudiantesController {
         }
         service.edit(estu);
         return ResponseEntity.ok("Registro con ID " +  estu.getIdEstudiante() + "modificado correctamente");
-    }
-
-    @GetMapping("/busquedas")
-    public ResponseEntity<?> buscar(@RequestParam String centroEstudiantes){
-        List<Estudiantes> estudiantes = service.buscarCentro(centroEstudiantes);
-        if(estudiantes.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se encontraron proveedores: " + centroEstudiantes);
-        }
-        List<EstudiantesDTO> listaDTO = estudiantes.stream().map(x->{
-            ModelMapper m = new ModelMapper();
-            return m.map(x,EstudiantesDTO.class);
-        }).collect(Collectors.toList());
-        return ResponseEntity.ok(listaDTO);
     }
 }

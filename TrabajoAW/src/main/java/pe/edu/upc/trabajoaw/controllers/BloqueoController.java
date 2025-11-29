@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.BloqueoDTO;
 import pe.edu.upc.trabajoaw.entities.Bloqueo;
@@ -19,6 +20,7 @@ public class BloqueoController {
     private IBloqueoService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public List<BloqueoDTO> listarBloqueo(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -27,6 +29,7 @@ public class BloqueoController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public void insertar(@RequestBody BloqueoDTO dto){
         ModelMapper m = new ModelMapper();
         Bloqueo entity = m.map(dto,Bloqueo.class);
@@ -34,6 +37,7 @@ public class BloqueoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Bloqueo entity = service.listId(id);
         if(entity == null){
@@ -47,6 +51,7 @@ public class BloqueoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Bloqueo entity = service.listId(id);
         if (entity == null){
@@ -58,6 +63,7 @@ public class BloqueoController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody BloqueoDTO dto){
         ModelMapper m = new ModelMapper();
         Bloqueo entity=m.map(dto,Bloqueo.class);

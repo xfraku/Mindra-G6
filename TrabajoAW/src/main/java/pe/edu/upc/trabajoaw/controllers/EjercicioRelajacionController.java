@@ -24,6 +24,7 @@ public class EjercicioRelajacionController {
     private IEjercicioRelajacionService service;
 
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public List<EjercicioRelajacionDTO> listar(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -32,6 +33,7 @@ public class EjercicioRelajacionController {
     }
 
     @PostMapping("/nuevo")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public void insertar(@RequestBody EjercicioRelajacionDTO dto){
         ModelMapper m = new ModelMapper();
         EjercicioRelajacion entity=m.map(dto,EjercicioRelajacion.class);
@@ -39,6 +41,7 @@ public class EjercicioRelajacionController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         EjercicioRelajacion entity = service.listId(id);
         if(entity == null){
@@ -50,6 +53,7 @@ public class EjercicioRelajacionController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         EjercicioRelajacion entity = service.listId(id);
         if (entity == null){
@@ -60,6 +64,7 @@ public class EjercicioRelajacionController {
     }
 
     @PutMapping("/modificar")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE','ESPECIALISTA')")
     public ResponseEntity<String> modificar(@RequestBody EjercicioRelajacionDTO dto){
         ModelMapper m = new ModelMapper();
         EjercicioRelajacion entity=m.map(dto,EjercicioRelajacion.class);
