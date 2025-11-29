@@ -7,7 +7,7 @@ export class Alerta{
     nivelIntervencion:String = '';
     tipo:String = '';
     visible:Boolean = true;
-    horaInicio: Date = new Date();
-    horaFin: Date = new Date();
+    horaInicio: String = '';
+    horaFin: String = '';
     recomendacion: Recomendacion = new Recomendacion();
 }

@@ -1,102 +1,29 @@
+<!-- ...existing code... -->
 <div class="container">
   <div style="text-align: center; margin: 3%">
-    <h2>{{ edicion ? 'Editar software' : 'Registrar software' }}</h2>
+    <h2>{{ edicion ? 'Editar recomendación' : 'Registrar recomendación' }}</h2>
   </div>
-  <div style="text-align: center; ">
-    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-      @if (edicion) {
-      <mat-form-field>
+
+  <div style="text-align: center;">
+    <form [formGroup]="form" (ngSubmit)="aceptar()" class="example-form">
+      <mat-form-field *ngIf="edicion">
         <mat-label>Código</mat-label>
         <input matInput formControlName="id" required />
-
-        @if (form.get('id')?.hasError('required')) {
-        <mat-error>El campo id es obligatorio.</mat-error>
-        }
+        <mat-error *ngIf="form.get('id')?.hasError('required')">El campo id es obligatorio.</mat-error>
       </mat-form-field>
-      }
-      <br />
-      <mat-form-field>
-        <mat-label>Software</mat-label>
-        <input matInput formControlName="nombre" required />
 
-        @if (form.get('nombre')?.hasError('required')) {
-        <mat-error>El campo nombre es obligatorio.</mat-error>
-        }
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="descripcion" rows="4" required></textarea>
+        <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La descripción es obligatoria.</mat-error>
       </mat-form-field>
-      <br />
-      <mat-form-field>
-        <mat-label>Versión</mat-label>
-        <input matInput formControlName="version" required />
 
-        @if (form.get('version')?.hasError('required')) {
-        <mat-error>El campo version es obligatorio.</mat-error>
-        }
-      </mat-form-field>
       <br />
-     
-      <mat-form-field>
-        <mat-label>Licencia</mat-label>
-        <input matInput formControlName="licencia" required />
-        @if (form.get('licencia')?.hasError('required')) {
-        <mat-error>El campo licencia es obligatorio.</mat-error>
-        }
-      </mat-form-field>
-      <br />
-      <div class="custom-field">
-        <label>Estado</label>
-        <mat-radio-group formControlName="estado" aria-label="Estado" required>
-          <mat-radio-button [value]="true">Activo</mat-radio-button>
-          <mat-radio-button [value]="false">Inactivo</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <br />
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Tipo:</mat-label>
-          <mat-select formControlName="tipo" required>
-            @for (p of tipos; track p.value) {
-            <mat-option [value]="p.value">
-              {{ p.viewValue }}
-            </mat-option>
-            }
-          </mat-select>
 
-          @if (form.get('type')?.hasError('required')) {
-          <mat-error>El campo tipo es obligatorio.</mat-error>
-          }
-        </mat-form-field>
-      </div>
-      <br />
-      <mat-form-field>
-        <mat-label>Fecha</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="today" required />
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-
-        @if (form.get('fecha')?.hasError('required')) {
-        <mat-error>El campo fecha es obligatorio.</mat-error>
-        }
-      </mat-form-field>
-      <br />
-       <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Proveedor:</mat-label>
-          <mat-select formControlName="foraneo" required>
-            @for (p of listaProveedores; track p.idProvider) {
-            <mat-option [value]="p.idProvider">
-              {{ p.nameProvider }}
-            </mat-option>
-            }
-          </mat-select>
-
-          @if (form.get('foraneo')?.hasError('required')) {
-          <mat-error>El campo proveedor es obligatorio.</mat-error>
-          }
-        </mat-form-field>
-      </div>
-       <br>
-      <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+      <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
     </form>
   </div>
 </div>
+<!-- ...existing code... -->
