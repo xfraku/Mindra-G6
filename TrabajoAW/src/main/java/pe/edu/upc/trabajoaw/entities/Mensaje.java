@@ -1,6 +1,7 @@
 package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.User;
 
 import java.time.Instant;
 
@@ -17,7 +18,7 @@ public class Mensaje {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuarioEmisor")
-    private Usuario emisor;
+    private Users emisor;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuarioReceptor")
@@ -36,7 +37,7 @@ public class Mensaje {
     public Mensaje() {
     }
 
-    public Mensaje(int idMensaje, String contenido, Usuario emisor, Usuario receptor, Instant fecha, boolean leido, Mensaje mensajeRespuesta) {
+    public Mensaje(int idMensaje, String contenido, Users emisor, Usuario receptor, Instant fecha, boolean leido, Mensaje mensajeRespuesta) {
         this.idMensaje = idMensaje;
         this.contenido = contenido;
         this.emisor = emisor;
@@ -62,11 +63,11 @@ public class Mensaje {
         this.contenido = contenido;
     }
 
-    public Usuario getEmisor() {
+    public Users getEmisor() {
         return emisor;
     }
 
-    public void setEmisor(Usuario emisor) {
+    public void setEmisor(Users emisor) {
         this.emisor = emisor;
     }
 

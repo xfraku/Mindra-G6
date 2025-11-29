@@ -25,7 +25,7 @@ public class HistoriaEmocional {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private Users usuario;
 
     @Column(name = "notas", length = 100, nullable = false)
     private String notas;
@@ -33,13 +33,10 @@ public class HistoriaEmocional {
     @Column(name = "reflexion", length = 100, nullable = false)
     private String reflexion;
 
-    @OneToMany(mappedBy = "historialEmocional", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<HistoriaEmocionalDetalle> detalles = new HashSet<>();
-
     public HistoriaEmocional() {
     }
 
-    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, Instant fecha, Usuario usuario, String notas, String reflexion, Set<HistoriaEmocionalDetalle> detalles) {
+    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, Instant fecha, Users usuario, String notas, String reflexion) {
         this.idHistoriaEmocional = idHistoriaEmocional;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -47,7 +44,6 @@ public class HistoriaEmocional {
         this.usuario = usuario;
         this.notas = notas;
         this.reflexion = reflexion;
-        this.detalles = detalles;
     }
 
     public int getIdHistoriaEmocional() {
@@ -82,11 +78,11 @@ public class HistoriaEmocional {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
+    public Users getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Users usuario) {
         this.usuario = usuario;
     }
 
@@ -104,13 +100,5 @@ public class HistoriaEmocional {
 
     public void setReflexion(String reflexion) {
         this.reflexion = reflexion;
-    }
-
-    public Set<HistoriaEmocionalDetalle> getDetalles() {
-        return detalles;
-    }
-
-    public void setDetalles(Set<HistoriaEmocionalDetalle> detalles) {
-        this.detalles = detalles;
     }
 }

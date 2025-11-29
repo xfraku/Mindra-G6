@@ -15,12 +15,12 @@ public class Profesional {
 
     @OneToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private Users usuario;
 
     public Profesional() {
     }
 
-    public Profesional(int idProfesional, String area, Usuario usuario) {
+    public Profesional(int idProfesional, String area, Users usuario) {
         this.idProfesional = idProfesional;
         this.area = area;
         this.usuario = usuario;
@@ -42,11 +42,11 @@ public class Profesional {
         this.area = area;
     }
 
-    public Usuario getUsuario() {
+    public Users getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Users usuario) {
         this.usuario = usuario;
     }
 }

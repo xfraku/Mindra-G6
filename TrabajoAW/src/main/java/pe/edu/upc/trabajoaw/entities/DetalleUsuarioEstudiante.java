@@ -24,12 +24,12 @@ public class DetalleUsuarioEstudiante {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private Users usuario;
 
     public DetalleUsuarioEstudiante() {
     }
 
-    public DetalleUsuarioEstudiante(int idDetalle, String centroEstudio, String estadoEmocional, boolean modoEnfoque, boolean riesgoEmocional, Usuario usuario) {
+    public DetalleUsuarioEstudiante(int idDetalle, String centroEstudio, String estadoEmocional, boolean modoEnfoque, boolean riesgoEmocional, Users usuario) {
         this.idDetalle = idDetalle;
         this.centroEstudio = centroEstudio;
         this.estadoEmocional = estadoEmocional;
@@ -78,11 +78,11 @@ public class DetalleUsuarioEstudiante {
         this.riesgoEmocional = riesgoEmocional;
     }
 
-    public Usuario getUsuario() {
+    public Users getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Users usuario) {
         this.usuario = usuario;
     }
 }

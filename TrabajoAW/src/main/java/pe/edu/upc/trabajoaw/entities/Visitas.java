@@ -14,7 +14,7 @@ public class Visitas {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private Users usuario;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idSitiosWeb")
@@ -33,7 +33,7 @@ public class Visitas {
     public Visitas() {
     }
 
-    public Visitas(int idVisita, Usuario usuario, SitiosWeb sitiosWeb, Instant fechaEntrada, Instant fechaSalida, Recomendacion recomendacion) {
+    public Visitas(int idVisita, Users usuario, SitiosWeb sitiosWeb, Instant fechaEntrada, Instant fechaSalida, Recomendacion recomendacion) {
         this.idVisita = idVisita;
         this.usuario = usuario;
         this.sitiosWeb = sitiosWeb;
@@ -50,11 +50,11 @@ public class Visitas {
         this.idVisita = idVisita;
     }
 
-    public Usuario getUsuario() {
+    public Users getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Users usuario) {
         this.usuario = usuario;
     }
 

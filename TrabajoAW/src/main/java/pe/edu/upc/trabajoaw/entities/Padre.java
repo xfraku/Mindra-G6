@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoaw.entities;
 
 
 import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.User;
 
 @Entity
 @Table(name = "Padre")
@@ -12,12 +13,12 @@ public class Padre {
 
     @OneToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private Users usuario;
 
     public Padre() {
     }
 
-    public Padre(int idPadre, Usuario usuario) {
+    public Padre(int idPadre, Users usuario) {
         this.idPadre = idPadre;
         this.usuario = usuario;
     }
@@ -30,11 +31,11 @@ public class Padre {
         this.idPadre = idPadre;
     }
 
-    public Usuario getUsuario() {
+    public Users getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Users usuario) {
         this.usuario = usuario;
     }
 }

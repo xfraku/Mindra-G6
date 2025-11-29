@@ -19,12 +19,12 @@ public class Notificacion {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    private Users usuario;
 
     public Notificacion() {
     }
 
-    public Notificacion(int idNotificacion, String problema, LocalTime fecha, Usuario usuario) {
+    public Notificacion(int idNotificacion, String problema, LocalTime fecha, Users usuario) {
         this.idNotificacion = idNotificacion;
         this.problema = problema;
         this.fecha = fecha;
@@ -55,11 +55,11 @@ public class Notificacion {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
+    public Users getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Users usuario) {
         this.usuario = usuario;
     }
 }

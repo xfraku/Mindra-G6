@@ -3,6 +3,7 @@ package pe.edu.upc.trabajoaw.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Bloqueo")
@@ -20,7 +21,7 @@ public class Bloqueo {
     private Usuario usuario;
 
     @Column(name = "fecha", nullable = false)
-    private Instant fecha;
+    private LocalDate fecha;
 
     @Column(name = "razon",length = 100,nullable = false)
     private String razon;
@@ -28,7 +29,7 @@ public class Bloqueo {
     public Bloqueo() {
     }
 
-    public Bloqueo(int idBloqueo, SitiosWeb sitiosWeb, Usuario usuario, Instant fecha, String razon) {
+    public Bloqueo(int idBloqueo, SitiosWeb sitiosWeb, Usuario usuario, LocalDate fecha, String razon) {
         this.idBloqueo = idBloqueo;
         this.sitiosWeb = sitiosWeb;
         this.usuario = usuario;
@@ -60,11 +61,11 @@ public class Bloqueo {
         this.usuario = usuario;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
