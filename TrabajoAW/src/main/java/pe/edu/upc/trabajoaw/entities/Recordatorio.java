@@ -24,12 +24,12 @@ public class Recordatorio {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Users usuario;
+    private Usuario usuario;
 
     public Recordatorio() {
     }
 
-    public Recordatorio(int idRecordatorio, String titulo, String descripcion, String diaElegido, boolean activo, Users usuario) {
+    public Recordatorio(int idRecordatorio, String titulo, String descripcion, String diaElegido, boolean activo, Usuario usuario) {
         this.idRecordatorio = idRecordatorio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -78,11 +78,11 @@ public class Recordatorio {
         this.activo = activo;
     }
 
-    public Users getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Users usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 }

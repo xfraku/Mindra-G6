@@ -3,6 +3,7 @@ package pe.edu.upc.trabajoaw.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,11 +22,11 @@ public class HistoriaEmocional {
     private String descripcion;
 
     @Column(name = "fecha", nullable = false)
-    private Instant fecha;
+    private LocalDate fecha;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Users usuario;
+    private Usuario usuario;
 
     @Column(name = "notas", length = 100, nullable = false)
     private String notas;
@@ -36,7 +37,7 @@ public class HistoriaEmocional {
     public HistoriaEmocional() {
     }
 
-    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, Instant fecha, Users usuario, String notas, String reflexion) {
+    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, LocalDate fecha, Usuario usuario, String notas, String reflexion) {
         this.idHistoriaEmocional = idHistoriaEmocional;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -70,19 +71,19 @@ public class HistoriaEmocional {
         this.descripcion = descripcion;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public Users getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Users usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

@@ -1,8 +1,10 @@
 package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Visitas")
@@ -14,17 +16,17 @@ public class Visitas {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Users usuario;
+    private Usuario usuario;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idSitiosWeb")
     private SitiosWeb sitiosWeb;
 
     @Column(name = "fechaEntrada", nullable = false)
-    private Instant fechaEntrada;
+    private LocalDate fechaEntrada;
 
     @Column(name = "fechaSalida", nullable = false)
-    private Instant fechaSalida;
+    private LocalDate fechaSalida;
 
     @ManyToOne
     @JoinColumn(name = "idRecomendacion")
@@ -33,7 +35,7 @@ public class Visitas {
     public Visitas() {
     }
 
-    public Visitas(int idVisita, Users usuario, SitiosWeb sitiosWeb, Instant fechaEntrada, Instant fechaSalida, Recomendacion recomendacion) {
+    public Visitas(int idVisita, Usuario usuario, SitiosWeb sitiosWeb, LocalDate fechaEntrada, LocalDate fechaSalida, Recomendacion recomendacion) {
         this.idVisita = idVisita;
         this.usuario = usuario;
         this.sitiosWeb = sitiosWeb;
@@ -50,11 +52,11 @@ public class Visitas {
         this.idVisita = idVisita;
     }
 
-    public Users getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Users usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
@@ -66,19 +68,19 @@ public class Visitas {
         this.sitiosWeb = sitiosWeb;
     }
 
-    public Instant getFechaEntrada() {
+    public LocalDate getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(Instant fechaEntrada) {
+    public void setFechaEntrada(LocalDate fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public Instant getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Instant fechaSalida) {
+    public void setFechaSalida(LocalDate fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

@@ -1,0 +1,213 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #7C9D8E;
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F8FAF7;
+  --color-text-primary: #000000;
+  --color-text-secondary: #5A6C5D;
+  --color-border: #E8EBE4;
+  
+  --font-family: 'Inter', sans-serif;
+  --font-size-hero: 48px;
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-cta: 16px;
+  
+  --line-height-body: 24px;
+  --border-radius: 12px;
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+html, body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Botones */
+button {
+  font-family: var(--font-family);
+  font-size: var(--font-size-cta);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg-primary);
+}
+
+.btn-primary:hover {
+  background-color: #6a8a7a;
+  box-shadow: var(--shadow-elevated);
+}
+
+.btn-secondary {
+  border: 2px solid var(--color-primary);
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.btn-tertiary {
+  background-color: transparent;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.btn-tertiary:hover {
+  text-decoration: underline;
+}
+
+/* Formularios */
+.example-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-subtle);
+  padding: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Tablas */
+.mat-mdc-table {
+  background-color: var(--color-bg-primary);
+  border-collapse: collapse;
+}
+
+.mat-mdc-header-cell {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mat-mdc-cell {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem;
+}
+
+.mat-mdc-row:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+/* Navegación */
+.custom-toolbar {
+  background-color: var(--color-bg-primary);
+  box-shadow: var(--shadow-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.custom-toolbar button {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.custom-toolbar button:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-primary);
+}
+
+.btn-rojo {
+  color: var(--color-primary);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Estados de validación */
+.mat-mdc-form-field.ng-invalid.ng-touched {
+  color: #d32f2f;
+}
+
+.mat-mdc-form-field.ng-valid.ng-touched {
+  color: #388e3c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .example-form {
+    padding: 1rem;
+  }
+
+  button {
+    padding: 0.625rem 1.25rem;
+    font-size: 14px;
+  }
+}

@@ -1,6 +1,8 @@
 package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
@@ -15,16 +17,16 @@ public class Notificacion {
     private String problema;
 
     @Column(name = "fecha", nullable = false)
-    private LocalTime fecha;
+    private LocalDate fecha;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Users usuario;
+    private Usuario usuario;
 
     public Notificacion() {
     }
 
-    public Notificacion(int idNotificacion, String problema, LocalTime fecha, Users usuario) {
+    public Notificacion(int idNotificacion, String problema, LocalDate fecha, Usuario usuario) {
         this.idNotificacion = idNotificacion;
         this.problema = problema;
         this.fecha = fecha;
@@ -47,19 +49,19 @@ public class Notificacion {
         this.problema = problema;
     }
 
-    public LocalTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public Users getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Users usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 }

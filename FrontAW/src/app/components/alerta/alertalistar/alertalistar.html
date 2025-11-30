@@ -43,7 +43,7 @@
       <ng-container matColumnDef="c8">
         <th mat-header-cell *matHeaderCellDef>Recomendación</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.recomendacion?.nombre || element.recomendacion?.descripcion || element.recomendacion?.idRecomendacion || '-' }}
+          {{ element.recomendacion.descripcion  }}
         </td>
       </ng-container>
 

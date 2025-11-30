@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { Alerta } from './models/alerta';
 import { Alertainsert } from './components/alerta/alertainsert/alertainsert';
-import { Recomendacion } from './models/recomendacion';
 import { Recomendacioninsert } from './components/recomendacion/recomendacioninsert/recomendacioninsert';
 import { Autenticador } from './components/autenticador/autenticador';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Home } from './components/home/home';
+import { Alerta } from './components/alerta/alerta';
+import { Recomendacion } from './components/recomendacion/recomendacion';
 
 export const routes: Routes = [
   {

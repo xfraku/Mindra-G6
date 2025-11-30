@@ -13,12 +13,12 @@ public class Padre {
 
     @OneToOne(optional = false)
     @JoinColumn(name = "idUsuario")
-    private Users usuario;
+    private Usuario usuario;
 
     public Padre() {
     }
 
-    public Padre(int idPadre, Users usuario) {
+    public Padre(int idPadre, Usuario usuario) {
         this.idPadre = idPadre;
         this.usuario = usuario;
     }
@@ -31,11 +31,11 @@ public class Padre {
         this.idPadre = idPadre;
     }
 
-    public Users getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Users usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 }
