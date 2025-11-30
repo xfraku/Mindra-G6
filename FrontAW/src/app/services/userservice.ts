@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { Users } from '../models/users';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { TiempoDistraccionUsuarioDTO } from '../models/tiempodistraccionusuario';
+import { TiempoProductivoUsuarioDTO } from '../models/tiempoproductivousuario';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root',
@@ -33,5 +35,15 @@ export class Userservice {
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
+  }
+  getTiempoDistraccionTodosUsuarios() {
+  return this.http.get<TiempoDistraccionUsuarioDTO[]>(
+    `${this.url}/totalTiempoDistraccionTodosUsuarios`
+  );
+  }
+  getTiempoProductivoTodosUsuarios() {
+  return this.http.get<TiempoProductivoUsuarioDTO[]>(
+    `${this.url}/tiempoProductivoTodosUsuarios`
+  );
   }
 }

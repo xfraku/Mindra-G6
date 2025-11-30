@@ -1,0 +1,34 @@
+.title-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-data-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #999;
+}
+
+.no-data-message {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+h1 {
+  color: #333;
+  font-weight: 500;
+}

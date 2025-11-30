@@ -44,6 +44,15 @@
     >
       <mat-icon>lock</mat-icon>Bloqueos
     </button>
+
+    <button
+      class="btn-rojo"
+      mat-button
+      [matMenuTriggerFor]="menuReportes"
+      aria-label="Reportes menu"
+    >
+      <mat-icon>assessment</mat-icon>Reportes
+    </button>
   </mat-toolbar>
 
   <mat-menu #menuAlertas="matMenu">
@@ -71,5 +80,10 @@
   <mat-menu #menuBloqueos="matMenu">
     <button mat-menu-item routerLink="/bloqueo"><mat-icon>list</mat-icon>Listar</button>
     <button mat-menu-item routerLink="/bloqueo/news"><mat-icon>add</mat-icon>Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuReportes="matMenu">
+    <button mat-menu-item routerLink="/usuario/totalTiempoDistraccionUsuario"><mat-icon>timer</mat-icon>Reporte de tiempo de distracción</button>
+    <button mat-menu-item routerLink="/usuario/tiempoProductivoUsuario"><mat-icon>timer</mat-icon>Reporte de tiempo productivo</button>
   </mat-menu>
 </div>

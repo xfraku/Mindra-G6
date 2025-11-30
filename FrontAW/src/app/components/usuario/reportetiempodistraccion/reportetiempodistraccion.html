@@ -1,0 +1,26 @@
+<div class="title-container">
+  <div style="text-align: center; margin: 20px">
+    <h1>Tiempo Total en Sitios Distractores por Usuario</h1>
+  </div>
+
+  @if(hasData==true){
+  <div style="text-align: center" class="chart-container">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [type]="barChartType"
+    >
+    </canvas>
+  </div>
+  } @if(hasData==false){
+  <div class="no-data">
+    <mat-icon class="no-data-icon">info_outline</mat-icon>
+    <p class="no-data-message">
+      No hay datos disponibles. Los usuarios deben tener visitas registradas en sitios improductivos.
+    </p>
+  </div>
+  }
+</div>

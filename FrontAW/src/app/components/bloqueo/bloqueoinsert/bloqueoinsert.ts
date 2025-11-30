@@ -84,7 +84,6 @@ form: FormGroup = new FormGroup({});
 
   aceptar(): void {
     if (this.form.valid) {
-      // Map form values to model
       this.b.idBloqueo = this.form.value.id;
       this.b.sitiosWeb.idSitioWeb = this.form.value.sitioweb;
       this.b.usuario.idUsuario = this.form.value.usuario;

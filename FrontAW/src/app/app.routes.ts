@@ -12,6 +12,9 @@ import { Visita } from './components/visita/visita';
 import { Visitainsert } from './components/visita/visitainsert/visitainsert';
 import { Bloqueo } from './components/bloqueo/bloqueo';
 import { Bloqueoinsert } from './components/bloqueo/bloqueoinsert/bloqueoinsert';
+import { Usuario } from './components/usuario/usuario';
+import { Reportetiempodistraccion } from './components/usuario/reportetiempodistraccion/reportetiempodistraccion';
+import { Reportetiempoproductivo } from './components/usuario/reportetiempoproductivo/reportetiempoproductivo';
 
 export const routes: Routes = [
   {
@@ -74,6 +77,17 @@ export const routes: Routes = [
       children: [
       { path: 'news', component: Bloqueoinsert },
       { path: 'edits/:id', component: Bloqueoinsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+       
+    path: 'usuario',
+    component: Usuario,
+      children: [
+      { path: 'totalTiempoDistraccionUsuario', component: Reportetiempodistraccion },
+      { path: 'tiempoProductivoUsuario', component: Reportetiempoproductivo }
 
     ],
       canActivate: [seguridadGuard],
