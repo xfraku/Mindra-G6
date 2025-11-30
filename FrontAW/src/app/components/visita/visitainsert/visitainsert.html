@@ -1,0 +1,103 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar visita' : 'Registrar visita' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 2%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field>
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="id" required />
+
+        @if (form.get('id')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="idUsuario" required>
+          @for (usuario of listaUsuarios; track usuario.idUsuario) {
+          <mat-option [value]="usuario.idUsuario">
+            {{ usuario.nombre }}
+          </mat-option>
+          }
+        </mat-select>
+
+        @if (idUsuario?.hasError('required')) {
+        <mat-error>El usuario es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sitio Web</mat-label>
+        <mat-select formControlName="idSitioWeb" required>
+          @for (sitio of listaSitiosWeb; track sitio.idSitioWeb) {
+          <mat-option [value]="sitio.idSitioWeb">
+            {{ sitio.nombre }}
+          </mat-option>
+          }
+        </mat-select>
+
+        @if (idSitioWeb?.hasError('required')) {
+        <mat-error>El sitio web es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de entrada</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerEntrada"
+          formControlName="fechaEntrada"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerEntrada"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerEntrada></mat-datepicker>
+
+        @if (fechaEntrada?.hasError('required')) {
+        <mat-error>La fecha de entrada es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de salida</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerSalida"
+          formControlName="fechaSalida"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerSalida"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerSalida></mat-datepicker>
+
+        @if (fechaSalida?.hasError('required')) {
+        <mat-error>La fecha de salida es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

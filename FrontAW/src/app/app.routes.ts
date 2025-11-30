@@ -6,6 +6,12 @@ import { Recomendacioninsert } from './components/recomendacion/recomendacionins
 import { Autenticador } from './components/autenticador/autenticador';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Home } from './components/home/home';
+import { SitioWeb } from './components/sitio-web/sitio-web';
+import { Sitiowebinsert } from './components/sitio-web/sitiowebinsert/sitiowebinsert';
+import { Visita } from './components/visita/visita';
+import { Visitainsert } from './components/visita/visitainsert/visitainsert';
+import { Bloqueo } from './components/bloqueo/bloqueo';
+import { Bloqueoinsert } from './components/bloqueo/bloqueoinsert/bloqueoinsert';
 
 export const routes: Routes = [
   {
@@ -35,6 +41,39 @@ export const routes: Routes = [
       children: [
       { path: 'news', component: Recomendacioninsert },
       { path: 'edits/:id', component: Recomendacioninsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+       
+    path: 'sitiosweb',
+    component: SitioWeb,
+      children: [
+      { path: 'news', component: Sitiowebinsert },
+      { path: 'edits/:id', component: Sitiowebinsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+       
+    path: 'visitas',
+    component: Visita,
+      children: [
+      { path: 'news', component: Visitainsert },
+      { path: 'edits/:id', component: Visitainsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+       
+    path: 'bloqueo',
+    component: Bloqueo,
+      children: [
+      { path: 'news', component: Bloqueoinsert },
+      { path: 'edits/:id', component: Bloqueoinsert },
 
     ],
       canActivate: [seguridadGuard],

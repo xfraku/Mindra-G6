@@ -1,0 +1,104 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar bloqueo' : 'Registrar bloqueo' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 2%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field>
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="id" required />
+
+        @if (form.get('id')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sitio web</mat-label>
+        <mat-select formControlName="sitioweb" required>
+          @for (sitio of listaSitiosWeb; track sitio.idSitioWeb) {
+          <mat-option [value]="sitio.idSitioWeb">
+            {{ sitio.nombre }}
+          </mat-option>
+          }
+        </mat-select>
+
+        @if (form.get('sitioweb')?.hasError('required')) {
+        <mat-error>La sitio web es obligatoria</mat-error>
+        } @if (form.get('razon')?.hasError('maxlength')) {
+        <mat-error>Máximo 50 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="usuario" required>
+          @for (usuario of listaUsuarios; track usuario.idUsuario) {
+          <mat-option [value]="usuario.idUsuario">
+            {{ usuario.nombre }}
+          </mat-option>
+          }
+        </mat-select>
+
+        @if (form.get('usuario')?.hasError('required')) {
+        <mat-error>La usuario es obligatoria</mat-error>
+        } @if (form.get('razon')?.hasError('maxlength')) {
+        <mat-error>Máximo 50 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de bloqueo</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerEntrada"
+          formControlName="fecha"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickerEntrada"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerEntrada></mat-datepicker>
+
+        @if (form.get('fecha')?.hasError('required')) {
+        <mat-error>La fecha de bloqueo es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Razón</mat-label>
+        <input
+          matInput
+          formControlName="razon"
+          maxlength="100"
+          required
+        />
+
+        @if (form.get('razon')?.hasError('required')) {
+        <mat-error>La razón es obligatorio</mat-error>
+        } @if (form.get('razon')?.hasError('maxlength')) {
+        <mat-error>Máximo 100 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+      <br />
+      <br />
+
+      <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>
