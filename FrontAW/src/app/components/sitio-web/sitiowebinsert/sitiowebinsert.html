@@ -5,7 +5,7 @@
   <div style="text-align: center; margin: 2%">
     <form [formGroup]="form" (submit)="aceptar()" class="example-form">
       @if (edicion) {
-      <mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Código</mat-label>
         <input matInput formControlName="id" required />
 
@@ -14,8 +14,7 @@
         }
       </mat-form-field>
       }
-      <br />
-      <br />
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Dominio</mat-label>
         <input
@@ -32,8 +31,6 @@
         }
       </mat-form-field>
 
-      <br />
-      <br />
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
@@ -51,8 +48,6 @@
         }
       </mat-form-field>
 
-      <br />
-      <br />
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Clasificación</mat-label>
@@ -69,8 +64,6 @@
         }
       </mat-form-field>
 
-      <br />
-      <br />
 
       <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
     </form>

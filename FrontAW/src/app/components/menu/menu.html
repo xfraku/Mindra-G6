@@ -1,11 +1,7 @@
 <div class="container">
+  @if(verificar()){
   <mat-toolbar class="custom-toolbar">
-    <button
-      class="btn-rojo"
-      mat-button
-      [matMenuTriggerFor]="menuAlertas"
-      aria-label="Alertas menu"
-    >
+    <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
     </button>
 
@@ -27,12 +23,7 @@
       <mat-icon>language</mat-icon>Sitios Web
     </button>
 
-    <button
-      class="btn-rojo"
-      mat-button
-      [matMenuTriggerFor]="menuVisitas"
-      aria-label="Visitas menu"
-    >
+    <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuVisitas" aria-label="Visitas menu">
       <mat-icon>history</mat-icon>Visitas
     </button>
 
@@ -53,7 +44,14 @@
     >
       <mat-icon>assessment</mat-icon>Reportes
     </button>
+
+    <span class="spacer"> </span>
+    <button mat-button [matMenuTriggerFor]="menuSalir">
+      <mat-icon>person</mat-icon>Usuario
+    </button>
+
   </mat-toolbar>
+  }
 
   <mat-menu #menuAlertas="matMenu">
     <button mat-menu-item routerLink="/alertas"><mat-icon>list</mat-icon>Listar</button>
@@ -63,8 +61,12 @@
 
   <mat-menu #menuRecomendaciones="matMenu">
     <button mat-menu-item routerLink="/recomendaciones"><mat-icon>list</mat-icon>Listar</button>
-    <button mat-menu-item routerLink="/recomendaciones/news"><mat-icon>add</mat-icon>Registrar</button>
-    <button mat-menu-item routerLink="/recomendaciones/searchs"><mat-icon>search</mat-icon>Buscar</button>
+    <button mat-menu-item routerLink="/recomendaciones/news">
+      <mat-icon>add</mat-icon>Registrar
+    </button>
+    <button mat-menu-item routerLink="/recomendaciones/searchs">
+      <mat-icon>search</mat-icon>Buscar
+    </button>
   </mat-menu>
 
   <mat-menu #menuSitiosWeb="matMenu">
@@ -83,7 +85,22 @@
   </mat-menu>
 
   <mat-menu #menuReportes="matMenu">
-    <button mat-menu-item routerLink="/usuario/totalTiempoDistraccionUsuario"><mat-icon>timer</mat-icon>Reporte de tiempo de distracción</button>
-    <button mat-menu-item routerLink="/usuario/tiempoProductivoUsuario"><mat-icon>timer</mat-icon>Reporte de tiempo productivo</button>
+    <button mat-menu-item routerLink="/usuario/totalTiempoDistraccionUsuario">
+      <mat-icon>timer</mat-icon>Reporte de tiempo de distracción
+    </button>
+    <button mat-menu-item routerLink="/usuario/tiempoProductivoUsuario">
+      <mat-icon>timer</mat-icon>Reporte de tiempo productivo
+    </button>
+  </mat-menu>
+
+  <mat-menu #menuSalir="matMenu">
+    <button mat-menu-item routerLink="/login" (click)="cerrar()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+    <button mat-menu-item>
+      Rol:
+      <span>{{ role }}</span>
+    </button>
   </mat-menu>
 </div>

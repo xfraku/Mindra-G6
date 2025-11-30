@@ -1,0 +1,124 @@
+/* ---------------------------
+   Contenedor general
+---------------------------- */
+.container {
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAF7; /* Fondo secundario */
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* ---------------------------
+   Título de la página
+---------------------------- */
+.container h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5A6C5D;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ---------------------------
+   Formulario
+---------------------------- */
+.example-form {
+  max-width: 600px;
+  margin: 0 auto; /* Centrado */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Campos de entrada */
+.mat-form-field.full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  background-color: #FFFFFF; /* Fondo blanco para inputs */
+  border-radius: 12px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-outline {
+  color: #7C9D8E; /* Color principal al enfocar */
+  border-color: #7C9D8E;
+}
+
+.mat-label {
+  color: #5A6C5D; /* Texto secundario para etiquetas */
+  font-weight: 500;
+}
+
+.mat-input-element {
+  color: #000000; /* Texto principal */
+}
+
+/* Mensajes de error */
+.mat-error {
+  font-size: 14px;
+  color: #D9534F; /* Rojo suave para errores */
+}
+
+/* ---------------------------
+   Select (usuario / sitio web)
+---------------------------- */
+.mat-select-panel {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+}
+
+/* ---------------------------
+   Datepicker
+---------------------------- */
+.mat-datepicker-toggle-default-icon {
+  color: #5A6C5D;
+}
+
+.mat-calendar-body-cell-content {
+  color: #000000;
+}
+
+.mat-calendar-header {
+  background-color: #E8EBE4;
+  color: #5A6C5D;
+}
+
+/* ---------------------------
+   Botón registrar / actualizar
+---------------------------- */
+button[matbutton] {
+  background-color: #7C9D8E; /* Color principal */
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  align-self: center; /* Centrar botón */
+  min-width: 120px;
+}
+
+button[matbutton]:hover {
+  background-color: #5A6C5D;
+  transform: translateY(-1px);
+}
+
+/* ---------------------------
+   Responsividad
+---------------------------- */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .example-form {
+    gap: 1rem;
+  }
+
+  button[matbutton] {
+    width: 100%;
+  }
+}

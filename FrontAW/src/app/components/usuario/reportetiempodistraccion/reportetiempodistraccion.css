@@ -1,34 +1,71 @@
+/* ---------------------------
+   Contenedor general del reporte
+---------------------------- */
 .title-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAF7; /* Fondo secundario */
+  padding: 2rem;
+  border-radius: 12px;
 }
 
+/* ---------------------------
+   Título centrado
+---------------------------- */
+.title-container h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5A6C5D;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ---------------------------
+   Contenedor del gráfico
+---------------------------- */
 .chart-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
 }
 
+/* ---------------------------
+   Mensaje cuando no hay datos
+---------------------------- */
 .no-data {
   text-align: center;
-  padding: 40px;
-  color: #666;
+  padding: 2rem;
+  border: 1px solid #E8EBE4;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .no-data-icon {
-  font-size: 64px;
-  width: 64px;
-  height: 64px;
-  color: #999;
+  font-size: 48px;
+  color: #5A6C5D;
 }
 
 .no-data-message {
-  font-size: 18px;
-  margin-top: 20px;
+  font-size: 16px;
+  color: #5A6C5D;
+  max-width: 500px;
 }
 
-h1 {
-  color: #333;
-  font-weight: 500;
+/* ---------------------------
+   Responsividad
+---------------------------- */
+@media (max-width: 768px) {
+  .chart-container {
+    max-width: 100%;
+  }
+
+  .title-container h1 {
+    font-size: 24px;
+  }
+
+  .no-data-message {
+    font-size: 14px;
+  }
 }
