@@ -6,20 +6,23 @@
 
   <div style="text-align: center;">
     <form [formGroup]="form" (ngSubmit)="aceptar()" class="example-form">
-      <mat-form-field *ngIf="edicion">
+      @if (edicion) {
+      <mat-form-field>
         <mat-label>Código</mat-label>
         <input matInput formControlName="id" required />
-        <mat-error *ngIf="form.get('id')?.hasError('required')">El campo id es obligatorio.</mat-error>
+        @if (form.get('id')?.hasError('required')){
+          <mat-error>El campo id es obligatorio.</mat-error>
+        }
       </mat-form-field>
-
+    }
       <br />
-
       <mat-form-field class="example-full-width">
         <mat-label>Descripción</mat-label>
         <textarea matInput formControlName="descripcion" rows="4" required></textarea>
-        <mat-error *ngIf="form.get('descripcion')?.hasError('required')">La descripción es obligatoria.</mat-error>
-      </mat-form-field>
-
+        @if (form.get('descripcion')?.hasError('required')){
+          <mat-error>La descripción es obligatoria.</mat-error>
+        }
+        </mat-form-field>
       <br />
 
       <button mat-raised-button color="primary">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
