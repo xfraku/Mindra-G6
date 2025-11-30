@@ -55,3 +55,9 @@
 .mat-menu-item:hover {
   background-color: #F2F5F0; /* Hover suave */
 }
+
+.logo-mindra {
+  height: 38px;         /* Se ve bien en toolbar */
+  margin-right: 20px;   /* Espacio entre logo y primer botón */
+  border-radius: 6px;   /* Opcional: esquinas curvas */
+}

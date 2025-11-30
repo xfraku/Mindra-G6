@@ -1,31 +1,37 @@
-mat-form-field {
-    width: 50%;
+/* Centrar todo vertical y horizontal */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* Botón Ingresar estilo Mindra */
+/* Estilo de la tarjeta */
+.login-card {
+  width: 420px;
+  padding: 30px;
+  text-align: center; /* Esto ya centra todo el contenido */
+  border-radius: 12px;
+}
+
+/* Logo Mindra centrado */
+.logo {
+  width: 150px;
+  border-radius: 10px;
+  margin: 0 auto 20px auto; /* CENTRA la imagen horizontalmente */
+  display: block;            /* Obligatorio para margin auto */
+}
+
+/* Botón estilo Mindra */
 button[mat-raised-button] {
-    background-color: #7C9D8E; /* Verde principal */
-    color: white;
-    border: none;
-    padding: 0.5rem 1.25rem;
-    font-size: 1.1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 50%;  
+  background-color: #7C9D8E;
+  color: white;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 6px;
 }
 
-/* Hover opcional (si no lo quieres, lo quito) */
 button[mat-raised-button]:hover {
-    background-color: #5A6C5D; /* Verde oscuro */
-}
-
-.container img {
-  width: 180px;        /* tamaño de la imagen */
-  height: auto;        /* mantiene proporción */
-  display: block;      /* elimina espacios raros */
-  margin: 20px auto;   /* la centra y agrega espacio arriba y abajo */
-  margin-top: 100px;
-  margin-bottom: 20;
-  border-radius: 15px;
+  background-color: #5A6C5D;
 }
