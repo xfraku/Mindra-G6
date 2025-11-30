@@ -1,0 +1,27 @@
+<div class="music-widget">
+  <div *ngIf="!currentTrack" class="initial-state">
+    <button 
+      class="btn-primary" 
+      (click)="playRelaxingMusic()"
+      [disabled]="loading"
+    >
+      {{ loading ? 'Cargando...' : 'Reproducir música relajante' }}
+    </button>
+    <p *ngIf="error" class="error-message">{{ error }}</p>
+  </div>
+
+  <div *ngIf="currentTrack" class="player">
+    <div class="track-info">
+      <p class="track-title">{{ currentTrack.title }}</p>
+      <p class="track-artist">{{ currentTrack.artist?.name }}</p>
+    </div>
+
+    <div class="controls">
+      <button class="btn-control" (click)="togglePlay()">
+        {{ isPlaying ? '⏸' : '▶' }}
+      </button>
+      <button class="btn-control" (click)="playNext()">⏭</button>
+      <button class="btn-control" (click)="stopMusic()">⏹</button>
+    </div>
+  </div>
+</div>

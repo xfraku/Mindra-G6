@@ -1,7 +1,14 @@
 <div class="container">
   @if(verificar()){
   <mat-toolbar class="custom-toolbar">
-    <img src="assets/MindraLogo.png" alt="Mindra Logo" class="logo-mindra" />
+    <!-- ✅ Logo clickeable que va al home -->
+    <img 
+      src="assets/MindraLogo.png" 
+      alt="Mindra Logo" 
+      class="logo-mindra" 
+      routerLink="/homes"
+      style="cursor: pointer;"
+    />
 
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
@@ -70,25 +77,25 @@
 
   <mat-menu #menuSitiosWeb="matMenu">
     <button mat-menu-item routerLink="/sitiosweb"><mat-icon>list</mat-icon>Listar</button>
-    <button mat-menu-item routerLink="/sitiosweb/news"><mat-icon>add</mat-icon>Registrar</button>
+    <button mat-menu-item routerLink="/sitiosweb/nuevo"><mat-icon>add</mat-icon>Registrar</button>
   </mat-menu>
 
   <mat-menu #menuVisitas="matMenu">
     <button mat-menu-item routerLink="/visitas"><mat-icon>list</mat-icon>Listar</button>
-    <button mat-menu-item routerLink="/visitas/news"><mat-icon>add</mat-icon>Registrar</button>
+    <button mat-menu-item routerLink="/visitas/nuevo"><mat-icon>add</mat-icon>Registrar</button>
   </mat-menu>
 
   <mat-menu #menuBloqueos="matMenu">
     <button mat-menu-item routerLink="/bloqueo"><mat-icon>list</mat-icon>Listar</button>
-    <button mat-menu-item routerLink="/bloqueo/news"><mat-icon>add</mat-icon>Registrar</button>
+    <button mat-menu-item routerLink="/bloqueo/nuevo"><mat-icon>add</mat-icon>Registrar</button>
   </mat-menu>
 
   <mat-menu #menuReportes="matMenu">
-    <button mat-menu-item routerLink="/usuario/totalTiempoDistraccionUsuario">
+    <button mat-menu-item routerLink="/reportes/distraccion">
       <mat-icon>timer</mat-icon>Reporte de tiempo de distracción
     </button>
-    <button mat-menu-item routerLink="/usuario/tiempoProductivoUsuario">
-      <mat-icon>timer</mat-icon>Reporte de tiempo productivo
+    <button mat-menu-item routerLink="/reportes/productivo">
+      <mat-icon>trending_up</mat-icon>Reporte de tiempo productivo
     </button>
   </mat-menu>
 

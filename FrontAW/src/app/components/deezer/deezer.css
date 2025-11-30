@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.music-widget {
+  font-family: 'Inter', sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Estado inicial */
+.initial-state {
+  text-align: center;
+}
+
+.error-message {
+  color: #c0392b;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.btn-primary {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+  background-color: #7C9D8E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #5A6C5D;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Reproductor */
+.player {
+  background-color: #F8FAF7;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #E8EBE4;
+}
+
+.track-info {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.track-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  margin: 0 0 4px 0;
+}
+
+.track-artist {
+  font-size: 14px;
+  color: #5A6C5D;
+  margin: 0;
+}
+
+/* Controles */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-control {
+  font-family: 'Inter', sans-serif;
+  width: 44px;
+  height: 44px;
+  background-color: #FFFFFF;
+  border: 1px solid #E8EBE4;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #5A6C5D;
+}
+
+.btn-control:hover {
+  background-color: #7C9D8E;
+  color: #FFFFFF;
+  border-color: #7C9D8E;
+}
+
+.btn-control:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .music-widget {
+    padding: 16px;
+  }
+  
+  .btn-primary {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
