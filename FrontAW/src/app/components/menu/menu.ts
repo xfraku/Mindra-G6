@@ -31,8 +31,16 @@ export class Menu {
   isAdmin() {
     return this.role === 'ADMIN';
   }
-
-  isTester() {
-    return this.role === 'TESTER';
+  isDocente() {
+    return this.role === 'DOCENTE';
+  }
+  isApoderado() {
+    return this.role === 'APODERADO';
+  }
+  isEspecialista() {
+    return this.role === 'ESPECIALISTA';
+  }
+  isEstudiante() {
+    return this.role === 'ESTUDIANTE';
   }
 }

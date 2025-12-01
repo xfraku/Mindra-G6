@@ -59,7 +59,6 @@ public class RecomendacionController {
         service.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + "eliminado correctamente");
     }
-
     @PutMapping("/modificar")
     @PreAuthorize("hasAnyAuthority('ADMIN','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<String> modificar(@RequestBody RecomendacionDTO dto){
@@ -72,4 +71,5 @@ public class RecomendacionController {
         service.edit(entity);
         return ResponseEntity.ok("Registro con ID " +  entity.getIdRecomendacion() + "modificado correctamente");
     }
+
 }

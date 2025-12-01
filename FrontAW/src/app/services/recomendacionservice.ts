@@ -13,10 +13,10 @@ export class Recomendacionservice {
   private listaCambio = new Subject<Recomendacion[]>();
   constructor(private http: HttpClient) {}
   list() {
-    return this.http.get<Recomendacion[]>(this.url);
+    return this.http.get<Recomendacion[]>(`${this.url}/listar`);
   }
   insert(s: Recomendacion) {
-    return this.http.post(this.url, s);
+    return this.http.post(`${this.url}/nuevo`, s);
   }
   setList(listaNueva: Recomendacion[]) {
     this.listaCambio.next(listaNueva);
@@ -29,7 +29,7 @@ export class Recomendacionservice {
     return this.http.get<Recomendacion>(`${this.url}/${id}`);
   }
   update(s: Recomendacion) {
-    return this.http.put(`${this.url}`, s, { responseType: 'text' });
+    return this.http.put(`${this.url}/modificar`, s, { responseType: 'text' });
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });

@@ -4,6 +4,12 @@ import { Recomendacioninsert } from './components/recomendacion/recomendacionins
 import { Autenticador } from './components/autenticador/autenticador';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Home } from './components/home/home';
+import { Alerta } from './components/alerta/alerta';
+import { Recomendacion } from './components/recomendacion/recomendacion';
+import { Empty } from './layouts/empty/empty';
+import { Landing } from './components/landing/landing';
+import { Full } from './layouts/full/full';
+import { Register } from './components/register/register';
 import { SitioWeb } from './components/sitio-web/sitio-web';
 import { Sitiowebinsert } from './components/sitio-web/sitiowebinsert/sitiowebinsert';
 import { Visita } from './components/visita/visita';
@@ -13,12 +19,8 @@ import { Bloqueoinsert } from './components/bloqueo/bloqueoinsert/bloqueoinsert'
 import { Usuario } from './components/usuario/usuario';
 import { Reportetiempodistraccion } from './components/usuario/reportetiempodistraccion/reportetiempodistraccion';
 import { Reportetiempoproductivo } from './components/usuario/reportetiempoproductivo/reportetiempoproductivo';
-import { Alerta } from './components/alerta/alerta';
-import { Recomendacion } from './components/recomendacion/recomendacion';
-import { Empty } from './layouts/empty/empty';
-import { Landing } from './components/landing/landing';
-import { Full } from './layouts/full/full';
-import { Register } from './components/register/register';
+import { Emocion } from './components/emocion/emocion';
+import { Emocioninsertar } from './components/emocion/emocioninsertar/emocioninsertar';
 
 export const routes: Routes = [
   {
@@ -45,16 +47,27 @@ export const routes: Routes = [
         canActivate: [seguridadGuard],
       },
       {
-        path: 'recomendacion',
-        component: Recomendacion,
+       
+      path: 'recomendacion',
+      component: Recomendacion,
         children: [
-          { path: 'news', component: Recomendacioninsert },
-          { path: 'edits/:id', component: Recomendacioninsert },
+      { path: 'news', component: Recomendacioninsert },
+      { path: 'edits/:id', component: Recomendacioninsert },
+
     ],
       canActivate: [seguridadGuard],
     },
     {
-       
+      path: 'emocion',
+      component: Emocion,
+      children: [
+      { path: 'news', component: Emocioninsertar },
+      { path: 'edits/:id', component: Emocioninsertar },
+      ],
+      canActivate: [seguridadGuard],
+    },
+    {
+
     path: 'sitiosweb',
     component: SitioWeb,
       children: [
@@ -65,7 +78,7 @@ export const routes: Routes = [
       canActivate: [seguridadGuard],
     },
     {
-       
+
     path: 'visitas',
     component: Visita,
       children: [
@@ -76,7 +89,7 @@ export const routes: Routes = [
       canActivate: [seguridadGuard],
     },
     {
-       
+
     path: 'bloqueo',
     component: Bloqueo,
       children: [
@@ -87,13 +100,22 @@ export const routes: Routes = [
       canActivate: [seguridadGuard],
     },
     {
-       
+
     path: 'usuario',
     component: Usuario,
       children: [
       { path: 'totalTiempoDistraccionUsuario', component: Reportetiempodistraccion },
       { path: 'tiempoProductivoUsuario', component: Reportetiempoproductivo }
 
+    ],
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'recomendacion',
+        component: Recomendacion,
+        children: [
+          { path: 'news', component: Recomendacioninsert },
+          { path: 'edits/:id', component: Recomendacioninsert },
         ],
         canActivate: [seguridadGuard],
       },

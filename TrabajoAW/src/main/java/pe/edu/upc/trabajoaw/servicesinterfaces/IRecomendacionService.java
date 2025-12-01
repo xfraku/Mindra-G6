@@ -10,5 +10,4 @@ public interface IRecomendacionService {
     Recomendacion listId(int id);
     void delete(int id);
     void edit(Recomendacion r);
-
 }
