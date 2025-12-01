@@ -43,7 +43,8 @@ export class Alertainsert implements OnInit {
 
   tipos: { value: string; viewValue: string }[] = [
     { value: 'Advertencia', viewValue: 'Advertencia' },
-    { value: 'Peligro', viewValue: 'Peligro' },
+    { value: 'Alerta', viewValue: 'Alerta' },
+    { value: 'Notificacion', viewValue: 'Notificacion' },
   ];
 
   constructor(
@@ -132,4 +133,6 @@ export class Alertainsert implements OnInit {
       });
     }
   }
+
+
 }

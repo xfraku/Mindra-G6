@@ -8,12 +8,11 @@
       routerLink="/homes"
       style="cursor: pointer;"
     />
-    @if(isAdmin()){
+    @if(isAdmin() || isDocente() || isEspecialista()){
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
     </button>
-    } @if(isEstudiante()){
-    <button
+     <button
       class="btn-rojo"
       mat-button
       [matMenuTriggerFor]="menuRecomendaciones"
@@ -21,6 +20,25 @@
     >
       <mat-icon>recommend</mat-icon>Recomendaciones
     </button>
+
+    <button
+      class="btn-rojo"
+      mat-button
+      [matMenuTriggerFor]="menuReportes"
+      aria-label="Reportes menu"
+    >
+      <mat-icon>assessment</mat-icon>Reportes
+    </button>
+
+    <button
+      class="btn-rojo"
+      mat-button
+      [matMenuTriggerFor]="menuEmociones"
+      aria-label="Reportes emocion"
+    >
+      <mat-icon>mood</mat-icon>Emocion
+    </button>
+    } @if(isEstudiante() || isApoderado()){
 
     <button
       class="btn-rojo"
@@ -43,24 +61,6 @@
     >
       <mat-icon>lock</mat-icon>Bloqueos
     </button>
-
-    <button
-      class="btn-rojo"
-      mat-button
-      [matMenuTriggerFor]="menuReportes"
-      aria-label="Reportes menu"
-    >
-      <mat-icon>assessment</mat-icon>Reportes
-    </button>
-
-    <button
-      class="btn-rojo"
-      mat-button
-      [matMenuTriggerFor]="menuEmociones"
-      aria-label="Reportes emocion"
-    >
-      <mat-icon>mood</mat-icon>Emocion
-    </button>
   }
 <span class="spacer"> </span>
   
@@ -76,8 +76,8 @@
   </mat-menu>
 
   <mat-menu #menuRecomendaciones="matMenu">
-    <button mat-menu-item routerLink="/recomendaciones"><mat-icon>list</mat-icon>Listar</button>
-    <button mat-menu-item routerLink="/recomendaciones/news">
+    <button mat-menu-item routerLink="/recomendacion"><mat-icon>list</mat-icon>Listar</button>
+    <button mat-menu-item routerLink="/recomendacion/news">
       <mat-icon>add</mat-icon>Registrar
     </button>
   </mat-menu>

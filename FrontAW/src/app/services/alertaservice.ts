@@ -15,8 +15,8 @@ export class Alertaservice {
   list() {
     return this.http.get<Alerta[]>(`${this.url}/listar`);
   }
-  insert(p: Alerta) {
-    return this.http.post(`${this.url}/nuevo`, p);
+  insert(a: Alerta) {
+    return this.http.post(`${this.url}/nuevo`, a);
   }
   setList(listaNueva: Alerta[]) {
     this.listaCambio.next(listaNueva);
@@ -28,15 +28,10 @@ export class Alertaservice {
   listId(id: number) {
     return this.http.get<Alerta>(`${this.url}/${id}`);
   }
-  update(p: Alerta) {
-    return this.http.put(`${this.url}/modificar`, p, { responseType: 'text' });
+  update(a: Alerta) {
+    return this.http.put(`${this.url}/modificar`, a, { responseType: 'text' });
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
   }
-  search(f: Date) {
-  const formattedDate = f.toISOString().split('T')[0]; 
-  const params = { f: formattedDate }; 
-  return this.http.get<Alerta[]>(`${this.url}/busquedas`, { params });
-}
 }
