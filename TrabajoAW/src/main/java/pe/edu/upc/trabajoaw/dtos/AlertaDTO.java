@@ -1,11 +1,12 @@
 package pe.edu.upc.trabajoaw.dtos;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class AlertaDTO {
     private int idAlerta;
-    private Instant tiempoEstablecido;
+    private LocalDateTime tiempoEstablecido;
     private String mensaje;
     private String nivelIntervencion;
     private String tipo;
@@ -22,11 +23,11 @@ public class AlertaDTO {
         this.idAlerta = idAlerta;
     }
 
-    public Instant getTiempoEstablecido() {
+    public LocalDateTime getTiempoEstablecido() {
         return tiempoEstablecido;
     }
 
-    public void setTiempoEstablecido(Instant tiempoEstablecido) {
+    public void setTiempoEstablecido(LocalDateTime tiempoEstablecido) {
         this.tiempoEstablecido = tiempoEstablecido;
     }
 
