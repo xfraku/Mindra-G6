@@ -87,9 +87,9 @@
 /* ---------------------------
    Botón registrar / actualizar
 ---------------------------- */
-button[mat-raised-button] {
-  background-color: #7C9D8E !important; /* Color principal */
-  color: #FFFFFF !important;
+button[matbutton] {
+  background-color: #7C9D8E; /* Color principal */
+  color: #FFFFFF;
   border: none;
   border-radius: 8px;
   padding: 10px 16px;
@@ -97,13 +97,15 @@ button[mat-raised-button] {
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
+  align-self: center; /* Centrar botón */
   min-width: 120px;
 }
 
-button[mat-raised-button]:hover {
-  background-color: #5A6C5D !important; /* Color más oscuro */
+button[matbutton]:hover {
+  background-color: #5A6C5D;
   transform: translateY(-1px);
 }
+
 
 /* ---------------------------
    Responsividad
