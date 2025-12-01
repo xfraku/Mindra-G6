@@ -10,6 +10,15 @@ import { Empty } from './layouts/empty/empty';
 import { Landing } from './components/landing/landing';
 import { Full } from './layouts/full/full';
 import { Register } from './components/register/register';
+import { SitioWeb } from './components/sitio-web/sitio-web';
+import { Sitiowebinsert } from './components/sitio-web/sitiowebinsert/sitiowebinsert';
+import { Visita } from './components/visita/visita';
+import { Visitainsert } from './components/visita/visitainsert/visitainsert';
+import { Bloqueo } from './components/bloqueo/bloqueo';
+import { Bloqueoinsert } from './components/bloqueo/bloqueoinsert/bloqueoinsert';
+import { Usuario } from './components/usuario/usuario';
+import { Reportetiempodistraccion } from './components/usuario/reportetiempodistraccion/reportetiempodistraccion';
+import { Reportetiempoproductivo } from './components/usuario/reportetiempoproductivo/reportetiempoproductivo';
 
 export const routes: Routes = [
   {
@@ -36,17 +45,19 @@ export const routes: Routes = [
         canActivate: [seguridadGuard],
       },
       {
-        path: 'recomendacion',
-        component: Recomendacion,
-        children: [
-          { path: 'news', component: Recomendacioninsert },
-          { path: 'edits/:id', component: Recomendacioninsert },
-        ],
-        canActivate: [seguridadGuard],
-      },
-      {
-        path: 'homes',
-        component: Home,
+       
+    path: 'recomendacion',
+    component: Recomendacion,
+      children: [
+      { path: 'news', component: Recomendacioninsert },
+      { path: 'edits/:id', component: Recomendacioninsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+    path: 'homes',
+    component: Home,
         canActivate: [seguridadGuard],
       },
     ],

@@ -38,4 +38,9 @@ public class EjercicioRelajacionServiceImplement implements IEjercicioRelajacion
         repository.save(e);
     }
 
+    @Override
+    public List<String[]> ejerciciosRelajacionTop() {
+        return repository.ejerciciosRelajacionTop();
+    }
+
 }

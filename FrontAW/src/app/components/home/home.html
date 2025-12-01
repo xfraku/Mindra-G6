@@ -1,14 +1,42 @@
-<div class="container">
-   <div lass="IMAGEN1" style="margin: 9%;">   
-     <img src="assets/angular.png" alt="Imagen 1" class="image" />
-    <div >
-        <h4>Angular: Un framework para construir aplicaciones web de una sola página.</h4>
-    </div>
-   </div>
-   <div lass="IMAGEN2"style="margin: 9%;">   
-     <img src="assets/spring.png" alt="Imagen 2" class="image" />
-    <div style="margin: 4%;">
-        <h4>Spring: Un framework para construir API-REST.</h4>
-    </div>
-   </div>
+<div class="dashboard-container">
+  <div class="welcome-section">
+    <h1>Bienvenido a Mindra</h1>
+    <p>Gestiona tu bienestar digital</p>
+
+    <app-deezer></app-deezer>
+  </div>
+
+  <div class="cards-grid">
+    <!-- Card: Sitios Web -->
+    <mat-card class="dashboard-card" routerLink="/sitiosweb">
+      <mat-card-content>
+        <h2>Sitios Web</h2>
+        <p>Administrar sitios web registrados</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Card: Visitas -->
+    <mat-card class="dashboard-card" routerLink="/visitas">
+      <mat-card-content>
+        <h2>Visitas</h2>
+        <p>Historial de visitas a sitios</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Card: Bloqueos -->
+    <mat-card class="dashboard-card" routerLink="/bloqueo">
+      <mat-card-content>
+        <h2>Bloqueos</h2>
+        <p>Gestionar bloqueos de sitios</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Card: Reportes - ✅ CAMBIO AQUÍ -->
+    <mat-card class="dashboard-card" routerLink="/usuario/totalTiempoDistraccionUsuario">
+      <mat-card-content>
+        <h2>Reportes</h2>
+        <p>Análisis y estadísticas</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

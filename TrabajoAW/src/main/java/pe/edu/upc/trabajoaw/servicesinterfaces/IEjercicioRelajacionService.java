@@ -11,4 +11,5 @@ public interface IEjercicioRelajacionService {
     EjercicioRelajacion listId(int id);
     void delete(int id);
     void edit(EjercicioRelajacion e);
+    public List<String[]> ejerciciosRelajacionTop();
 }

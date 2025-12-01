@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.EjercicioRelajacionDTO;
+import pe.edu.upc.trabajoaw.dtos.EjerciciosRelajacionTopDTO;
 import pe.edu.upc.trabajoaw.entities.EjercicioRelajacion;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IEjercicioRelajacionService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,5 +74,24 @@ public class EjercicioRelajacionController {
         }
         service.edit(entity);
         return ResponseEntity.ok("Registro con ID " +  entity.getIdEjercicioRelajacion() + "modificado correctamente");
+    }
+
+    @GetMapping("/topEjeciciosUsados")
+    @PreAuthorize("hasAnyAuthority('ADMIN','ESTUDIANTE')")
+    public ResponseEntity<?> topEjeciciosUsados() {
+        List<String[]> ejercicios=service.ejerciciosRelajacionTop();
+        List<EjerciciosRelajacionTopDTO> listaMontos=new ArrayList<>();
+        if (ejercicios.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron proveedores registrados ");
+        }
+        for(String[] columna:ejercicios){
+            EjerciciosRelajacionTopDTO dto=new EjerciciosRelajacionTopDTO();
+            dto.setTitulo(columna[0]);
+            dto.setDescripcion(columna[1]);
+            dto.setTotal_usos(Integer.parseInt(columna[2]));
+            listaMontos.add(dto);
+        }
+        return ResponseEntity.ok(listaMontos);
     }
 }

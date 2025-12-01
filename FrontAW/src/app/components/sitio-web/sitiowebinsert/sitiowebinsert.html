@@ -1,0 +1,71 @@
+<div class="container">
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar sitio web' : 'Registrar sitio web' }}</h2>
+  </div>
+  <div style="text-align: center; margin: 2%">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      @if (edicion) {
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="id" required />
+
+        @if (form.get('id')?.hasError('required')) {
+        <mat-error>El campo id es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+      }
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dominio</mat-label>
+        <input
+          matInput
+          formControlName="dominio"
+          maxlength="50"
+          required
+        />
+
+        @if (dominio?.hasError('required')) {
+        <mat-error>El dominio es obligatorio</mat-error>
+        } @if (dominio?.hasError('maxlength')) {
+        <mat-error>Máximo 50 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          formControlName="nombre"
+          maxlength="50"
+          required
+        />
+
+        @if (nombre?.hasError('required')) {
+        <mat-error>El nombre es obligatorio</mat-error>
+        } @if (nombre?.hasError('maxlength')) {
+        <mat-error>Máximo 50 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Clasificación</mat-label>
+        <mat-select formControlName="clasificacion" required>
+          @for (tipo of tipos; track tipo.value) {
+          <mat-option [value]="tipo.value">
+            {{ tipo.viewValue }}
+          </mat-option>
+          }
+        </mat-select>
+
+        @if (clasificacion?.hasError('required')) {
+        <mat-error>La clasificación es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+
+      <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+  </div>
+</div>

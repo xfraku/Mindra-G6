@@ -1,16 +1,18 @@
 /* Palette: color predominante: #7C9D8E, fondo: #F8FAF7, acento: #5A6C5D, fondo alternativo: #E8EBE4 */
 
-/* --- Toolbar --- */
+/* ---------------------------
+   Toolbar principal
+---------------------------- */
 .custom-toolbar {
-  background-color: #7C9D8E;
+  background-color: rgb(251, 140, 0); /* verde principal */
   display: flex;
   align-items: center;
-  padding: 0 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* --- Botón principal --- */
 .btn-rojo {
-  background-color: #7C9D8E;
+  background-color: rgb(251, 140, 0);
   border: none;
   font-size: smaller;
   border-radius: 4px;
@@ -20,14 +22,12 @@
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  color: #F8FAF7;
-  transition: background-color 0.2s ease, box-shadow 0.15s ease;
-  box-shadow: 0 2px 4px rgba(90, 108, 93, 0.12);
+  color: rgb(15, 203, 71);
+  transition: background-color 0.2s ease;
 }
 
 .btn-rojo:hover {
-  background-color: #5A6C5D;
-  box-shadow: 0 4px 8px rgba(90, 108, 93, 0.16);
+  background-color: rgb(15, 203, 71);
 }
 
 /* --- Icono --- */
@@ -44,36 +44,28 @@
   vertical-align: middle;
 }
 
-/* --- Asegurar color claro en toolbar --- */
+/* --- Asegurar color blanco --- */
 .custom-toolbar button,
 .custom-toolbar mat-icon {
-  color: #F8FAF7;
+  color: white;
 }
 
-/* --- Menú desplegable translúcido con la paleta --- */
+/* --- Menú desplegable translúcido verde claro --- */
 .mat-mdc-menu-panel {
-  background-color: rgba(124, 157, 142, 0.12) !important; /* translúcido del color predominante */
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(90, 108, 93, 0.15);
+  background-color: rgba(144, 238, 144, 0.3) !important; /* verde claro translúcido (lightgreen con transparencia) */
+  backdrop-filter: blur(6px); /* efecto suave de vidrio */
+  border: 1px solid rgba(46, 158, 46, 0.3);
   border-radius: 8px;
   padding: 4px 0;
 }
 
 /* --- Opciones del menú --- */
 .mat-mdc-menu-item {
-  color: #5A6C5D !important;
+  color: #064d06 !important; /* texto verde oscuro */
   font-size: 0.85rem;
   font-weight: 500;
 }
 
 .mat-mdc-menu-item:hover {
-  background-color: rgba(90, 108, 93, 0.12) !important;
-  color: #F8FAF7 !important;
-}
-  
-/* Opcional: fondo alternativo para secciones del menú */
-.menu-section {
-  background-color: #E8EBE4;
-  border-radius: 6px;
-  padding: 6px;
+  background-color: rgba(46, 158, 46, 0.2) !important; /* un verde más visible al pasar el mouse */
 }
