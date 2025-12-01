@@ -6,43 +6,49 @@ import { seguridadGuard } from './guard/seguridad-guard';
 import { Home } from './components/home/home';
 import { Alerta } from './components/alerta/alerta';
 import { Recomendacion } from './components/recomendacion/recomendacion';
+import { Empty } from './layouts/empty/empty';
+import { Landing } from './components/landing/landing';
+import { Full } from './layouts/full/full';
+import { Register } from './components/register/register';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  }
-  ,
-  {
-    path: 'login',
-    component: Autenticador,
+    component: Empty,
+    children: [
+      { path: '', redirectTo: 'landing', pathMatch: 'full' },
+      { path: 'landing', component: Landing },
+      { path: 'login', component: Autenticador },
+      { path: 'register', component: Register }
+    ],
   },
-    {
-       
-    path: 'alertas',
-    component: Alerta,
-      children: [
-      { path: 'news', component: Alertainsert },
-      { path: 'edits/:id', component: Alertainsert },
-    ],
-      canActivate: [seguridadGuard],
-    },
+  {
+    path: '',
+    component: Full,
+    children: [
       {
-       
-    path: 'recomendacion',
-    component: Recomendacion,
-      children: [
-      { path: 'news', component: Recomendacioninsert },
-      { path: 'edits/:id', component: Recomendacioninsert },
-
-    ],
-      canActivate: [seguridadGuard],
-    },
-    {
-    path: 'homes',
-    component: Home,
+        path: 'alertas',
+        component: Alerta,
+        children: [
+          { path: 'news', component: Alertainsert },
+          { path: 'edits/:id', component: Alertainsert },
+        ],
         canActivate: [seguridadGuard],
-
+      },
+      {
+        path: 'recomendacion',
+        component: Recomendacion,
+        children: [
+          { path: 'news', component: Recomendacioninsert },
+          { path: 'edits/:id', component: Recomendacioninsert },
+        ],
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'homes',
+        component: Home,
+        canActivate: [seguridadGuard],
+      },
+    ],
   },
 ];

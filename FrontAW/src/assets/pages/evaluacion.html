@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evaluación emocional - Mindra</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <script src="../scripts/main.js" defer></script>
+</head>
+<body>
+
+<nav class="sidebar">
+        <div class="sidebar-header">
+          <h2>Mindra</h2>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="dashboard.html">Inicio</a></li>
+          <li><a href="monitoreo.html">Monitoreo de salud</a></li>
+          <li><a href="asistencia.html">Asistencia y recordatorios</a></li>
+          <li><a href="analisis.html">Análisis de comportamiento</a></li>
+          <li><a href="retroalimentacion.html">Retroalimentación</a></li>
+          <li><a href="evaluacion.html">Evaluación emocional</a></li>
+          <li><a href="#" id="btnLogout">Cerrar sesión</a></li>
+        </ul>
+</nav>
+
+<button id="mobile-menu-button" class="mobile-menu-toggle">☰</button>
+  <div id="sidebar-container"></div>
+  <main class="main-content">
+    <h1>Evaluación emocional</h1>
+
+    <div class="card">
+      <h3>US08. Análisis de emociones con NLP</h3>
+      <p>Tu entrada reciente fue analizada: emociones predominantes = ansiedad y cansancio.</p>
+    </div>
+
+    <div class="card">
+      <h3>US12. Registro con emojis</h3>
+      <p>¿Cómo te sientes hoy?</p>
+      <button class="emotion-btn" onclick="seleccionarFrase(this, 'respuesta12')">Muy Bien</button>
+      <button class="emotion-btn" onclick="seleccionarFrase(this, 'respuesta12')">Bien</button>
+      <button class="emotion-btn" onclick="seleccionarFrase(this, 'respuesta12')">Neutro</button>
+      <button class="emotion-btn" onclick="seleccionarFrase(this, 'respuesta12')">Mal</button>
+      <button class="emotion-btn" onclick="seleccionarFrase(this, 'respuesta12')">Muy mal</button>
+      <p class="response" id="respuesta12"></p>
+    </div>
+
+    <div class="card">
+      <h3>US19. Historial emocional semanal</h3>
+      <ul>
+        <li>02/07 - 🙂 Bien</li>
+        <li>01/07 - 😐 Neutro</li>
+        <li>30/06 - 😃 Muy bien</li>
+      </ul>
+    </div>
+
+<section class="card-section">
+  <div class="card card-horizontal">
+    <div class="card-text">
+      <h3>US33. Evaluación en momentos críticos</h3>
+      <p>Antes de una clase exigente, ¿cómo te sientes?</p>
+      <textarea id="momentos-criticos-input" class="reflection-textarea" placeholder="Escribe cómo te sientes..."></textarea>
+      <br />
+      <button id="publish-momentos" class="btn-publish">Registrar</button>
+      <div id="momentos-criticos-output" class="reflection-output"></div>
+    </div>
+  </div>
+</section>
+
+
+    <div class="card">
+      <h3>US34. Visualización mensual</h3>
+      <img src="../images/Estres.jpg" alt="Monitoreo de salud" class="card-img-horizontal">
+      <p>Identificamos picos de estrés los días 12 y 25.</p>
+    </div>
+
+    <div class="card">
+      <h3>US40. Registro con emojis y colores</h3>
+      <p>Asocia una emoción con un color:</p>
+      <ul>
+        <li>💙 Tranquilo</li>
+        <li>💛 Feliz</li>
+        <li>❤️ Enojado</li>
+        <li>🖤 Triste</li>
+      </ul>
+    </div>
+
+<section class="card-section">
+  <div class="card card-horizontal">
+    <div class="card-text">
+      <h3>US42. Notas breves en emociones</h3>
+      <p>¿Qué causó tu emoción?</p>
+      <textarea id="notas-emocion-input" class="reflection-textarea" placeholder="Escribe una breve nota..."></textarea>
+      <br />
+      <button id="publish-nota" class="btn-publish">Publicar</button>
+      <div id="notas-emocion-output" class="reflection-output"></div>
+    </div>
+  </div>
+</section>
+
+  </main>
+</body>
+</html>
