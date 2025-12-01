@@ -15,16 +15,16 @@ import { Alerta } from '../../../models/alerta';
 })
 export class Alertalistar implements OnInit {
   dataSource: MatTableDataSource<Alerta> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6' , 'c7','c8','c9'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6' , 'c7','c8','c9','c10'];
 
   constructor(private aS: Alertaservice) {}
 
   ngOnInit(): void {
     this.aS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data = data;
     });
     this.aS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data = data;
     });
   }
 
