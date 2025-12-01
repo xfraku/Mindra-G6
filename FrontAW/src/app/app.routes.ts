@@ -4,6 +4,21 @@ import { Recomendacioninsert } from './components/recomendacion/recomendacionins
 import { Autenticador } from './components/autenticador/autenticador';
 import { seguridadGuard } from './guard/seguridad-guard';
 import { Home } from './components/home/home';
+import { SitioWeb } from './components/sitio-web/sitio-web';
+import { Sitiowebinsert } from './components/sitio-web/sitiowebinsert/sitiowebinsert';
+import { Visita } from './components/visita/visita';
+import { Visitainsert } from './components/visita/visitainsert/visitainsert';
+import { Bloqueo } from './components/bloqueo/bloqueo';
+import { Bloqueoinsert } from './components/bloqueo/bloqueoinsert/bloqueoinsert';
+import { Usuario } from './components/usuario/usuario';
+import { Reportetiempodistraccion } from './components/usuario/reportetiempodistraccion/reportetiempodistraccion';
+import { Reportetiempoproductivo } from './components/usuario/reportetiempoproductivo/reportetiempoproductivo';
+import { Alerta } from './components/alerta/alerta';
+import { Recomendacion } from './components/recomendacion/recomendacion';
+import { Empty } from './layouts/empty/empty';
+import { Landing } from './components/landing/landing';
+import { Full } from './layouts/full/full';
+import { Register } from './components/register/register';
 
 export const routes: Routes = [
   {
