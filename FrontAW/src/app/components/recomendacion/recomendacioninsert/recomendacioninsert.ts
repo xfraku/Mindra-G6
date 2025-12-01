@@ -73,7 +73,7 @@ export class Recomendacioninsert implements OnInit {
         });
       }
 
-      this.router.navigate(['recomendaciones']);
+      this.router.navigate(['recomendacion']);
     }
   }
 

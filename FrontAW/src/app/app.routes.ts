@@ -19,6 +19,8 @@ import { Bloqueoinsert } from './components/bloqueo/bloqueoinsert/bloqueoinsert'
 import { Usuario } from './components/usuario/usuario';
 import { Reportetiempodistraccion } from './components/usuario/reportetiempodistraccion/reportetiempodistraccion';
 import { Reportetiempoproductivo } from './components/usuario/reportetiempoproductivo/reportetiempoproductivo';
+import { Emocion } from './components/emocion/emocion';
+import { Emocioninsertar } from './components/emocion/emocioninsertar/emocioninsertar';
 
 export const routes: Routes = [
   {
@@ -46,15 +48,68 @@ export const routes: Routes = [
       },
       {
        
-    path: 'recomendacion',
-    component: Recomendacion,
-      children: [
+      path: 'recomendacion',
+      component: Recomendacion,
+        children: [
       { path: 'news', component: Recomendacioninsert },
       { path: 'edits/:id', component: Recomendacioninsert },
 
     ],
       canActivate: [seguridadGuard],
     },
+    {
+      path: 'emocion',
+      component: Emocion,
+      children: [
+      { path: 'news', component: Emocioninsertar },
+      { path: 'edits/:id', component: Emocioninsertar },
+      ],
+      canActivate: [seguridadGuard],
+    },
+    {
+
+    path: 'sitiosweb',
+    component: SitioWeb,
+      children: [
+      { path: 'news', component: Sitiowebinsert },
+      { path: 'edits/:id', component: Sitiowebinsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+
+    path: 'visitas',
+    component: Visita,
+      children: [
+      { path: 'news', component: Visitainsert },
+      { path: 'edits/:id', component: Visitainsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+
+    path: 'bloqueo',
+    component: Bloqueo,
+      children: [
+      { path: 'news', component: Bloqueoinsert },
+      { path: 'edits/:id', component: Bloqueoinsert },
+
+    ],
+      canActivate: [seguridadGuard],
+    },
+    {
+
+    path: 'usuario',
+    component: Usuario,
+      children: [
+      { path: 'totalTiempoDistraccionUsuario', component: Reportetiempodistraccion },
+      { path: 'tiempoProductivoUsuario', component: Reportetiempoproductivo }
+
+        ],
+        canActivate: [seguridadGuard],
+      },
     {
     path: 'homes',
     component: Home,

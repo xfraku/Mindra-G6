@@ -1,11 +1,6 @@
 <div class="container">
   @if(verificar()){
     <mat-toolbar class="custom-toolbar">
-    <button mat-button [routerLink]="['/homes']" class="btn-rojo">
-      <mat-icon>home</mat-icon>Home
-    </button>
-    @if(isAdmin()){
-    <!-- ✅ Logo clickeable que va al home -->
     <img 
       src="assets/MindraLogo.png" 
       alt="Mindra Logo" 
@@ -13,11 +8,11 @@
       routerLink="/homes"
       style="cursor: pointer;"
     />
-
+    @if(isAdmin()){
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
     </button>
-    } @if(isTester()){
+    } @if(isEstudiante()){
     <button
       class="btn-rojo"
       mat-button
@@ -58,8 +53,14 @@
       <mat-icon>assessment</mat-icon>Reportes
     </button>
 
-    <span class="spacer"> </span>
-    <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon>person</mat-icon>Usuario</button>
+    <button
+      class="btn-rojo"
+      mat-button
+      [matMenuTriggerFor]="menuEmociones"
+      aria-label="Reportes emocion"
+    >
+      <mat-icon>mood</mat-icon>Emocion
+    </button>
   }
 <span class="spacer"> </span>
   
@@ -80,19 +81,6 @@
       <mat-icon>add</mat-icon>Registrar
     </button>
   </mat-menu>
-  
-  <mat-menu #menuSalir="matMenu">
-    <button mat-menu-item routerLink="/login" (click)="cerrar()">
-      
-      <mat-icon>logout</mat-icon>
-      <span>Cerrar sesión</span>
-    </button>
-    <button mat-menu-item>
-      Rol:
-      <span>{{ role }}</span>
-    
-    </button>
-  </mat-menu>
 
   <mat-menu #menuSitiosWeb="matMenu">
     <button mat-menu-item routerLink="/sitiosweb"><mat-icon>list</mat-icon>Listar</button>
@@ -107,6 +95,11 @@
   <mat-menu #menuBloqueos="matMenu">
     <button mat-menu-item routerLink="/bloqueo"><mat-icon>list</mat-icon>Listar</button>
     <button mat-menu-item routerLink="/bloqueo/news"><mat-icon>add</mat-icon>Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuEmociones="matMenu">
+    <button mat-menu-item routerLink="/emocion"><mat-icon>list</mat-icon>Listar</button>
+    <button mat-menu-item routerLink="/emocion/news"><mat-icon>add</mat-icon>Registrar</button>
   </mat-menu>
 
   <mat-menu #menuReportes="matMenu">

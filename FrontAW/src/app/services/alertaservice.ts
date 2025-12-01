@@ -13,10 +13,10 @@ export class Alertaservice {
   private listaCambio = new Subject<Alerta[]>();
   constructor(private http: HttpClient) {}
   list() {
-    return this.http.get<Alerta[]>(this.url);
+    return this.http.get<Alerta[]>(`${this.url}/listar`);
   }
   insert(p: Alerta) {
-    return this.http.post(this.url, p);
+    return this.http.post(`${this.url}/nuevo`, p);
   }
   setList(listaNueva: Alerta[]) {
     this.listaCambio.next(listaNueva);
@@ -29,7 +29,7 @@ export class Alertaservice {
     return this.http.get<Alerta>(`${this.url}/${id}`);
   }
   update(p: Alerta) {
-    return this.http.put(`${this.url}`, p, { responseType: 'text' });
+    return this.http.put(`${this.url}/modificar`, p, { responseType: 'text' });
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });

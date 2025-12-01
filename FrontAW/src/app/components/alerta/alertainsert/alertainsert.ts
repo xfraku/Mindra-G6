@@ -42,8 +42,8 @@ export class Alertainsert implements OnInit {
   estado: boolean = true;
 
   tipos: { value: string; viewValue: string }[] = [
-    { value: 'OpenSource', viewValue: 'OpenSource' },
-    { value: 'Privado', viewValue: 'Privado' },
+    { value: 'Advertencia', viewValue: 'Advertencia' },
+    { value: 'Peligro', viewValue: 'Peligro' },
   ];
 
   constructor(

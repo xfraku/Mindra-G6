@@ -1,71 +1,50 @@
-/* Palette: color predominante: #7C9D8E, fondo: #F8FAF7, acento: #5A6C5D, fondo alternativo: #E8EBE4 */
-
-/* ---------------------------
-   Toolbar principal
----------------------------- */
 .custom-toolbar {
-  background-color: rgb(251, 140, 0); /* verde principal */
+  background-color: #7C9D8E;
+  border-radius: 8px;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
-/* --- Botón principal --- */
-.btn-rojo {
-  background-color: rgb(251, 140, 0);
-  border: none;
-  font-size: smaller;
-  border-radius: 4px;
-  margin: 4px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  color: rgb(15, 203, 71);
-  transition: background-color 0.2s ease;
+.spacer {
+  flex: 1 1 auto;
 }
-
-.btn-rojo:hover {
-  background-color: rgb(15, 203, 71);
-}
-
-/* --- Icono --- */
-.btn-rojo mat-icon,
-.btn-rojo .material-symbols-outlined {
-  font-size: 1.3rem;
-  vertical-align: middle;
-  line-height: 1;
-}
-
-/* --- Texto dentro del botón --- */
-.btn-rojo span:not(.material-symbols-outlined),
-.btn-rojo {
-  vertical-align: middle;
-}
-
-/* --- Asegurar color blanco --- */
-.custom-toolbar button,
-.custom-toolbar mat-icon {
-  color: white;
-}
-
-/* --- Menú desplegable translúcido verde claro --- */
-.mat-mdc-menu-panel {
-  background-color: rgba(144, 238, 144, 0.3) !important; /* verde claro translúcido (lightgreen con transparencia) */
-  backdrop-filter: blur(6px); /* efecto suave de vidrio */
-  border: 1px solid rgba(46, 158, 46, 0.3);
-  border-radius: 8px;
-  padding: 4px 0;
-}
-
-/* --- Opciones del menú --- */
-.mat-mdc-menu-item {
-  color: #064d06 !important; /* texto verde oscuro */
-  font-size: 0.85rem;
+.custom-toolbar button.mat-button {
+  color: #FFFFFF !important; 
   font-weight: 500;
+  margin: 0 0.25rem;
+  border-radius: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.custom-toolbar button.mat-button:hover {
+  background-color: rgba(255,255,255,0.15);
+  transform: translateY(-1px);
 }
 
-.mat-mdc-menu-item:hover {
-  background-color: rgba(46, 158, 46, 0.2) !important; /* un verde más visible al pasar el mouse */
+.custom-toolbar button.mat-button .mat-icon {
+  color: #FFFFFF !important; 
+  margin-right: 4px;
+}
+
+.mat-menu-panel {
+  border-radius: 12px;
+  background-color: #FFFFFF;
+}
+
+.mat-menu-item {
+  color: #000000; 
+}
+
+.mat-menu-item .mat-icon {
+  color: #7C9D8E; 
+}
+
+.mat-menu-item:hover {
+  background-color: #F2F5F0;
+}
+
+.logo-mindra {
+  height: 38px;         
+  margin-right: 20px;   
+  border-radius: 6px;  
 }
