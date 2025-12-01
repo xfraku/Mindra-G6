@@ -3,6 +3,7 @@ package pe.edu.upc.trabajoaw.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class HistoriaEmocional {
     private String descripcion;
 
     @Column(name = "fecha", nullable = false)
-    private Instant fecha;
+    private LocalDate fecha;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "idUsuario")
@@ -33,13 +34,10 @@ public class HistoriaEmocional {
     @Column(name = "reflexion", length = 100, nullable = false)
     private String reflexion;
 
-    @OneToMany(mappedBy = "historialEmocional", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<HistoriaEmocionalDetalle> detalles = new HashSet<>();
-
     public HistoriaEmocional() {
     }
 
-    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, Instant fecha, Usuario usuario, String notas, String reflexion, Set<HistoriaEmocionalDetalle> detalles) {
+    public HistoriaEmocional(int idHistoriaEmocional, String titulo, String descripcion, LocalDate fecha, Usuario usuario, String notas, String reflexion) {
         this.idHistoriaEmocional = idHistoriaEmocional;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -47,7 +45,6 @@ public class HistoriaEmocional {
         this.usuario = usuario;
         this.notas = notas;
         this.reflexion = reflexion;
-        this.detalles = detalles;
     }
 
     public int getIdHistoriaEmocional() {
@@ -74,11 +71,11 @@ public class HistoriaEmocional {
         this.descripcion = descripcion;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Instant fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -104,13 +101,5 @@ public class HistoriaEmocional {
 
     public void setReflexion(String reflexion) {
         this.reflexion = reflexion;
-    }
-
-    public Set<HistoriaEmocionalDetalle> getDetalles() {
-        return detalles;
-    }
-
-    public void setDetalles(Set<HistoriaEmocionalDetalle> detalles) {
-        this.detalles = detalles;
     }
 }

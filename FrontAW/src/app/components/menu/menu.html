@@ -13,7 +13,7 @@
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
     </button>
-
+    }
     <button
       class="btn-rojo"
       mat-button
@@ -57,21 +57,17 @@
     <span class="spacer"> </span>
     <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon>person</mat-icon>Usuario</button>
   </mat-toolbar>
-  }
+  
 
   <mat-menu #menuAlertas="matMenu">
     <button mat-menu-item routerLink="/alertas"><mat-icon>list</mat-icon>Listar</button>
     <button mat-menu-item routerLink="/alertas/news"><mat-icon>add</mat-icon>Registrar</button>
-    <button mat-menu-item routerLink="/alertas/searchs"><mat-icon>search</mat-icon>Buscar</button>
   </mat-menu>
 
   <mat-menu #menuRecomendaciones="matMenu">
     <button mat-menu-item routerLink="/recomendaciones"><mat-icon>list</mat-icon>Listar</button>
     <button mat-menu-item routerLink="/recomendaciones/news">
       <mat-icon>add</mat-icon>Registrar
-    </button>
-    <button mat-menu-item routerLink="/recomendaciones/searchs">
-      <mat-icon>search</mat-icon>Buscar
     </button>
   </mat-menu>
 

@@ -1,0 +1,92 @@
+
+<header class="app-header">
+  <a (click)="goHome()" class="logo" role="button">
+    <img src="assets/images/logo.jpg" alt="Mindra Logo" class="logo-img">
+  </a>
+
+  <nav>
+    <button class="menu-toggle" id="menu-toggle" (click)="toggleMenu()">☰</button>
+    <ul [class.open]="menuOpen" id="menu" class="menu">
+      <li><a (click)="scrollTo('Monitoreo')">Monitoreo de salud</a></li>
+      <li><a (click)="scrollTo('Asistencia')">Asistencia y recordatorios</a></li>
+      <li><a (click)="scrollTo('Analisis')">Análisis de comportamientos</a></li>
+      <li><a class="btn secondary" (click)="goRegister()">Registrarse</a></li>
+      <li><a class="btn tertiary" (click)="goLogin()">Iniciar Sesión</a></li>
+      <li><a class="btn tertiary" id="btnLogout" style="visibility: hidden;">Cerrar Sesión</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="hero" class="hero" [ngStyle]="{'background-image': heroBg}">
+    <h1>Mindra</h1>
+    <p id="greeting" class="greeting">{{ greeting }}</p>
+    <div class="btn-group">
+      <a class="btn primary" (click)="goLogin()">Iniciar Sesión</a>
+      <a class="btn secondary" (click)="goRegister()">Registrarse</a>
+    </div>
+  </section>
+
+  <section class="image-section">
+    <div class="image-container">
+      <img src="assets/images/Pareja.jpg" alt="Pareja">
+      <img src="assets/images/Psicologa.jpg" alt="Psicologa">
+    </div>
+  </section>
+
+  <section id="Monitoreo" class="card-section">
+    <div class="card-horizontal">
+      <img src="assets/images/monitoreo.jpg" alt="Monitoreo de salud" class="card-img-horizontal">
+      <div class="card-text">
+        <h3>Monitoreo de salud</h3>
+        <p>Brindamos monitoreo constante de salud para todos nuestros usuarios actualmente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="Asistencia" class="card-section">
+    <div class="card-horizontal">
+      <img src="assets/images/recordatorios.jpg" alt="Asistencia y recordatorios" class="card-img-horizontal">
+      <div class="card-text">
+        <h3>Asistencia y recordatorios</h3>
+        <p>No tienes que estar pendiente, nosotros te recordamos cuando toca tu próxima sesión.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="Analisis" class="card-section">
+    <div class="card-horizontal">
+      <img src="assets/images/analisis.jpg" alt="Análisis de comportamientos" class="card-img-horizontal">
+      <div class="card-text">
+        <h3>Análisis de comportamientos</h3>
+        <p>Analizamos constantemente los comportamientos dados por cada usuario para poder brindarte la asistencia necesaria.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Mindra. Todos los derechos reservados.</p>
+</footer>
+
+<!-- In-page modals (opcionales). Si prefieres navegar a /login y /register, se ignoran. -->
+<div class="modal" *ngIf="showLoginModal" (click)="closeModals()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModals()">&times;</span>
+    <h2>Iniciar Sesión</h2>
+    <input type="text" placeholder="Correo">
+    <input type="password" placeholder="Contraseña">
+    <button class="btn primary" (click)="submitLogin()">Entrar</button>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showRegisterModal" (click)="closeModals()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModals()">&times;</span>
+    <h2>Registrarse</h2>
+    <input type="text" placeholder="Nombre">
+    <input type="email" placeholder="Correo">
+    <input type="password" placeholder="Contraseña">
+    <button class="btn primary" (click)="submitRegister()">Registrarse</button>
+  </div>
+</div>

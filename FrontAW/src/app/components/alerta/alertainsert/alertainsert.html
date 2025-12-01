@@ -1,42 +1,52 @@
 <div class="container">
-  <div style="text-align: center; margin: 3%"><h2>{{ edicion ? 'Editar proveedor' : 'Registrar proveedor' }}</h2></div>
+  <div style="text-align: center; margin: 3%">
+    <h2>{{ edicion ? 'Editar alerta' : 'Registrar alerta' }}</h2>
+  </div>
   <div style="text-align: center; margin: 2%">
-    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+    <form [formGroup]="form" (ngSubmit)="aceptar()" class="example-form">
       @if (edicion) {
-        <mat-form-field>
+      <mat-form-field>
         <mat-label>Código</mat-label>
-        <input matInput formControlName="id"  required/>
-
+        <input matInput formControlName="id" required />
         @if (form.get('id')?.hasError('required')) {
         <mat-error>El campo id es obligatorio.</mat-error>
-        } 
+        }
       </mat-form-field>
-    }
+      }
       <br />
-      <mat-form-field >
-        <mat-label>Proveedor</mat-label>
-        <input matInput formControlName="name" required/>
 
-        @if (form.get('name')?.hasError('required')) {
-        <mat-error>El campo name es obligatorio.</mat-error>
-        } 
+      <mat-form-field>
+        <mat-label>Tiempo establecido</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="tiempoEstablecido"
+          [max]="today"
+          required
+        />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        
+        @if(form.get('tiempoEstablecido')?.hasError('required')) {
+        <mat-error> El campo tiempo establecido es obligatorio.</mat-error>
+        }
       </mat-form-field>
       <br />
       <mat-form-field>
-        <mat-label>Dirección</mat-label>
-        <input matInput formControlName="adress" required />
-
-      @if (form.get('adress')?.hasError('required')) {
-        <mat-error>El campo adress es obligatorio.</mat-error>
-        } 
+        <mat-label>Mensaje</mat-label>
+        <textarea matInput formControlName="mensaje" rows="3" required></textarea>
+        @if(form.get('mensaje')?.hasError('required')){
+        <mat-error>El mensaje es obligatorio.</mat-error>
+        }
       </mat-form-field>
       <br />
       <mat-form-field>
-        <mat-label>Teléfono</mat-label>
-        <input matInput formControlName="phone" required/>
- @if (form.get('phone')?.hasError('required')) {
-        <mat-error>El campo phone es obligatorio.</mat-error>
-        } 
+        <mat-label>Nivel de intervención</mat-label>
+        <input matInput formControlName="nivelIntervencion" required />
+        @if(form.get('nivelIntervencion')?.hasError('required')){
+        <mat-error>El nivel de intervención es obligatorio.</mat-error>
+        }
       </mat-form-field>
       <br />
       <div class="custom-field">
@@ -50,43 +60,63 @@
 
       <div>
         <mat-form-field class="example-full-width">
-          <mat-label>Tipo:</mat-label>
-          <mat-select formControlName="type" required>
-            @for (p of tipos; track p.value) {
-            <mat-option [value]="p.value">
-              {{ p.viewValue }}
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo" required>
+            @for (t of tipos; track t.value){
+            <mat-option [value]="t.value">
+              {{ t.viewValue }}
             </mat-option>
             }
           </mat-select>
 
-           @if (form.get('type')?.hasError('required')) {
-          <mat-error>El campo phone es obligatorio.</mat-error>
-          } 
+          @if (form.get('tipo')?.hasError('required')){
+          <mat-error>El campo tipo es obligatorio.</mat-error>
+          }
         </mat-form-field>
+      </div>
+      <br />
+      <div class="custom-field">
+        <label>Visible</label>
+        <mat-radio-group formControlName="visible" aria-label="Visible" required>
+          <mat-radio-button [value]="true">Sí</mat-radio-button>
+          <mat-radio-button [value]="false">No</mat-radio-button>
+        </mat-radio-group>
       </div>
       
       <br />
       <mat-form-field>
-        <mat-label>Fecha</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="date" [max]="today"  required/>
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-
-        @if (form.get('date')?.hasError('required')) {
-        <mat-error>El campo date es obligatorio.</mat-error>
-        } 
+        <mat-label>Hora inicio</mat-label>
+        <input matInput type="time" formControlName="horaInicio" required />
+        @if (form.get('horaInicio')?.hasError('required')){
+        <mat-error>La hora de inicio es obligatoria.</mat-error>
+        }
       </mat-form-field>
       <br />
-      <mat-form-field class="example-full-width">
-        <mat-label>Monto:</mat-label>
-        <input matInput placeholder="192" formControlName="amount" required/>
- @if (form.get('amount')?.hasError('required')) {
-        <mat-error>El amount date es obligatorio.</mat-error>
-        } 
+      <mat-form-field>
+        <mat-label>Hora fin</mat-label>
+        <input matInput type="time" formControlName="horaFin" required />
+        @if(form.get('horaFin')?.hasError('required')){
+          <mat-error>La hora fin es obligatoria.</mat-error>
+        }
       </mat-form-field>
-      <br />
-      <button matButton> {{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+      <br>
+      <div>
+      <mat-form-field  class="example-full-width">
+        <mat-label>Recomendación</mat-label>
+        <mat-select formControlName="recomendacion" required>
+          @for( r of listaRecomendaciones; track r.idRecomendacion){
+            <mat-option [value]="r.idRecomendacion">
+              {{ r.descripcion }}
+          </mat-option>
+        }
+        </mat-select>
+        @if(form.get('recomendacion')?.hasError('required')){
+        <mat-error>Seleccione una recomendación.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <br>
+      <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
     </form>
   </div>
 </div>

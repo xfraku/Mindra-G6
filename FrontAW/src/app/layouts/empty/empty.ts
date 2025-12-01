@@ -1,0 +1,12 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-empty',
+  imports: [RouterOutlet],
+  templateUrl: './empty.html',
+  styleUrl: './empty.css',
+})
+export class Empty {
+
+}

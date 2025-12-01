@@ -72,10 +72,9 @@ export class Alertainsert implements OnInit {
       nivelIntervencion: ['', Validators.required],
       tipo: ['', Validators.required],
       visible: [false, Validators.required],
-      fecha: ['', Validators.required],
       horaInicio: ['', Validators.required],
       horaFin: ['', Validators.required],
-      foraneo: ['', Validators.required],
+      recomendacion:['',Validators.required]
     });
   }
 
@@ -97,7 +96,7 @@ export class Alertainsert implements OnInit {
       const hfHoras = hf.getHours().toString().padStart(2, '0');
       const hfMin = hf.getMinutes().toString().padStart(2, '0');
       this.a.horaFin = `${hfHoras}:${hfMin}`;
-
+      this.a.recomendacion.idRecomendacion = this.form.value.recomendacion;
       if (this.edicion) {
         this.aS.update(this.a).subscribe(() => {
           this.aS.list().subscribe((data) => {
@@ -111,7 +110,6 @@ export class Alertainsert implements OnInit {
           });
         });
       }
-
       // Navegar a la lista de alertas (ajusta la ruta si tu proyecto la tiene distinta)
       this.router.navigate(['alertas']);
     }
@@ -129,6 +127,7 @@ export class Alertainsert implements OnInit {
           visible: new FormControl(data.visible),
           horaInicio: new FormControl(data.horaInicio),
           horaFin: new FormControl(data.horaFin),
+          recomendacion: new FormControl(data.recomendacion.idRecomendacion),
         });
       });
     }

@@ -2,6 +2,7 @@ package pe.edu.upc.trabajoaw.entities;
 
 
 import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.User;
 
 @Entity
 @Table(name = "Padre")
