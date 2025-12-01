@@ -1,21 +1,63 @@
-/* --- Botones dentro de la tabla --- */
-button[matButton] {
-  font-size: 0.8rem;
-  font-weight: 500;
-  border-radius: 6px;
-  padding: 4px 12px;
-  color: rgb(240, 244, 241);
-  text-transform: none;
-  transition: all 0.25s ease;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
-  background-color: rgb(251, 140, 0);
+.container {
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAF7;
+  padding: 2rem;
 }
 
+.container h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5A6C5D;
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-/* --- Responsivo (botones más compactos en pantallas pequeñas) --- */
-@media (max-width: 768px) {
-  button[matButton] [matIconButton]{
-    font-size: 0.7rem;
-    padding: 3px 8px;
-  }
+table {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mat-header-row {
+  background-color: #E8EBE4 !important;
+}
+
+.mat-header-cell {
+  color: #5A6C5D;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mat-row {
+  transition: background-color 0.2s ease;
+}
+
+.mat-row:hover {
+  background-color: #F2F5F0;
+}
+
+.mat-cell {
+  color: #000000;
+  font-size: 15px;
+}
+
+.mat-icon {
+  font-size: 22px;
+  height: 22px;
+  width: 22px;
+  color: #5A6C5D;
+}
+
+button[mat-button] {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 6px;
+  transition: background-color 0.2s;
+}
+
+button[mat-button]:hover {
+  background-color: #E8EBE4;
 }

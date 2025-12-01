@@ -1,20 +1,122 @@
-mat-form-field {
-  width: 60%;
+.container {
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAF7;
+  padding: 2rem;
+  border-radius: 12px;
 }
 
-button[matButton] {
-  font-size: 1rem;
+.container h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5A6C5D;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.example-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mat-form-field {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-outline {
+  color: #7C9D8E;
+  border-color: #7C9D8E;
+}
+
+.mat-label {
+  color: #5A6C5D;
   font-weight: 500;
-  border-radius: 6px;
-  padding: 4px 12px;
-  color: #F8FAF7;
-  text-transform: none;
-  transition: all 0.25s ease;
-  box-shadow: 0px 2px 4px rgba(90, 108, 93, 0.15);
-  background-color: #7C9D8E;
-  width: 60%;
 }
 
-button[matButton="elevated"]:hover {
+.mat-input-element {
+  color: #000000;
+}
+
+.mat-error {
+  font-size: 14px;
+  color: #D9534F;
+}
+
+.mat-select-panel {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+}
+
+.mat-datepicker-toggle-default-icon {
+  color: #5A6C5D;
+}
+
+.mat-calendar-body-cell-content {
+  color: #000000;
+}
+
+.mat-calendar-header {
+  background-color: #E8EBE4;
+  color: #5A6C5D;
+}
+
+.custom-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.custom-field label {
+  color: #5A6C5D;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.mat-radio-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.mat-radio-button {
+  color: #5A6C5D;
+}
+
+button[matbutton],
+button[mat-raised-button] {
+  background-color: #7C9D8E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  align-self: center;
+  min-width: 120px;
+}
+
+button[matbutton]:hover,
+button[mat-raised-button]:hover {
   background-color: #5A6C5D;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .example-form {
+    gap: 1rem;
+  }
+
+  button[matbutton],
+  button[mat-raised-button] {
+    width: 100%;
+  }
 }
