@@ -9,9 +9,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTimepickerModule } from '@angular/material/timepicker';
-import { Alerta } from '../../../models/alerta';
 import { Alertaservice } from '../../../services/alertaservice';
 import { Recomendacionservice } from '../../../services/recomendacionservice';
+import { Alerta } from '../../../models/alerta';
 import { Recomendacion } from '../../../models/recomendacion';
 // ...existing code...
 
@@ -39,7 +39,6 @@ export class Alertainsert implements OnInit {
   listaRecomendaciones: Recomendacion[] = [];
 
   edicion: boolean = false;
-  estado: boolean = true;
 
   tipos: { value: string; viewValue: string }[] = [
     { value: 'Advertencia', viewValue: 'Advertencia' },
