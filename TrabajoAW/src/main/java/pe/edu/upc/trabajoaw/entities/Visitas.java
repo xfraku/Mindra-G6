@@ -1,10 +1,8 @@
 package pe.edu.upc.trabajoaw.entities;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "Visitas")
@@ -23,25 +21,20 @@ public class Visitas {
     private SitiosWeb sitiosWeb;
 
     @Column(name = "fechaEntrada", nullable = false)
-    private LocalDate fechaEntrada;
+    private Instant fechaEntrada;
 
     @Column(name = "fechaSalida", nullable = false)
-    private LocalDate fechaSalida;
-
-    @ManyToOne
-    @JoinColumn(name = "idRecomendacion")
-    private Recomendacion recomendacion;
+    private Instant fechaSalida;
 
     public Visitas() {
     }
 
-    public Visitas(int idVisita, Usuario usuario, SitiosWeb sitiosWeb, LocalDate fechaEntrada, LocalDate fechaSalida, Recomendacion recomendacion) {
+    public Visitas(int idVisita, Usuario usuario, SitiosWeb sitiosWeb, Instant fechaEntrada, Instant fechaSalida, Recomendacion recomendacion) {
         this.idVisita = idVisita;
         this.usuario = usuario;
         this.sitiosWeb = sitiosWeb;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
-        this.recomendacion = recomendacion;
     }
 
     public int getIdVisita() {
@@ -68,27 +61,20 @@ public class Visitas {
         this.sitiosWeb = sitiosWeb;
     }
 
-    public LocalDate getFechaEntrada() {
+    public Instant getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(LocalDate fechaEntrada) {
+    public void setFechaEntrada(Instant fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public LocalDate getFechaSalida() {
+    public Instant getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(Instant fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
-    public Recomendacion getRecomendacion() {
-        return recomendacion;
-    }
-
-    public void setRecomendacion(Recomendacion recomendacion) {
-        this.recomendacion = recomendacion;
-    }
 }

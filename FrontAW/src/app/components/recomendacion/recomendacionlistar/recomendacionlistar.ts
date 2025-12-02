@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Recomendacion } from '../../../models/recomendacion';
 import { Recomendacionservice } from '../../../services/recomendacionservice';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -19,6 +19,8 @@ export class Recomendacionlistar implements OnInit {
   dataSource: MatTableDataSource<Recomendacion> = new MatTableDataSource();
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private rS: Recomendacionservice) {}
 
   ngOnInit(): void {
@@ -30,7 +32,9 @@ export class Recomendacionlistar implements OnInit {
     });
   }
 
-  
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   eliminar(id: number) {
     this.rS.delete(id).subscribe(() => {

@@ -7,7 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.VisitasDTO;
+import pe.edu.upc.trabajoaw.entities.SitiosWeb;
+import pe.edu.upc.trabajoaw.entities.Usuario;
 import pe.edu.upc.trabajoaw.entities.Visitas;
+import pe.edu.upc.trabajoaw.servicesinterfaces.ISitiosWebService;
+import pe.edu.upc.trabajoaw.servicesinterfaces.IUsuarioService;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IVisitasServices;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +23,14 @@ public class VisitasController {
     @Autowired
     private IVisitasServices service;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
+    @Autowired
+    private ISitiosWebService sitiosWebService;
+
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("permitAll()")
     public List<VisitasDTO> listarVisitas(){
         return service.list().stream().map(a->{
             ModelMapper m = new ModelMapper();
@@ -29,15 +39,24 @@ public class VisitasController {
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("permitAll()")
     public void insertar(@RequestBody VisitasDTO dto){
-        ModelMapper m = new ModelMapper();
-        Visitas entity=m.map(dto,Visitas.class);
-        service.insertar(entity);
+        Visitas visita = new Visitas();
+
+        visita.setFechaEntrada(dto.getFechaEntrada());
+        visita.setFechaSalida(dto.getFechaSalida());
+
+        Usuario usuario = usuarioService.listId(dto.getIdUsuario());
+        SitiosWeb sitioWeb = sitiosWebService.listId(dto.getIdSitioWeb());
+
+        visita.setUsuario(usuario);
+        visita.setSitiosWeb(sitioWeb);
+
+        service.insertar(visita);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id){
         Visitas entity = service.listId(id);
         if(entity == null){
@@ -49,7 +68,7 @@ public class VisitasController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id){
         Visitas entity = service.listId(id);
         if (entity == null){
@@ -60,15 +79,26 @@ public class VisitasController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','ESPECIALISTA')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<String> modificar(@RequestBody VisitasDTO dto){
-        ModelMapper m = new ModelMapper();
-        Visitas entity=m.map(dto,Visitas.class);
-        Visitas existente = service.listId(entity.getIdVisita());
-        if (existente == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se puede modificar. No existe un registro con el ID: " + entity.getIdVisita());
+        Visitas visita = service.listId(dto.getIdVisita());
+
+        if (visita == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe un registro con el ID: " + dto.getIdVisita());
         }
-        service.edit(entity);
-        return ResponseEntity.ok("Registro con ID " +  entity.getIdVisita() + "modificado correctamente");
+
+        visita.setFechaEntrada(dto.getFechaEntrada());
+        visita.setFechaSalida(dto.getFechaSalida());
+
+        Usuario usuario = usuarioService.listId(dto.getIdUsuario());
+        SitiosWeb sitioWeb = sitiosWebService.listId(dto.getIdSitioWeb());
+
+        visita.setUsuario(usuario);
+        visita.setSitiosWeb(sitioWeb);
+
+        service.edit(visita);
+
+        return ResponseEntity.ok("Registro con ID " + dto.getIdVisita() + " modificado correctamente");
     }
 }

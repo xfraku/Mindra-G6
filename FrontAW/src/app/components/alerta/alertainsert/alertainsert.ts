@@ -9,9 +9,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTimepickerModule } from '@angular/material/timepicker';
+import { Alerta } from '../../../models/alerta';
 import { Alertaservice } from '../../../services/alertaservice';
 import { Recomendacionservice } from '../../../services/recomendacionservice';
-import { Alerta } from '../../../models/alerta';
 import { Recomendacion } from '../../../models/recomendacion';
 // ...existing code...
 
@@ -39,10 +39,11 @@ export class Alertainsert implements OnInit {
   listaRecomendaciones: Recomendacion[] = [];
 
   edicion: boolean = false;
+  estado: boolean = true;
 
   tipos: { value: string; viewValue: string }[] = [
     { value: 'Advertencia', viewValue: 'Advertencia' },
-    { value: 'Alerta', viewValue: 'Alerta' },
+    { value: 'Peligro', viewValue: 'Peligro' },
     { value: 'Notificacion', viewValue: 'Notificacion' },
   ];
 
@@ -88,11 +89,11 @@ export class Alertainsert implements OnInit {
       this.a.tipo = this.form.value.tipo;
       this.a.visible = this.form.value.visible;
       // Convert horaInicio (Date or string) to "HH:MM"
-      const hi: Date = new Date(this.form.value.horaI);
+      const hi: Date = new Date(this.form.value.horaInicio);
       const hiHoras = hi.getHours().toString().padStart(2, '0');
       const hiMin = hi.getMinutes().toString().padStart(2, '0');
       this.a.horaInicio = `${hiHoras}:${hiMin}`;
-      const hf: Date = new Date(this.form.value.horaF);
+      const hf: Date = new Date(this.form.value.horaFin);
       const hfHoras = hf.getHours().toString().padStart(2, '0');
       const hfMin = hf.getMinutes().toString().padStart(2, '0');
       this.a.horaFin = `${hfHoras}:${hfMin}`;
@@ -132,6 +133,4 @@ export class Alertainsert implements OnInit {
       });
     }
   }
-
-
 }

@@ -6,7 +6,7 @@
     <form [formGroup]="form" (submit)="aceptar()" class="example-form">
       @if (edicion) {
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Código</mat-label>
+        <mat-label>CÃ³digo</mat-label>
         <input matInput formControlName="id" required />
 
         @if (form.get('id')?.hasError('required')) {

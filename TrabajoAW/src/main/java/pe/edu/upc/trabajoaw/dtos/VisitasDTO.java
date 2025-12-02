@@ -10,7 +10,6 @@ public class VisitasDTO {
     private int idSitioWeb;
     private Instant fechaEntrada;
     private Instant fechaSalida;
-    private Recomendacion recomendacion;
 
     public int getIdVisita() {
         return idVisita;
@@ -50,13 +49,5 @@ public class VisitasDTO {
 
     public void setFechaSalida(Instant fechaSalida) {
         this.fechaSalida = fechaSalida;
-    }
-
-    public Recomendacion getRecomendacion() {
-        return recomendacion;
-    }
-
-    public void setRecomendacion(Recomendacion recomendacion) {
-        this.recomendacion = recomendacion;
     }
 }

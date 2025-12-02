@@ -9,11 +9,13 @@
       style="cursor: pointer"
     />
     
-    @if(isEstudiante() || isDocente() || isEspecialista()) {
+    @if(isEstudiante() || isAdmin() || isEspecialista() || isApoderado() || isDocente()) {
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
     </button>
-    } @if(isEstudiante()){
+    }
+    
+    @if(isEstudiante() || isAdmin() || isEspecialista()) {
     <button
       class="btn-rojo"
       mat-button
@@ -22,28 +24,9 @@
     >
       <mat-icon>recommend</mat-icon>Recomendaciones
     </button>
-
-    <button
-      class="btn-rojo"
-      mat-button
-      [matMenuTriggerFor]="menuReportes"
-      aria-label="Reportes menu"
-    >
-      <mat-icon>assessment</mat-icon>Reportes
-    </button>
-
-    <button
-      class="btn-rojo"
-      mat-button
-      [matMenuTriggerFor]="menuEmociones"
-      aria-label="Reportes emocion"
-    >
-      <mat-icon>mood</mat-icon>Emocion
-    </button>
-    } @if(isEstudiante() || isApoderado()){
     }
 
-    @if(isAdmin()) {
+    @if(isEstudiante() || isAdmin() || isEspecialista() || isApoderado() || isDocente()) {
     <button
       class="btn-rojo"
       mat-button
@@ -54,13 +37,13 @@
     </button>
     }
 
-    @if(isEstudiante()) {
+    @if(isAdmin() || isDocente() || isEspecialista()) {
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuVisitas" aria-label="Visitas menu">
       <mat-icon>history</mat-icon>Visitas
     </button>
     }
 
-    @if(isEstudiante()) {
+    @if(isAdmin() || isEspecialista()) {
     <button
       class="btn-rojo"
       mat-button
@@ -69,7 +52,9 @@
     >
       <mat-icon>lock</mat-icon>Bloqueos
     </button>
+    }
 
+    @if(isEstudiante()) {
     <button
       class="btn-rojo"
       mat-button
@@ -78,21 +63,22 @@
     >
       <mat-icon>assessment</mat-icon>Reportes
     </button>
+    }
 
+    @if(isAdmin() || isEspecialista() || isEstudiante()) {
     <button
       class="btn-rojo"
       mat-button
       [matMenuTriggerFor]="menuEmociones"
       aria-label="Reportes emocion"
     >
-      <mat-icon>mood</mat-icon>Emocion
+      <mat-icon>mood</mat-icon>Emoción
     </button>
-  }
-<span class="spacer"> </span>
-  
-    <button mat-button [matMenuTriggerFor]="menuSalir">
-      <mat-icon>person</mat-icon>Usuario
-    </button>
+    }
+    
+    <span class="spacer"> </span>
+
+    <button mat-button [matMenuTriggerFor]="menuSalir"><mat-icon>person</mat-icon>Usuario</button>
   </mat-toolbar>
   }
 
