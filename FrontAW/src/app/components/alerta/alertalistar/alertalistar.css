@@ -49,14 +49,24 @@ table {
   color: #5A6C5D;
 }
 
-button[matButton]:hover {
-  background-color: #5A6C5D;
+button[matbutton],
+button[mat-button] {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 6px;
+  transition: background-color 0.2s;
 }
 
-/* --- Responsivo (botones más compactos en pantallas pequeñas) --- */
-@media (max-width: 768px) {
-  button[matButton] {
-    font-size: 0.7rem;
-    padding: 3px 8px;
-  }
+button[matbutton]:hover,
+button[mat-button]:hover {
+  background-color: #E8EBE4;
+}
+
+mat-paginator {
+  margin-top: 1.5rem;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 0.5rem;
 }

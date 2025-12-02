@@ -30,6 +30,8 @@ export class Recomendacionlistar implements OnInit {
     });
   }
 
+  
+
   eliminar(id: number) {
     this.rS.delete(id).subscribe(() => {
       this.rS.list().subscribe((data) => {
