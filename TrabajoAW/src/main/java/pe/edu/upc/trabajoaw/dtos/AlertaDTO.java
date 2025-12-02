@@ -7,13 +7,13 @@ import java.time.LocalTime;
 
 public class AlertaDTO {
     private int idAlerta;
-    private LocalDateTime tiempoEstablecido;
+    private Instant tiempoEstablecido;
     private String mensaje;
     private String nivelIntervencion;
     private String tipo;
     private boolean visible;
-    private LocalTime horaInicio;
-    private LocalTime horaFin;
+    private Instant horaInicio;
+    private Instant horaFin;
     private RecomendacionDTO recomendacion;
 
     public int getIdAlerta() {
@@ -24,11 +24,11 @@ public class AlertaDTO {
         this.idAlerta = idAlerta;
     }
 
-    public LocalDateTime getTiempoEstablecido() {
+    public Instant getTiempoEstablecido() {
         return tiempoEstablecido;
     }
 
-    public void setTiempoEstablecido(LocalDateTime tiempoEstablecido) {
+    public void setTiempoEstablecido(Instant tiempoEstablecido) {
         this.tiempoEstablecido = tiempoEstablecido;
     }
 
@@ -64,19 +64,19 @@ public class AlertaDTO {
         this.visible = visible;
     }
 
-    public LocalTime getHoraInicio() {
+    public Instant getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
+    public void setHoraInicio(Instant horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public LocalTime getHoraFin() {
+    public Instant getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(LocalTime horaFin) {
+    public void setHoraFin(Instant horaFin) {
         this.horaFin = horaFin;
     }
 

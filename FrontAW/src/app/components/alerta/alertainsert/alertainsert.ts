@@ -44,7 +44,6 @@ export class Alertainsert implements OnInit {
   tipos: { value: string; viewValue: string }[] = [
     { value: 'Advertencia', viewValue: 'Advertencia' },
     { value: 'Peligro', viewValue: 'Peligro' },
-    { value: 'Notificacion', viewValue: 'Notificacion' },
   ];
 
   constructor(
@@ -89,11 +88,11 @@ export class Alertainsert implements OnInit {
       this.a.tipo = this.form.value.tipo;
       this.a.visible = this.form.value.visible;
       // Convert horaInicio (Date or string) to "HH:MM"
-      const hi: Date = new Date(this.form.value.horaInicio);
+      const hi: Date = new Date(this.form.value.horaI);
       const hiHoras = hi.getHours().toString().padStart(2, '0');
       const hiMin = hi.getMinutes().toString().padStart(2, '0');
       this.a.horaInicio = `${hiHoras}:${hiMin}`;
-      const hf: Date = new Date(this.form.value.horaFin);
+      const hf: Date = new Date(this.form.value.horaF);
       const hfHoras = hf.getHours().toString().padStart(2, '0');
       const hfMin = hf.getMinutes().toString().padStart(2, '0');
       this.a.horaFin = `${hfHoras}:${hfMin}`;

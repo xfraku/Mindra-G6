@@ -106,7 +106,7 @@ button[mat-raised-button]:hover {
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 897px) {
   .container {
     padding: 1rem;
   }

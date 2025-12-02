@@ -16,7 +16,7 @@ public class Alerta {
     private int idAlerta;
 
     @Column(name = "tiempoEstablecido", nullable = false)
-    private LocalDate tiempoEstablecido;
+    private Instant tiempoEstablecido;
 
     @Column(name = "mensaje", length = 100, nullable = false)
     private String mensaje;
@@ -31,10 +31,10 @@ public class Alerta {
     private boolean visible;
 
     @Column(name = "horaInicio", nullable = false)
-    private LocalTime horaInicio;
+    private Instant horaInicio;
 
     @Column(name = "horaFin", nullable = false)
-    private LocalTime horaFin;
+    private Instant horaFin;
 
     @ManyToOne
     @JoinColumn(name = "idRecomendaciones")
@@ -43,7 +43,7 @@ public class Alerta {
     public Alerta() {
     }
 
-    public Alerta(int idAlerta, LocalDate tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, LocalTime horaInicio, LocalTime horaFin, Recomendacion recomendacion) {
+    public Alerta(int idAlerta, Instant tiempoEstablecido, String mensaje, String nivelIntervencion, String tipo, boolean visible, Instant horaInicio, Instant horaFin, Recomendacion recomendacion) {
         this.idAlerta = idAlerta;
         this.tiempoEstablecido = tiempoEstablecido;
         this.mensaje = mensaje;
@@ -63,11 +63,11 @@ public class Alerta {
         this.idAlerta = idAlerta;
     }
 
-    public LocalDate getTiempoEstablecido() {
+    public Instant getTiempoEstablecido() {
         return tiempoEstablecido;
     }
 
-    public void setTiempoEstablecido(LocalDate tiempoEstablecido) {
+    public void setTiempoEstablecido(Instant tiempoEstablecido) {
         this.tiempoEstablecido = tiempoEstablecido;
     }
 
@@ -103,19 +103,19 @@ public class Alerta {
         this.visible = visible;
     }
 
-    public LocalTime getHoraInicio() {
+    public Instant getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
+    public void setHoraInicio(Instant horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public LocalTime getHoraFin() {
+    public Instant getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(LocalTime horaFin) {
+    public void setHoraFin(Instant horaFin) {
         this.horaFin = horaFin;
     }
 

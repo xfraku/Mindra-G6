@@ -1,6 +1,5 @@
 import { Recomendacion } from "./recomendacion";
 
-
 export class Alerta{
     idAlerta: number = 0;
     tiempoEstablecido: Date = new Date();
