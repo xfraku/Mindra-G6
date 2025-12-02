@@ -1,16 +1,10 @@
-/* ---------------------------
-   Contenedor general
----------------------------- */
 .container {
   font-family: 'Inter', sans-serif;
-  background-color: #F8FAF7; /* Fondo secundario */
+  background-color: #F8FAF7;
   padding: 2rem;
   border-radius: 12px;
 }
 
-/* ---------------------------
-   Título de la página
----------------------------- */
 .container h2 {
   font-size: 28px;
   font-weight: 600;
@@ -19,58 +13,44 @@
   text-align: center;
 }
 
-/* ---------------------------
-   Formulario
----------------------------- */
 .example-form {
   max-width: 600px;
-  margin: 0 auto; /* Centrado */
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* Campos de entrada */
-.mat-form-field.full-width {
-  width: 100%;
-}
-
 .mat-form-field {
-  background-color: #FFFFFF; /* Fondo blanco para inputs */
+  width: 100%;
+  background-color: #FFFFFF;
   border-radius: 12px;
 }
 
 .mat-form-field.mat-focused .mat-form-field-outline {
-  color: #7C9D8E; /* Color principal al enfocar */
+  color: #7C9D8E;
   border-color: #7C9D8E;
 }
 
 .mat-label {
-  color: #5A6C5D; /* Texto secundario para etiquetas */
+  color: #5A6C5D;
   font-weight: 500;
 }
 
 .mat-input-element {
-  color: #000000; /* Texto principal */
+  color: #000000;
 }
 
-/* Mensajes de error */
 .mat-error {
   font-size: 14px;
-  color: #D9534F; /* Rojo suave para errores */
+  color: #D9534F;
 }
 
-/* ---------------------------
-   Select (usuario / sitio web)
----------------------------- */
 .mat-select-panel {
   background-color: #FFFFFF;
   border-radius: 12px;
 }
 
-/* ---------------------------
-   Datepicker
----------------------------- */
 .mat-datepicker-toggle-default-icon {
   color: #5A6C5D;
 }
@@ -84,42 +64,25 @@
   color: #5A6C5D;
 }
 
-/* ---------------------------
-   Botón registrar / actualizar
----------------------------- */
-button[matbutton] {
-  background-color: #7C9D8E; /* Color principal */
-  color: #FFFFFF;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 16px;
+.custom-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.custom-field label {
+  color: #5A6C5D;
   font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  align-self: center; /* Centrar botón */
-  min-width: 120px;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: #F8FAF7;
+  text-transform: none;
+  transition: all 0.25s ease;
+  box-shadow: 0px 2px 4px rgba(90, 108, 93, 0.15);
+  background-color: #7C9D8E;
+  width: 60%;
 }
 
-button[matbutton]:hover {
+button[matButton="elevated"]:hover {
   background-color: #5A6C5D;
-  transform: translateY(-1px);
-}
-
-
-/* ---------------------------
-   Responsividad
----------------------------- */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .example-form {
-    gap: 1rem;
-  }
-
-  button[matbutton] {
-    width: 100%;
-  }
 }

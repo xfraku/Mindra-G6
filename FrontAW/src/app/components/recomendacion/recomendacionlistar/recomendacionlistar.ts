@@ -7,10 +7,11 @@ import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator } from "@angular/material/paginator";
 
 @Component({
   selector: 'app-recomendacionlistar',
-  imports: [MatTableModule, CommonModule, RouterLink, MatButtonModule, MatIconModule,MatPaginatorModule],
+  imports: [MatTableModule, CommonModule, RouterLink, MatButtonModule, MatIconModule, MatPaginator,MatPaginatorModule],
   templateUrl: './recomendacionlistar.html',
   styleUrl: './recomendacionlistar.css',
 })

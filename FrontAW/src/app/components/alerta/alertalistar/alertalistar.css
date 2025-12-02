@@ -1,15 +1,9 @@
-/* ---------------------------
-   Tipografía general
----------------------------- */
 .container {
   font-family: 'Inter', sans-serif;
   background-color: #F8FAF7;
   padding: 2rem;
 }
 
-/* ---------------------------
-   Título centrado
----------------------------- */
 .container h1 {
   font-size: 28px;
   font-weight: 600;
@@ -18,9 +12,6 @@
   margin-bottom: 2rem;
 }
 
-/* ---------------------------
-   Tabla
----------------------------- */
 table {
   width: 100%;
   background: #FFFFFF;
@@ -28,7 +19,6 @@ table {
   overflow: hidden;
 }
 
-/* Header */
 .mat-header-row {
   background-color: #E8EBE4 !important;
 }
@@ -39,7 +29,6 @@ table {
   font-weight: 600;
 }
 
-/* Filas */
 .mat-row {
   transition: background-color 0.2s ease;
 }
@@ -48,45 +37,26 @@ table {
   background-color: #F2F5F0;
 }
 
-/* Celdas */
 .mat-cell {
   color: #000000;
   font-size: 15px;
 }
 
-/* ---------------------------
-   Botones (Actualizar / Eliminar)
----------------------------- */
-
-/* Asegura que los íconos sean visibles */
 .mat-icon {
   font-size: 22px;
   height: 22px;
   width: 22px;
-  color: #5A6C5D; /* Íconos visibles siempre */
+  color: #5A6C5D;
 }
 
-/* Botón general */
-button[matbutton] {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  padding: 6px;
-  transition: background-color 0.2s;
+button[matButton]:hover {
+  background-color: #5A6C5D;
 }
 
-/* Hover */
-button[matbutton]:hover {
-  background-color: #E8EBE4;
-}
-
-/* ---------------------------
-   Paginador
----------------------------- */
-mat-paginator {
-  margin-top: 1.5rem;
-  background-color: #FFFFFF;
-  border-radius: 12px;
-  padding: 0.5rem;
+/* --- Responsivo (botones más compactos en pantallas pequeñas) --- */
+@media (max-width: 768px) {
+  button[matButton] {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
 }

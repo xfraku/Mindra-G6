@@ -2,41 +2,72 @@
   <div class="welcome-section">
     <h1>Bienvenido a Mindra</h1>
     <p>Gestiona tu bienestar digital</p>
-
     <app-deezer></app-deezer>
   </div>
 
   <div class="cards-grid">
-    <!-- Card: Sitios Web -->
+
+    @if(isAdmin()) {
     <mat-card class="dashboard-card" routerLink="/sitiosweb">
       <mat-card-content>
         <h2>Sitios Web</h2>
         <p>Administrar sitios web registrados</p>
       </mat-card-content>
     </mat-card>
+    }
 
-    <!-- Card: Visitas -->
+    @if(isEstudiante()) {
     <mat-card class="dashboard-card" routerLink="/visitas">
       <mat-card-content>
         <h2>Visitas</h2>
         <p>Historial de visitas a sitios</p>
       </mat-card-content>
     </mat-card>
+    }
 
-    <!-- Card: Bloqueos -->
+    @if(isEstudiante()) {
     <mat-card class="dashboard-card" routerLink="/bloqueo">
       <mat-card-content>
         <h2>Bloqueos</h2>
         <p>Gestionar bloqueos de sitios</p>
       </mat-card-content>
     </mat-card>
+    }
 
-    <!-- Card: Reportes - ✅ CAMBIO AQUÍ -->
-    <mat-card class="dashboard-card" routerLink="/usuario/totalTiempoDistraccionUsuario">
+    @if(isEstudiante()) {
+    <mat-card class="dashboard-card" routerLink="/reportes/distraccion">
       <mat-card-content>
         <h2>Reportes</h2>
         <p>Análisis y estadísticas</p>
       </mat-card-content>
     </mat-card>
+    }
+
+    @if(isEstudiante()) {
+    <mat-card class="dashboard-card" routerLink="/alertas">
+      <mat-card-content>
+        <h2>Alertas</h2>
+        <p>Sistema de notificaciones</p>
+      </mat-card-content>
+    </mat-card>
+    }
+
+    @if(isEstudiante()) {
+    <mat-card class="dashboard-card" routerLink="/recomendacion">
+      <mat-card-content>
+        <h2>Recomendaciones</h2>
+        <p>Sugerencias personalizadas</p>
+      </mat-card-content>
+    </mat-card>
+    }
+
+    @if(isAdmin()) {
+    <mat-card class="dashboard-card" routerLink="/emocion">
+      <mat-card-content>
+        <h2>Emoción</h2>
+        <p>Gestión emocional</p>
+      </mat-card-content>
+    </mat-card>
+    }
   </div>
 </div>

@@ -107,12 +107,21 @@ export const routes: Routes = [
       { path: 'totalTiempoDistraccionUsuario', component: Reportetiempodistraccion },
       { path: 'tiempoProductivoUsuario', component: Reportetiempoproductivo }
 
+    ],
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'recomendacion',
+        component: Recomendacion,
+        children: [
+          { path: 'news', component: Recomendacioninsert },
+          { path: 'edits/:id', component: Recomendacioninsert },
         ],
         canActivate: [seguridadGuard],
       },
-    {
-    path: 'homes',
-    component: Home,
+      {
+        path: 'homes',
+        component: Home,
         canActivate: [seguridadGuard],
       },
     ],

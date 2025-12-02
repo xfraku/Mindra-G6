@@ -23,11 +23,21 @@ export class Alertalistar implements OnInit {
   constructor(private aS: Alertaservice) {}
 
   ngOnInit(): void {
-    this.aS.list().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+    this.aS.list().subscribe({
+      next: (data) => {
+        console.log('✅ Datos recibidos:', data);
+        console.log('📊 Cantidad de alertas:', data.length);
+        console.log('🔍 Primera alerta:', data[0]);
+        this.dataSource.data = data;
+      },
+      error: (error) => {
+        console.error('❌ Error al cargar alertas:', error);
+      }
     });
+
     this.aS.getList().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+      console.log('📢 Actualización desde Subject:', data);
+      this.dataSource.data = data;
     });
   }
 

@@ -1,18 +1,20 @@
 <div class="container">
   @if(verificar()){
-    <mat-toolbar class="custom-toolbar">
-    <img 
-      src="assets/MindraLogo.png" 
-      alt="Mindra Logo" 
-      class="logo-mindra" 
+  <mat-toolbar class="custom-toolbar">
+    <img
+      src="assets/MindraLogo.png"
+      alt="Mindra Logo"
+      class="logo-mindra"
       routerLink="/homes"
-      style="cursor: pointer;"
+      style="cursor: pointer"
     />
-    @if(isAdmin() || isDocente() || isEspecialista()){
+    
+    @if(isEstudiante() || isDocente() || isEspecialista()) {
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuAlertas" aria-label="Alertas menu">
       <mat-icon>warning</mat-icon>Alertas
     </button>
-     <button
+    } @if(isEstudiante()){
+    <button
       class="btn-rojo"
       mat-button
       [matMenuTriggerFor]="menuRecomendaciones"
@@ -39,7 +41,9 @@
       <mat-icon>mood</mat-icon>Emocion
     </button>
     } @if(isEstudiante() || isApoderado()){
+    }
 
+    @if(isAdmin()) {
     <button
       class="btn-rojo"
       mat-button
@@ -48,11 +52,15 @@
     >
       <mat-icon>language</mat-icon>Sitios Web
     </button>
+    }
 
+    @if(isEstudiante()) {
     <button class="btn-rojo" mat-button [matMenuTriggerFor]="menuVisitas" aria-label="Visitas menu">
       <mat-icon>history</mat-icon>Visitas
     </button>
+    }
 
+    @if(isEstudiante()) {
     <button
       class="btn-rojo"
       mat-button
@@ -60,6 +68,24 @@
       aria-label="Bloqueos menu"
     >
       <mat-icon>lock</mat-icon>Bloqueos
+    </button>
+
+    <button
+      class="btn-rojo"
+      mat-button
+      [matMenuTriggerFor]="menuReportes"
+      aria-label="Reportes menu"
+    >
+      <mat-icon>assessment</mat-icon>Reportes
+    </button>
+
+    <button
+      class="btn-rojo"
+      mat-button
+      [matMenuTriggerFor]="menuEmociones"
+      aria-label="Reportes emocion"
+    >
+      <mat-icon>mood</mat-icon>Emocion
     </button>
   }
 <span class="spacer"> </span>

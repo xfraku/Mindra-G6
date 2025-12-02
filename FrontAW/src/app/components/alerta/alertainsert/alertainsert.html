@@ -5,7 +5,7 @@
   <div style="text-align: center; margin: 2%">
     <form [formGroup]="form" (ngSubmit)="aceptar()" class="example-form">
       @if (edicion) {
-      <mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Código</mat-label>
         <input matInput formControlName="id" required />
         @if (form.get('id')?.hasError('required')) {
@@ -13,9 +13,8 @@
         }
       </mat-form-field>
       }
-      <br />
 
-      <mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Tiempo establecido</mat-label>
         <input
           matInput
@@ -32,41 +31,38 @@
         <mat-error> El campo tiempo establecido es obligatorio.</mat-error>
         }
       </mat-form-field>
-      <br />
-      <mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Mensaje</mat-label>
         <textarea matInput formControlName="mensaje" rows="3" required></textarea>
         @if(form.get('mensaje')?.hasError('required')){
         <mat-error>El mensaje es obligatorio.</mat-error>
         }
       </mat-form-field>
-      <br />
-      <mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nivel de intervención</mat-label>
         <input matInput formControlName="nivelIntervencion" required />
         @if(form.get('nivelIntervencion')?.hasError('required')){
         <mat-error>El nivel de intervención es obligatorio.</mat-error>
         }
       </mat-form-field>
-      <br />
 
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Tipo</mat-label>
-          <mat-select formControlName="tipo" required>
-            @for (t of tipos; track t.value){
-            <mat-option [value]="t.value">
-              {{ t.viewValue }}
-            </mat-option>
-            }
-          </mat-select>
-
-          @if (form.get('tipo')?.hasError('required')){
-          <mat-error>El campo tipo es obligatorio.</mat-error>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo" required>
+          @for (t of tipos; track t.value){
+          <mat-option [value]="t.value">
+            {{ t.viewValue }}
+          </mat-option>
           }
-        </mat-form-field>
-      </div>
-      <br />
+        </mat-select>
+
+        @if (form.get('tipo')?.hasError('required')){
+        <mat-error>El campo tipo es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
       <div class="custom-field">
         <label>Visible</label>
         <mat-radio-group formControlName="visible" aria-label="Visible" required>
@@ -74,26 +70,24 @@
           <mat-radio-button [value]="false">No</mat-radio-button>
         </mat-radio-group>
       </div>
-      
-      <br />
-      <mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Hora inicio</mat-label>
         <input matInput type="time" formControlName="horaInicio" required />
         @if (form.get('horaInicio')?.hasError('required')){
         <mat-error>La hora de inicio es obligatoria.</mat-error>
         }
       </mat-form-field>
-      <br />
-      <mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Hora fin</mat-label>
         <input matInput type="time" formControlName="horaFin" required />
         @if(form.get('horaFin')?.hasError('required')){
           <mat-error>La hora fin es obligatoria.</mat-error>
         }
       </mat-form-field>
-      <br>
-      <div>
-      <mat-form-field  class="example-full-width">
+
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Recomendación</mat-label>
         <mat-select formControlName="recomendacion" required>
           @for( r of listaRecomendaciones; track r.idRecomendacion){
@@ -106,8 +100,7 @@
         <mat-error>Seleccione una recomendación.</mat-error>
         }
       </mat-form-field>
-    </div>
-    <br>
+
       <button matButton>{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
     </form>
   </div>
