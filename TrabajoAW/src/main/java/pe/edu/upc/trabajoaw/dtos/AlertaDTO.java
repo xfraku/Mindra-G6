@@ -1,89 +1,71 @@
 package pe.edu.upc.trabajoaw.dtos;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class AlertaDTO {
     private int idAlerta;
-    private LocalDateTime tiempoEstablecido;
+    private Instant tiempoEstablecido;
     private String mensaje;
     private String nivelIntervencion;
     private String tipo;
     private boolean visible;
-    private LocalTime horaInicio;
-    private LocalTime horaFin;
-    private Integer idRecomendacion;
+    private Instant horaInicio;
+    private Instant horaFin;
+    private RecomendacionDTO recomendacion;
 
     public int getIdAlerta() {
         return idAlerta;
     }
-
     public void setIdAlerta(int idAlerta) {
         this.idAlerta = idAlerta;
     }
-
-    public LocalDateTime getTiempoEstablecido() {
+    public Instant getTiempoEstablecido() {
         return tiempoEstablecido;
     }
-
-    public void setTiempoEstablecido(LocalDateTime tiempoEstablecido) {
+    public void setTiempoEstablecido(Instant tiempoEstablecido) {
         this.tiempoEstablecido = tiempoEstablecido;
     }
-
     public String getMensaje() {
         return mensaje;
     }
-
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-
     public String getNivelIntervencion() {
         return nivelIntervencion;
     }
-
     public void setNivelIntervencion(String nivelIntervencion) {
         this.nivelIntervencion = nivelIntervencion;
     }
-
     public String getTipo() {
         return tipo;
     }
-
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
     public boolean isVisible() {
         return visible;
     }
-
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
-
-    public LocalTime getHoraInicio() {
+    public Instant getHoraInicio() {
         return horaInicio;
     }
-
-    public void setHoraInicio(LocalTime horaInicio) {
+    public void setHoraInicio(Instant horaInicio) {
         this.horaInicio = horaInicio;
     }
-
-    public LocalTime getHoraFin() {
+    public Instant getHoraFin() {
         return horaFin;
     }
-
-    public void setHoraFin(LocalTime horaFin) {
+    public void setHoraFin(Instant horaFin) {
         this.horaFin = horaFin;
     }
-
-    public Integer getIdRecomendacion() {
-        return idRecomendacion;
+    public RecomendacionDTO getRecomendacion() {  // Cambié de getIdRecomendacion() a getRecomendacion()
+        return recomendacion;
     }
 
-    public void setIdRecomendacion(Integer idRecomendacion) {
-        this.idRecomendacion = idRecomendacion;
+    public void setRecomendacion(RecomendacionDTO recomendacion) {  // También corregí el parámetro
+        this.recomendacion = recomendacion;
     }
 }

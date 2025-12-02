@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.trabajoaw.dtos.AlertaDTO;
+import pe.edu.upc.trabajoaw.dtos.RecomendacionDTO;
 import pe.edu.upc.trabajoaw.entities.Alerta;
 import pe.edu.upc.trabajoaw.servicesinterfaces.IAlertaService;
 
@@ -21,16 +22,22 @@ public class AlertaController {
     private IAlertaService service;
 
     @GetMapping("/listar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA','ESTUDIANTE')")
     public List<AlertaDTO> listar() {
         return service.list().stream().map(e -> {
             ModelMapper m = new ModelMapper();
-            return m.map(e, AlertaDTO.class);
+            m.getConfiguration().setAmbiguityIgnored(true);
+            AlertaDTO dto = m.map(e, AlertaDTO.class);
+            // Mapeo manual si es necesario
+            if (e.getRecomendacion() != null) {
+                dto.setRecomendacion(m.map(e.getRecomendacion(), RecomendacionDTO.class));
+            }
+            return dto;
         }).collect(Collectors.toList());
     }
 
     @PostMapping("/nuevo")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA','ESTUDIANTE')")
     public void insertar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
         Alerta entity = m.map(dto, Alerta.class);
@@ -38,7 +45,7 @@ public class AlertaController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<?> listarId(@PathVariable int id) {
         Alerta entity = service.listId(id);
         if (entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Alerta con ID " + id);
@@ -47,7 +54,7 @@ public class AlertaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<String> eliminar(@PathVariable int id) {
         if (service.listId(id) == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe Alerta con ID " + id);
         service.delete(id);
@@ -55,7 +62,7 @@ public class AlertaController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOCENTE','APODERADO','ESPECIALISTA','ESTUDIANTE')")
     public ResponseEntity<String> modificar(@RequestBody AlertaDTO dto) {
         ModelMapper m = new ModelMapper();
         Alerta entity = m.map(dto, Alerta.class);
